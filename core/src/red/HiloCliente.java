@@ -114,17 +114,10 @@ public class HiloCliente extends Thread {
 				//--------------------------------movimiento de los npc------------------------------------------
 				if(mensajeParametrizado[1].equals("tiempoMov") && personajesRestantes==0) {//tiempo que deben moverse
 					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setTiempoMov( Float.parseFloat(mensajeParametrizado[3] ));
-				}else if(mensajeParametrizado[1].equals("fuerza") && personajesRestantes==0) {//Num de movimiento
-
-					if(mensajeParametrizado[2].equals("x")) {
+				}else if(mensajeParametrizado[1].equals("posicion") && personajesRestantes==0) {//Num de movimiento
 					
-						((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[3]) ].setDireccion(new Vector2(Float.parseFloat(mensajeParametrizado[4]), 0));
-
-					}else if(mensajeParametrizado[2].equals("y")) {
-						
-						((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[3]) ].setDireccion(new Vector2(0, Float.parseFloat(mensajeParametrizado[4])));
-					
-					}
+					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setPosicion(Float.parseFloat(mensajeParametrizado[3]), Float.parseFloat(mensajeParametrizado[4]));
+			
 				}else if(mensajeParametrizado[1].equals("esperandoDialogo")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setEsperandoDialogo(true);
 					

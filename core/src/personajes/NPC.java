@@ -141,7 +141,6 @@ public class NPC extends Entidad implements InterfaceRobable{
 	public void setDireccion(Vector2 xy) {
 		// 1 arriba 2 abajo 3 izquierda 4 derecha 5-40 nada
 		fuerzas.set(xy);
-		
 		movimiento = (xy.x == 1)? 4: (xy.x == -1)? 3: 5;
 		if(movimiento==5) movimiento = (xy.y == 1)? 1: (xy.y == -1)? 2: 5;
 

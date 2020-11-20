@@ -40,10 +40,11 @@ public class PantallaMenu implements Screen {
 		stage = new Stage(viewport); 
 		stage.addActor(hud);
 		
-		hud.setearPopUp("botones/popup.png");
 		botonJugar = new Interfaz("botones/boton 1.png",new Vector2(Utiles.ancho/2,420),null);
 		botonConfig = new Interfaz("botones/boton 2.png",new Vector2(Utiles.ancho/2,300),null);
 		botonCreditos = new Interfaz("botones/boton 3.png",new Vector2(Utiles.ancho/2,180),this);
+		hud.setearPopUp("botones/popup.png");
+		
 		stage.addActor(botonJugar); 
 		stage.addActor(botonConfig); 
 		stage.addActor(botonCreditos); 
