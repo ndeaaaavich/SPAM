@@ -197,6 +197,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	private void update(float delta) {
 		System.out.println("TETAS");
 		System.out.println("MAS TETAS ");
+		System.out.println("comitanpush");
 		
 		mundo.step(1 / 60f, 6, 2);
 		
