@@ -195,10 +195,6 @@ public class PantallaRonda1 extends PantallaRonda {
 	// -------------------------------------------------------------CAMARA-------------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	private void update(float delta) {
-		System.out.println("TETAS");
-		System.out.println("MAS TETAS ");
-		System.out.println("comitanpush");
-		
 		mundo.step(1 / 60f, 6, 2);
 		
 		  if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
