@@ -20,7 +20,7 @@ public class Mapa{
 	
 	private Cuerpo[] zonas;
 	
-	private int i, x, p, f; 
+	private int i, x, p; 
 	private Vector2[] PowerUpsPosition, 
 					  PlataformasInicioPosition, PlataformasFinalPosition, 
 					  PlataformasSize;
@@ -73,7 +73,6 @@ public class Mapa{
 				}else if(tileMap.getLayers().get(j) == tileMap.getLayers().get("PlataformasMovilesFinal")){
 					//en este if se optienen las posiciones en orden de las plataformas
 					PlataformasFinalPosition[Integer.parseInt(objeto.getName())] = new Vector2( rec.getX() , rec.getY());
-					f++;
 					
 				}else {
 					//en el else se hacen el respto de cuerpos que del tiledMap
