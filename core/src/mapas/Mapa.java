@@ -11,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 import utiles.Global;
-import utiles.Utiles;
 import cuerpos.Cuerpo;
 
 public class Mapa{
