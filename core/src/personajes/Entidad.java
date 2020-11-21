@@ -12,7 +12,7 @@ public abstract class Entidad extends Actor{
 	
 	protected int ultimoIndice;
 	protected float duracion;
-	protected Cuerpo cuerpo;
+	//protected Cuerpo cuerpo;
 	protected Animacion animacion;
 	
 	protected int sala = -1;
@@ -21,7 +21,7 @@ public abstract class Entidad extends Actor{
 	protected boolean derecha = true; // por default todos los pj aparecen mirando a la derecha
 
 	public Entidad(Cuerpo cuerpo, String sprite) {
-		this.cuerpo = cuerpo;
+		//this.cuerpo = cuerpo;
 		this.animacion = new Animacion(sprite, 21, 4, cuerpo.getAncho(), cuerpo.getAlto() * 2);
 		
 		setBounds(cuerpo.getPosition().x,cuerpo.getPosition().y,
@@ -40,14 +40,14 @@ public abstract class Entidad extends Actor{
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------GETTERS------------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------
-	public Vector2 jugadorGuardia() {
+	/*public Vector2 jugadorGuardia() {
 		return cuerpo.getPosition();
-	}
+	}*/
 	
 	public int getSala() {
 		return this.sala;
 	}
-	public float getAncho() {
+	/*public float getAncho() {
 		return cuerpo.getAncho();
 	}
 	public float getAlto() {
@@ -55,15 +55,18 @@ public abstract class Entidad extends Actor{
 	}
 	public Cuerpo getCuerpo() {
 		return cuerpo;
-	}
+	}*/
 	public boolean isDerecha() {
 		return derecha;
 	}
 	public float getDuracion() {
 		return duracion;
 	}
-	public Vector2 getPosition() {
+	/*public Vector2 getPosition() {
 		return cuerpo.getPosition();
+	}*/
+	public Vector2 getSprPosition() {
+		return animacion.getPosition();
 	}
 	public Vector2 getFuerza() {
 		Vector2 fuerza = new Vector2(fuerzaX, fuerzaY); 
@@ -89,7 +92,10 @@ public abstract class Entidad extends Actor{
 		this.fuerzaY = fuerzaY;
 	}
 	public void setPosition(float x, float y) {
-		cuerpo.setPosition(x, y);
+		//cuerpo.setPosition(x, y);
 		super.setPosition(x, y);
+	}
+	public void setSprPosition(float x, float y) {
+		animacion.setPosicion(x, y);
 	}
 }

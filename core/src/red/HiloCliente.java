@@ -29,7 +29,6 @@ public class HiloCliente extends Thread {
 	
 	private boolean fin = false;
 	private PantallaRonda app;
-	private float fuerzaY = 0, fuerzaX = 0;
 	public int tope = 9;
 	public int personajesRestantes = tope;
 	private float posY = 0, posX = 0;
@@ -104,8 +103,9 @@ public class HiloCliente extends Thread {
 					app.posGuardiaX = posX;
 					app.posGuardiaY = posY;
 				}else if(mensajeParametrizado[3].equals("L")){
-					app.posLadronX = posX;
-					app.posLadronY = posY;
+//					app.posLadronX = posX;
+//					app.posLadronY = posY;
+					app.jugadorLadron.setSprPosition(posX, posY);
 				}
 				
 				

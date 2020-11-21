@@ -14,7 +14,7 @@ import red.HiloCliente;
 import utiles.Global;
 import utiles.Render;
 import utiles.Utiles;
-//JACO GAY
+
 import cuerpos.Cuerpo;
 import menu.Hud;
 import personajes.Guardia;
@@ -46,7 +46,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		Utiles.hc.start();
 		// guardia
 		jugadorGuardia = new Guardia(new Cuerpo(mundo, 15, 15, BodyType.DynamicBody, 200, 160),
-				"personajes/badlogic.jpg"/* , Utiles.hc */);
+				"personajes/badlogic.jpg");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
 		hud.setearPopUp("botones/popup.png");
@@ -196,10 +196,12 @@ public class PantallaRonda1 extends PantallaRonda {
 	private void update(float delta) {
 		mundo.step(1 / 60f, 6, 2);
 		
-		  if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
-	            jugadorGuardia.setPosition(posGuardiaX, posGuardiaY);
-	            jugadorLadron.setPosition(posLadronX, posLadronY);
-	      } 
+		if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
+			jugadorGuardia.setSprPosition(posGuardiaX, posGuardiaY);
+			jugadorLadron.setSprPosition(posLadronX, posLadronY);
+			//jugadorGuardia.setPosition(posGuardiaX, posGuardiaY);
+	        //jugadorLadron.setPosition(posLadronX, posLadronY);
+	     } 
 		
 		if ((!Global.guardia) ? jugadorLadron.cambiarSala : jugadorGuardia.cambiarSala) { // necesito sumar tiempo
 																							// mientras se hace la
@@ -220,10 +222,8 @@ public class PantallaRonda1 extends PantallaRonda {
 	}
 
 	private void camaraUpdate() {
-		puntoLlegada = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSala() : jugadorGuardia.getSala()]
-				.getPosition();
-		puntoSalida = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSalaAnterior()
-				: jugadorGuardia.getSalaAnterior()].getPosition();
+		puntoLlegada = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSala() : jugadorGuardia.getSala()].getPosition();
+		puntoSalida = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSalaAnterior(): jugadorGuardia.getSalaAnterior()].getPosition();
 
 		posicion.set(puntoLlegada);
 		posicion.sub(puntoSalida);
@@ -237,7 +237,7 @@ public class PantallaRonda1 extends PantallaRonda {
 
 	private void adelantarCuerpos() {
 		for (int i = 0; i < npcs.length; i++) {
-			if (jugadorGuardia.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM) {
+			/*if (jugadorGuardia.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM) {
 				if (jugadorGuardia.getPosition().y > npcs[i].getPosition().y) {
 					jugadorGuardia.toBack();
 				} else {
@@ -250,7 +250,7 @@ public class PantallaRonda1 extends PantallaRonda {
 				} else {
 					jugadorLadron.toFront();
 				}
-			}
+			}*/
 		}
 		if (jugadorLadron.getPosition().dst(jugadorGuardia.getPosition()) < 30 * Utiles.PPM) {
 			if (jugadorLadron.getPosition().y > jugadorGuardia.getPosition().y) {
@@ -262,8 +262,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------------------------
-	// -------------------------------------------------------------NPC
-	// COSAS----------------------------------------------------------------
+	// -------------------------------------------------------------NPC COSAS----------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	public void crearNPC(String[] mensajeParametrizado2, int[] apariencia) {
 		npcs[Integer.parseInt(mensajeParametrizado2[2])] = new NPC(
@@ -275,8 +274,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------------------------
-	// -------------------------------------------------------------JUGADORES
-	// COSAS----------------------------------------------------------
+	// -------------------------------------------------------------JUGADORES COSAS----------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	 private void roboNPC() {
 	        int i = 0, resultadoRobo;
