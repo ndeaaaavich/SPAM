@@ -1,5 +1,4 @@
 package pantallas;
-
 import com.badlogic.gdx.Gdx;
 
 import elementos.Texto;
@@ -195,7 +194,6 @@ public class PantallaRonda1 extends PantallaRonda {
 	// -------------------------------------------------------------CAMARA-------------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	private void update(float delta) {
-		
 		mundo.step(1 / 60f, 6, 2);
 		
 		  if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {

@@ -59,7 +59,7 @@ public class PantallaMenu implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.draw(); 
 		stage.act();
-		
+		System.out.println("a");
 		hud.dibujarHud();
 		camara.update();	
 	}
