@@ -19,7 +19,15 @@ public abstract class Entidad extends Actor{
 	protected float fuerzaX = 0, fuerzaY = 0;
 	protected Vector2 fuerzas = new Vector2();
 	protected boolean derecha = true; // por default todos los pj aparecen mirando a la derecha
-
+	
+	public Object UserData;
+	
+	public Object getUserData() {
+		return UserData;
+	}
+	public void setUserData(Object userData) {
+		UserData = userData;
+	}
 	public Entidad(Cuerpo cuerpo, String sprite) {
 		//this.cuerpo = cuerpo;
 		this.animacion = new Animacion(sprite, 21, 4, cuerpo.getAncho(), cuerpo.getAlto() * 2);
@@ -49,8 +57,14 @@ public abstract class Entidad extends Actor{
 	}
 	/*public float getAncho() {
 		return cuerpo.getAncho();
+	}*/
+	public float getAncho() {
+		return animacion.getAncho();
 	}
 	public float getAlto() {
+		return animacion.getAlto();
+	}
+	/*public float getAlto() {
 		return cuerpo.getAlto();
 	}
 	public Cuerpo getCuerpo() {

@@ -103,9 +103,8 @@ public class HiloCliente extends Thread {
 					app.posGuardiaX = posX;
 					app.posGuardiaY = posY;
 				}else if(mensajeParametrizado[3].equals("L")){
-//					app.posLadronX = posX;
-//					app.posLadronY = posY;
-					app.jugadorLadron.setSprPosition(posX, posY);
+					app.posLadronX = posX;
+					app.posLadronY = posY;
 				}
 				
 				
