@@ -103,7 +103,6 @@ public abstract class Entidad extends Actor{
 		this.fuerzaY = fuerzaY;
 	}
 	public void setPosition(float x, float y) {
-		//cuerpo.setPosition(x, y);
 		super.setPosition(x, y);
 	}
 	public void setSprPosition(float x, float y) {
