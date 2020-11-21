@@ -199,7 +199,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		  if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
 	            jugadorGuardia.setPosition(posGuardiaX, posGuardiaY);
 	            jugadorLadron.setPosition(posLadronX, posLadronY);
-	        } 
+	      } 
 		
 		if ((!Global.guardia) ? jugadorLadron.cambiarSala : jugadorGuardia.cambiarSala) { // necesito sumar tiempo
 																							// mientras se hace la
