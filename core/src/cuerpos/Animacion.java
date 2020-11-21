@@ -19,8 +19,7 @@ public class Animacion {
 	private Animation[] animacionesDirec;
 	private TextureRegion[][] divisiones;
 	
-	public Animacion(String ruta, int cantColumnas, int cantFilas,
-					 float sprAncho, float sprAlto) {
+	public Animacion(String ruta, int cantColumnas, int cantFilas) {
 		
 		fila1 = new TextureRegion[cantColumnas];
 		fila2 = new TextureRegion[cantColumnas];
@@ -45,7 +44,7 @@ public class Animacion {
 		
 		estoSeDibuja =  (TextureRegion) animacionesDirec[0].getKeyFrame(0, true); //por default la primera fila que se muestra
 		spr = new Sprite(estoSeDibuja);
-		spr.setSize(sprAncho, sprAlto);
+		spr.setSize(16, 30);
 	}
 	public TextureRegion getTexReg(int i, float duracion) {
 		return estoSeDibuja = (TextureRegion) animacionesDirec[i].getKeyFrame(duracion, true);

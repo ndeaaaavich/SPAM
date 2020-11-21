@@ -8,7 +8,6 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 import cuerpos.Cuerpo;
@@ -17,7 +16,6 @@ import utiles.Global;
 import utiles.Utiles;
 import pantallas.PantallaRonda;
 import pantallas.PantallaRonda1;
-import pantallas.PantallaRonda2;
 import personajes.Ladron;
 import personajes.SpriteInfo;
 
