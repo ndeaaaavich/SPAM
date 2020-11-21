@@ -5,20 +5,13 @@ import elementos.Texto;
 import personajes.Entidad;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import red.HiloCliente;
 import utiles.Global;
 import utiles.Render;
 import utiles.Utiles;
 
-import cuerpos.Cuerpo;
 import menu.Hud;
 import personajes.Guardia;
-import personajes.Jugador;
 import personajes.Ladron;
 import personajes.NPC;
 

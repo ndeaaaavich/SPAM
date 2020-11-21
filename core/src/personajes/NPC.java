@@ -18,7 +18,6 @@ import com.badlogic.gdx.utils.Null;
 import utiles.Global;
 import utiles.Utiles;
 
-import cuerpos.Cuerpo;
 import eventos.InterfaceRobable;
 import menu.Hud;
 
@@ -127,7 +126,6 @@ public class NPC extends Entidad implements InterfaceRobable{
 				setRobado(salaRobada);
 			}
 		}	
-		//cuerpo.setLinearVelocity(fuerzas.x, fuerzas.y);
 		
 		setBounds(animacion.getSprite().getX(),
 				  animacion.getSprite().getY(),
