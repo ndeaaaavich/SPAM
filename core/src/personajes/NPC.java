@@ -36,8 +36,8 @@ public class NPC extends Entidad implements InterfaceRobable{
 	//0 pelo 
 	//1 torso
 	
-	public NPC(Cuerpo cuerpo, String sprite, int[] apariencia, Hud hud) {
-		super(cuerpo, sprite);
+	public NPC(String sprite, int[] apariencia, Hud hud) {
+		super(sprite);
 		this.hud = hud;
 		this.apariencia = apariencia;
 		setBounds(animacion.getSprite().getX(),
@@ -67,7 +67,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 		}
 		
         Utiles.addListener(this);
-		cuerpo.setUserData(this);
+		setUserData(this);
 	}
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------ACCIONES-----------------------------------------------------------------

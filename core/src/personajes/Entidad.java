@@ -12,7 +12,6 @@ public abstract class Entidad extends Actor{
 	
 	protected int ultimoIndice;
 	protected float duracion;
-	//protected Cuerpo cuerpo;
 	protected Animacion animacion;
 	
 	protected int sala = -1;
@@ -28,12 +27,10 @@ public abstract class Entidad extends Actor{
 	public void setUserData(Object userData) {
 		UserData = userData;
 	}
-	public Entidad(Cuerpo cuerpo, String sprite) {
-		//this.cuerpo = cuerpo;
-		this.animacion = new Animacion(sprite, 21, 4, cuerpo.getAncho(), cuerpo.getAlto() * 2);
-		
-		setBounds(cuerpo.getPosition().x,cuerpo.getPosition().y,
-				  cuerpo.getAncho(),cuerpo.getAlto());
+	public Entidad(String sprite) {
+		this.animacion = new Animacion(sprite, 21, 4);
+		setBounds(animacion.getPosition().x,animacion.getPosition().y,
+				animacion.getAncho(),animacion.getAlto());
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------SCENE 2D-----------------------------------------------------------------

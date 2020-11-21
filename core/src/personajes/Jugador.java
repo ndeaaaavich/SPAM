@@ -23,10 +23,10 @@ public abstract class Jugador extends Entidad{
 	//tiempoModif el tiempo que duran las modificaciones
 	protected Texto hud;
 	
-	public Jugador(Cuerpo cuerpo, String sprite) {
-		super(cuerpo, sprite);
+	public Jugador(String sprite) {
+		super(sprite);
 		
-        cuerpo.setUserData(this);
+		setUserData(this);
         
         hud = new Texto("fonts/Early GameBoy.ttf", 25, Color.WHITE, false);
 		hud.setPosition(Utiles.ancho-90, Utiles.alto-50);

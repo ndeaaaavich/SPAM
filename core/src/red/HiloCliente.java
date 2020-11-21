@@ -8,7 +8,6 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 import cuerpos.Cuerpo;
@@ -17,7 +16,6 @@ import utiles.Global;
 import utiles.Utiles;
 import pantallas.PantallaRonda;
 import pantallas.PantallaRonda1;
-import pantallas.PantallaRonda2;
 import personajes.Ladron;
 import personajes.SpriteInfo;
 
@@ -175,8 +173,7 @@ public class HiloCliente extends Thread {
 		Gdx.app.postRunnable(new Runnable(){
 		    @Override
 		     public void run(){
-	        	app.jugadorLadron = new Ladron(new Cuerpo(app.mundo, 15, 15, BodyType.DynamicBody, 0,0), 
-	    					   			   	   SpriteInfo.values()[Integer.parseInt(mensajeParametrizado2[1])].getFilename());
+	        	app.jugadorLadron = new Ladron(SpriteInfo.values()[Integer.parseInt(mensajeParametrizado2[1])].getFilename());
 	    		app.jugadorLadron.setPosition(Float.parseFloat(mensajeParametrizado2[2]), Float.parseFloat(mensajeParametrizado2[3]));
 	    		
 	    		app.stage.addActor(app.jugadorLadron);
