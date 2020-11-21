@@ -99,7 +99,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 		}
 		if(dibujarSigno){
 			sprExclamation.setSize(16 * Utiles.PPM, 11 * Utiles.PPM);
-			sprExclamation.setPosition(this.cuerpo.getPosition().x, this.cuerpo.getPosition().y + (cuerpo.getAlto() / 2));
+			sprExclamation.setPosition(this.animacion.getPosition().x, this.cuerpo.getPosition().y + (cuerpo.getAlto() / 2));
 			sprExclamation.draw(batch);
 		}
 	}
@@ -188,10 +188,6 @@ public class NPC extends Entidad implements InterfaceRobable{
 	}
 	public boolean isCambioDirec() {
 		return CambioDirec;
-	}
-	public Vector2 getFuerza() {
-		Vector2 fuerza = new Vector2(fuerzaX, fuerzaY); 
-		return fuerza;
 	}
 	
 	
