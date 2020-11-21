@@ -40,7 +40,7 @@ public abstract class Jugador extends Entidad{
 	    this.animacion.getSprite().draw(batch);
 	}
 	public void act(float delta){
-		this.animacion.setPosicion(cuerpo.getPosition().x - (cuerpo.getAncho()/2) ,cuerpo.getPosition().y - (cuerpo.getAlto()/2));
+		//this.animacion.setPosicion(cuerpo.getPosition().x - (cuerpo.getAncho()/2) ,cuerpo.getPosition().y - (cuerpo.getAlto()/2));
 		this.animacion.setTexReg(animacionMovimiento());	
 		duracion += Gdx.graphics.getRawDeltaTime();
 		
@@ -55,7 +55,7 @@ public abstract class Jugador extends Entidad{
 	@Override
 	public void setDireccion(Vector2 xy) {
 		fuerzas = xy;
-		cuerpo.setLinearVelocity(fuerzas);
+		//cuerpo.setLinearVelocity(fuerzas);
 		animacion.setTexReg(animacionMovimiento());
 	}
 	protected void enviarMovimiento(int keycode, boolean keyDown) {

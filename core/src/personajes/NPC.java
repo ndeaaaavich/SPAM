@@ -1,3 +1,5 @@
+
+
 package personajes;
 
 import com.badlogic.gdx.Gdx;
@@ -94,12 +96,14 @@ public class NPC extends Entidad implements InterfaceRobable{
 		
 		if(detectado){
 			sprExclamation.setSize(16 * Utiles.PPM, 11 * Utiles.PPM);
-			sprExclamation.setPosition(this.animacion.getPosition().x, this.cuerpo.getPosition().y + (cuerpo.getAlto() / 2));
+			//MIRAR ESTO
+			sprExclamation.setPosition(this.animacion.getPosition().x, this.animacion.getPosition().y/* + (animacion.getAlto() / 2)*/);
 			sprExclamation.draw(batch);
 		}
 		if(dibujarSigno){
 			sprExclamation.setSize(16 * Utiles.PPM, 11 * Utiles.PPM);
-			sprExclamation.setPosition(this.animacion.getPosition().x, this.cuerpo.getPosition().y + (cuerpo.getAlto() / 2));
+			//MIRAR ESTO
+			sprExclamation.setPosition(this.animacion.getPosition().x, this.animacion.getPosition().y/* + (animacion.getAlto() / 2)*/);
 			sprExclamation.draw(batch);
 		}
 	}
@@ -199,7 +203,6 @@ public class NPC extends Entidad implements InterfaceRobable{
 	}
 	public void setPosicion(float x, float y) {
     	this.animacion.setPosicion(x,y);
-    	this.cuerpo.setPosition(x,y);
 	}
 	public void setCambioDirec(boolean parar) {
 		this.CambioDirec = parar;

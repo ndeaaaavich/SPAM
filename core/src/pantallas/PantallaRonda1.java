@@ -14,7 +14,7 @@ import red.HiloCliente;
 import utiles.Global;
 import utiles.Render;
 import utiles.Utiles;
-//JACO GAY
+
 import cuerpos.Cuerpo;
 import menu.Hud;
 import personajes.Guardia;
@@ -40,13 +40,12 @@ public class PantallaRonda1 extends PantallaRonda {
 
 	@Override
 	public void show() {
-		// b2dr.setDrawBodies(false);
 		// hilo cliente
 		Utiles.hc = new HiloCliente(this);
 		Utiles.hc.start();
 		// guardia
 		jugadorGuardia = new Guardia(new Cuerpo(mundo, 15, 15, BodyType.DynamicBody, 200, 160),
-				"personajes/badlogic.jpg"/* , Utiles.hc */);
+				"personajes/badlogic.jpg");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
 		hud.setearPopUp("botones/popup.png");
@@ -196,10 +195,12 @@ public class PantallaRonda1 extends PantallaRonda {
 	private void update(float delta) {
 		mundo.step(1 / 60f, 6, 2);
 		
-		  if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
-	            jugadorGuardia.setPosition(posGuardiaX, posGuardiaY);
-	            jugadorLadron.setPosition(posLadronX, posLadronY);
-	      } 
+		if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
+			jugadorGuardia.setSprPosition(posGuardiaX, posGuardiaY);
+			jugadorLadron.setSprPosition(posLadronX, posLadronY);
+			//jugadorGuardia.setPosition(posGuardiaX, posGuardiaY);
+	        //jugadorLadron.setPosition(posLadronX, posLadronY);
+	     } 
 		
 		if ((!Global.guardia) ? jugadorLadron.cambiarSala : jugadorGuardia.cambiarSala) { // necesito sumar tiempo
 																							// mientras se hace la
@@ -220,10 +221,8 @@ public class PantallaRonda1 extends PantallaRonda {
 	}
 
 	private void camaraUpdate() {
-		puntoLlegada = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSala() : jugadorGuardia.getSala()]
-				.getPosition();
-		puntoSalida = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSalaAnterior()
-				: jugadorGuardia.getSalaAnterior()].getPosition();
+		puntoLlegada = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSala() : jugadorGuardia.getSala()].getPosition();
+		puntoSalida = mapa.getVectorZonas()[(!Global.guardia) ? jugadorLadron.getSalaAnterior(): jugadorGuardia.getSalaAnterior()].getPosition();
 
 		posicion.set(puntoLlegada);
 		posicion.sub(puntoSalida);
@@ -237,7 +236,7 @@ public class PantallaRonda1 extends PantallaRonda {
 
 	private void adelantarCuerpos() {
 		for (int i = 0; i < npcs.length; i++) {
-			if (jugadorGuardia.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM) {
+			/*if (jugadorGuardia.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM) {
 				if (jugadorGuardia.getPosition().y > npcs[i].getPosition().y) {
 					jugadorGuardia.toBack();
 				} else {
@@ -250,10 +249,10 @@ public class PantallaRonda1 extends PantallaRonda {
 				} else {
 					jugadorLadron.toFront();
 				}
-			}
+			}*/
 		}
-		if (jugadorLadron.getPosition().dst(jugadorGuardia.getPosition()) < 30 * Utiles.PPM) {
-			if (jugadorLadron.getPosition().y > jugadorGuardia.getPosition().y) {
+		if (jugadorLadron.getSprPosition().dst(jugadorGuardia.getSprPosition()) < 30 * Utiles.PPM) {
+			if (jugadorLadron.getSprPosition().y > jugadorGuardia.getSprPosition().y) {
 				jugadorLadron.toBack();
 			} else {
 				jugadorLadron.toFront();
@@ -262,8 +261,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------------------------
-	// -------------------------------------------------------------NPC
-	// COSAS----------------------------------------------------------------
+	// -------------------------------------------------------------NPC COSAS----------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	public void crearNPC(String[] mensajeParametrizado2, int[] apariencia) {
 		npcs[Integer.parseInt(mensajeParametrizado2[2])] = new NPC(
@@ -275,24 +273,23 @@ public class PantallaRonda1 extends PantallaRonda {
 	}
 
 	// --------------------------------------------------------------------------------------------------------------------------------------
-	// -------------------------------------------------------------JUGADORES
-	// COSAS----------------------------------------------------------
+	// -------------------------------------------------------------JUGADORES COSAS----------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	 private void roboNPC() {
 	        int i = 0, resultadoRobo;
 	        do {
-	            if (jugadorLadron.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM 
+	            if (jugadorLadron.getSprPosition().dst(npcs[i].getSprPosition()) < 30 * Utiles.PPM 
 	             && !npcs[i].isRobado()
-	             && jugadorLadron.getPosition().y - (jugadorLadron.getAlto() / 2) < npcs[i].getPosition().y + (npcs[i].getCuerpo().getAlto() / 2)
-	             && jugadorLadron.getPosition().y + (jugadorLadron.getAlto() / 2) > npcs[i].getPosition().y - (npcs[i].getCuerpo().getAlto() / 2)
-	             && (jugadorLadron.isDerecha() && npcs[i].isDerecha() && jugadorLadron.getPosition().x < npcs[i].getPosition().x
-	             || !jugadorLadron.isDerecha() && !npcs[i].isDerecha() && jugadorLadron.getPosition().x > npcs[i].getPosition().x) ) {
-	                if (jugadorLadron.getPosition().x > npcs[i].getPosition().x + (npcs[i].getCuerpo().getAncho() / 2)) {
-	                    posSprX = npcs[i].getPosition().x + (npcs[i].getCuerpo().getAncho() / 2);
-	                } else if (jugadorLadron.getPosition().x < npcs[i].getPosition().x - (npcs[i].getCuerpo().getAncho())) {
-	                    posSprX = npcs[i].getPosition().x - (npcs[i].getCuerpo().getAncho()) - (npcs[i].getCuerpo().getAncho() / 2);
+	             && jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() / 2) < npcs[i].getSprPosition().y + (npcs[i].getAlto() / 2)
+	             && jugadorLadron.getSprPosition().y + (jugadorLadron.getAlto() / 2) > npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2)
+	             && (jugadorLadron.isDerecha() && npcs[i].isDerecha() && jugadorLadron.getSprPosition().x < npcs[i].getSprPosition().x
+	             || !jugadorLadron.isDerecha() && !npcs[i].isDerecha() && jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x) ) {
+	                if (jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2)) {
+	                    posSprX = npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2);
+	                } else if (jugadorLadron.getSprPosition().x < npcs[i].getSprPosition().x - (npcs[i].getAncho())) {
+	                    posSprX = npcs[i].getSprPosition().x - (npcs[i].getAncho()) - (npcs[i].getAncho() / 2);
 	                }
-	                jugadorLadron.getSprRobo().setPosition(posSprX, npcs[i].getPosition().y - (npcs[i].getCuerpo().getAlto() / 2));
+	                jugadorLadron.getSprRobo().setPosition(posSprX, npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2));
 	                
 	                Render.batch.begin();
 	                jugadorLadron.getSprRobo().draw(Render.batch);
@@ -325,69 +322,69 @@ public class PantallaRonda1 extends PantallaRonda {
 	    private NPC cercaniaNPC() {
 	        int i = 0;
 	        do {
-	            if (jugadorGuardia.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM){
+	            if (jugadorGuardia.getSprPosition().dst(npcs[i].getSprPosition()) < 30 * Utiles.PPM){
 	                
 	                
-	                if(jugadorGuardia.getPosition().y < npcs[i].getPosition().y + (npcs[i].getAlto() / 2)
-	                && jugadorGuardia.getPosition().y > npcs[i].getPosition().y - (npcs[i].getAlto() / 2)) {
+	                if(jugadorGuardia.getSprPosition().y < npcs[i].getSprPosition().y + (npcs[i].getAlto() / 2)
+	                && jugadorGuardia.getSprPosition().y > npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2)) {
 	                            
-	                    if( jugadorGuardia.getPosition().x - (jugadorGuardia.getAncho() / 2) > npcs[i].getPosition().x + (npcs[i].getCuerpo().getAncho()/2) ) {
-	                        posSprX = npcs[i].getPosition().x + (npcs[i].getAncho() / 2);
+	                    if( jugadorGuardia.getSprPosition().x - (jugadorGuardia.getAncho() / 2) > npcs[i].getSprPosition().x + (npcs[i].getAncho()/2) ) {
+	                        posSprX = npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2);
 	                    }else {
-	                        posSprX = npcs[i].getPosition().x - (npcs[i].getAncho() + npcs[i].getAncho()/2);
+	                        posSprX = npcs[i].getSprPosition().x - (npcs[i].getAncho() + npcs[i].getAncho()/2);
 	                    }
-	                    posSprY = npcs[i].getPosition().y - (npcs[i].getAlto() / 2);
+	                    posSprY = npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2);
 	                }
 	                
-	                if (jugadorGuardia.getPosition().x < npcs[i].getPosition().x + (npcs[i].getAncho() / 2) 
-	                 && jugadorGuardia.getPosition().x > npcs[i].getPosition().x - (npcs[i].getAncho() / 2)) {
+	                if (jugadorGuardia.getSprPosition().x < npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2) 
+	                 && jugadorGuardia.getSprPosition().x > npcs[i].getSprPosition().x - (npcs[i].getAncho() / 2)) {
 	                    
-	                    if( jugadorGuardia.getPosition().y + (jugadorGuardia.getAlto() / 2) < npcs[i].getPosition().y - (npcs[i].getAlto()/2) ) {
-	                        posSprY = npcs[i].getPosition().y - (npcs[i].getAlto() + npcs[i].getAlto()/2);
+	                    if( jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < npcs[i].getSprPosition().y - (npcs[i].getAlto()/2) ) {
+	                        posSprY = npcs[i].getSprPosition().y - (npcs[i].getAlto() + npcs[i].getAlto()/2);
 	                    }else {
-	                        posSprY = npcs[i].getPosition().y + (npcs[i].getAlto() / 2);
+	                        posSprY = npcs[i].getSprPosition().y + (npcs[i].getAlto() / 2);
 	                    }
-	                    posSprX = npcs[i].getPosition().x - (npcs[i].getWidth() /2);
+	                    posSprX = npcs[i].getSprPosition().x - (npcs[i].getWidth() /2);
 	                }
 	                jugadorGuardia.getSprArrestar().setPosition(posSprX, posSprY);
 	                Render.batch.begin();
 	                jugadorGuardia.getSprArrestar().draw(Render.batch);
 	                Render.batch.end();
-	                return (NPC) npcs[i].getCuerpo().getUserData();
+	                return (NPC) npcs[i].getUserData();
 	            }
 	            i++;
 	        }while (i < npcs.length);
 	        return null;
 	    }
 	    private Ladron cercaniaLadron() {
-	        if (jugadorGuardia.getPosition().dst(jugadorLadron.getPosition()) < 30 * Utiles.PPM ){
+	        if (jugadorGuardia.getSprPosition().dst(jugadorLadron.getSprPosition()) < 30 * Utiles.PPM ){
 	            
-	            if(jugadorGuardia.getPosition().y < jugadorLadron.getPosition().y + (jugadorLadron.getAlto() / 2)
-	            && jugadorGuardia.getPosition().y > jugadorLadron.getPosition().y - (jugadorLadron.getAlto() / 2)) {
+	            if(jugadorGuardia.getSprPosition().y < jugadorLadron.getSprPosition().y + (jugadorLadron.getAlto() / 2)
+	            && jugadorGuardia.getSprPosition().y > jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() / 2)) {
 	                        
-	                if( jugadorGuardia.getPosition().x - (jugadorGuardia.getAncho() / 2) > jugadorLadron.getPosition().x + (jugadorLadron.getCuerpo().getAncho()/2) ) {
-	                    posSprX = jugadorLadron.getPosition().x + (jugadorLadron.getAncho() / 2);
+	                if( jugadorGuardia.getSprPosition().x - (jugadorGuardia.getAncho() / 2) > jugadorLadron.getSprPosition().x + (jugadorLadron.getAncho()/2) ) {
+	                    posSprX = jugadorLadron.getSprPosition().x + (jugadorLadron.getAncho() / 2);
 	                }else {
-	                    posSprX = jugadorLadron.getPosition().x - (jugadorLadron.getAncho() + jugadorLadron.getAncho()/2);
+	                    posSprX = jugadorLadron.getSprPosition().x - (jugadorLadron.getAncho() + jugadorLadron.getAncho()/2);
 	                }
-	                posSprY = jugadorLadron.getPosition().y - (jugadorLadron.getAlto() / 2);
+	                posSprY = jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() / 2);
 	            }
 	            
-	            if (jugadorGuardia.getPosition().x < jugadorLadron.getPosition().x + (jugadorLadron.getAncho() / 2) 
-	             && jugadorGuardia.getPosition().x > jugadorLadron.getPosition().x - (jugadorLadron.getAncho() / 2)) {
+	            if (jugadorGuardia.getSprPosition().x < jugadorLadron.getSprPosition().x + (jugadorLadron.getAncho() / 2) 
+	             && jugadorGuardia.getSprPosition().x > jugadorLadron.getSprPosition().x - (jugadorLadron.getAncho() / 2)) {
 	                
-	                if( jugadorGuardia.getPosition().y + (jugadorGuardia.getAlto() / 2) < jugadorLadron.getPosition().y - (jugadorLadron.getAlto()/2) ) {
-	                    posSprY = jugadorLadron.getPosition().y - (jugadorLadron.getAlto() + jugadorLadron.getAlto()/2);
+	                if( jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto()/2) ) {
+	                    posSprY = jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() + jugadorLadron.getAlto()/2);
 	                }else {
-	                    posSprY = jugadorLadron.getPosition().y + (jugadorLadron.getAlto() / 2);
+	                    posSprY = jugadorLadron.getSprPosition().y + (jugadorLadron.getAlto() / 2);
 	                }
-	                posSprX = jugadorLadron.getPosition().x - (jugadorLadron.getWidth() /2);
+	                posSprX = jugadorLadron.getSprPosition().x - (jugadorLadron.getWidth() /2);
 	            }
 	            jugadorGuardia.getSprArrestar().setPosition(posSprX, posSprY);
 	            Render.batch.begin();
 	            jugadorGuardia.getSprArrestar().draw(Render.batch);
 	            Render.batch.end();
-	            return (Ladron) jugadorLadron.getCuerpo().getUserData();
+	            return (Ladron) jugadorLadron.getUserData();
 	        }
 	        return null;
 	    }

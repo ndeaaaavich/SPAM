@@ -62,4 +62,10 @@ public class Animacion {
 	public Vector2 getPosition() {
 		return new Vector2(spr.getX(),spr.getY());
 	}
+	public float getAncho() {
+		return spr.getWidth();
+	}
+	public float getAlto() {
+		return spr.getHeight();
+	}
 }
