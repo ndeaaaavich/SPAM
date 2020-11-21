@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 public class Animacion {
 	
@@ -57,5 +58,8 @@ public class Animacion {
 	}
 	public Sprite getSprite(){
 		return spr;
+	}
+	public Vector2 getPosition() {
+		return new Vector2(spr.getX(),spr.getY());
 	}
 }

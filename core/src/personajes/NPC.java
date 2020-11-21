@@ -94,7 +94,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 		
 		if(detectado){
 			sprExclamation.setSize(16 * Utiles.PPM, 11 * Utiles.PPM);
-			sprExclamation.setPosition(this.cuerpo.getPosition().x, this.cuerpo.getPosition().y + (cuerpo.getAlto() / 2));
+			sprExclamation.setPosition(this.animacion.getPosition().x, this.cuerpo.getPosition().y + (cuerpo.getAlto() / 2));
 			sprExclamation.draw(batch);
 		}
 		if(dibujarSigno){
@@ -104,11 +104,11 @@ public class NPC extends Entidad implements InterfaceRobable{
 		}
 	}
 	public void act(float delta) {
-		this.animacion.setPosicion(this.cuerpo.getPosition().x - (cuerpo.getAncho() / 2) ,
-								   this.cuerpo.getPosition().y - (cuerpo.getAlto() / 2));
+		//this.animacion.setPosicion(this.cuerpo.getPosition().x - (cuerpo.getAncho() / 2) ,
+		//						   this.cuerpo.getPosition().y - (cuerpo.getAlto() / 2));
 		this.animacion.setTexReg(animacion.getTexReg(0, delta));
 		
-		setPosition(cuerpo.getPosition().x,cuerpo.getPosition().y);	
+		//setPosition(cuerpo.getPosition().x,cuerpo.getPosition().y);	
 		animacion.setTexReg(animacionMovimiento());
 		tiempo += Gdx.graphics.getRawDeltaTime();
 		duracion += delta;
@@ -123,7 +123,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 				setRobado(salaRobada);
 			}
 		}	
-		cuerpo.setLinearVelocity(fuerzas.x, fuerzas.y);
+		//cuerpo.setLinearVelocity(fuerzas.x, fuerzas.y);
 		
 		setBounds(animacion.getSprite().getX(),
 				  animacion.getSprite().getY(),
