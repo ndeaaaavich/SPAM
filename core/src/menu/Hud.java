@@ -61,7 +61,6 @@ public class Hud extends Actor{
 	}
 	
 	public void setearPopUp(String popUp) {
-		System.out.println(popUp);
 		this.popUp = new Sprite(new Texture(popUp));
 		posicionInicial = new Vector2(((Utiles.ancho/Utiles.PPM)/2)-this.popUp.getWidth()/2,0-this.popUp.getHeight());
 		posicionLlegada = new Vector2(posicionInicial.x,((Utiles.alto/Utiles.PPM)/2)-this.popUp.getHeight()/2);
