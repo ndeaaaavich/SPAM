@@ -15,5 +15,6 @@ public class DesktopLauncher {
 		//config.height = 768;
 		config.width = 600;
 		config.height = 550;
+		System.out.println("aaaaaa");
 	}
 }
