@@ -173,8 +173,7 @@ public class HiloCliente extends Thread {
 		Gdx.app.postRunnable(new Runnable(){
 		    @Override
 		     public void run(){
-	        	app.jugadorLadron = new Ladron(new Cuerpo(app.mundo, 15, 15, BodyType.DynamicBody, 0,0), 
-	    					   			   	   SpriteInfo.values()[Integer.parseInt(mensajeParametrizado2[1])].getFilename());
+	        	app.jugadorLadron = new Ladron(SpriteInfo.values()[Integer.parseInt(mensajeParametrizado2[1])].getFilename());
 	    		app.jugadorLadron.setPosition(Float.parseFloat(mensajeParametrizado2[2]), Float.parseFloat(mensajeParametrizado2[3]));
 	    		
 	    		app.stage.addActor(app.jugadorLadron);

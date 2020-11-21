@@ -20,8 +20,8 @@ public class Ladron extends Jugador{
 	private int billeteras = 0, numAzar;
 	private Sprite sprRobo;
 	
-	public Ladron(Cuerpo cuerpo, String sprite) {
-		super(cuerpo, sprite);
+	public Ladron(String sprite) {
+		super(sprite);
 		if(Global.ronda == 1) {
 			sprRobo = new Sprite( new Texture("personajes/badlogic.jpg") );
 			sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);

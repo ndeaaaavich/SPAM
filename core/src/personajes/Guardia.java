@@ -19,8 +19,8 @@ public class Guardia extends Jugador {
 	private Sprite sprArrestar;
 
 
-	public Guardia(Cuerpo cuerpo, String sprite) {
-		super(cuerpo, sprite);
+	public Guardia(String sprite) {
+		super(sprite);
 		sprArrestar = new Sprite( new Texture("personajes/badlogic.jpg") );
 		sprArrestar.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
 		

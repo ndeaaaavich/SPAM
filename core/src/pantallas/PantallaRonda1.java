@@ -44,8 +44,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		Utiles.hc = new HiloCliente(this);
 		Utiles.hc.start();
 		// guardia
-		jugadorGuardia = new Guardia(new Cuerpo(mundo, 15, 15, BodyType.DynamicBody, 200, 160),
-				"personajes/badlogic.jpg");
+		jugadorGuardia = new Guardia("personajes/badlogic.jpg");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
 		hud.setearPopUp("botones/popup.png");
@@ -264,11 +263,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	// -------------------------------------------------------------NPC COSAS----------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	public void crearNPC(String[] mensajeParametrizado2, int[] apariencia) {
-		npcs[Integer.parseInt(mensajeParametrizado2[2])] = new NPC(
-				new Cuerpo(mundo, Float.parseFloat(mensajeParametrizado2[4]),
-						Float.parseFloat(mensajeParametrizado2[5]), BodyType.DynamicBody,
-						Float.parseFloat(mensajeParametrizado2[6]), Float.parseFloat(mensajeParametrizado2[7])),
-				mensajeParametrizado2[3], apariencia, hud);
+		npcs[Integer.parseInt(mensajeParametrizado2[2])] = new NPC(mensajeParametrizado2[3], apariencia, hud);
 		stage.addActor(npcs[Integer.parseInt(mensajeParametrizado2[2])]);
 	}
 

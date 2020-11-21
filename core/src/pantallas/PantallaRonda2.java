@@ -154,11 +154,9 @@ public class PantallaRonda2 extends PantallaRonda {
 	}
 
 	private void crearjugadores() {
-		this.jugadorLadron = new Ladron(new Cuerpo(mundo, 16, 15, BodyType.DynamicBody, 50, 160),
-										SpriteInfo.values()[SpriteInfo.getIndiceLadron()].getFilename());
+		this.jugadorLadron = new Ladron(SpriteInfo.values()[SpriteInfo.getIndiceLadron()].getFilename());
 		stage.addActor(this.jugadorLadron);
-		this.jugadorGuardia = new Guardia(new Cuerpo(mundo, 16, 15, BodyType.DynamicBody, 100, 100),
-										  "personajes/badlogic.jpg");
+		this.jugadorGuardia = new Guardia("personajes/badlogic.jpg");
 		stage.addActor(this.jugadorGuardia);
 		stage.setKeyboardFocus( (Global.guardia)? jugadorGuardia : jugadorLadron );
 	}
