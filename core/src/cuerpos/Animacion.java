@@ -47,7 +47,7 @@ public class Animacion {
 		estoSeDibuja =  (TextureRegion) animacionesDirec[0].getKeyFrame(0, true); //por default la primera fila que se muestra
 		spr = new Sprite(estoSeDibuja);
 		spr.setSize(16*Utiles.PPM, 30*Utiles.PPM);
-		//lol
+
 	}
 	public TextureRegion getTexReg(int i, float duracion) {
 		return estoSeDibuja = (TextureRegion) animacionesDirec[i].getKeyFrame(duracion, true);
