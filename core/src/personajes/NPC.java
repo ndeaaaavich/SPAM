@@ -205,7 +205,6 @@ public class NPC extends Entidad implements InterfaceRobable{
 	}
 	public void setPosicion(float x, float y) {
     	this.animacion.setPosicion(x,y);
-    	//this.cuerpo.setPosition(x,y);
 	}
 	public void setCambioDirec(boolean parar) {
 		this.CambioDirec = parar;
