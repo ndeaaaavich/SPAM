@@ -48,92 +48,6 @@ public class PantallaRonda1 extends PantallaRonda {
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
 		hud.setearPopUp("botones/popup.png");
-
-		// eventos
-		mundo.setContactListener(new ContactListener() {
-			@Override
-			public void beginContact(Contact contact) {
-				Object o1 = contact.getFixtureA().getBody().getUserData();
-				Object o2 = contact.getFixtureB().getBody().getUserData();
-				// HAY QUE HACER TODAS LAS COMPROBACIONES 2 VECES UNA CON o1 Y OTRA CON o2
-				try {
-					if (o2 instanceof Cuerpo) {// contactos zonas
-						if (o1 instanceof Jugador) {// comprueba si el objeto que choca es el ladron
-
-							if (((Jugador) o1).getSala() != -1) {
-								((Jugador) o1).salaAnterior = ((Jugador) o1).getSala();
-							}
-
-							((Jugador) o1).setSala(((Cuerpo) o2).getZona());// cambia la sala del ladron a la sala
-																			// en la que está
-
-							((Jugador) o1).cambiarSala = true;
-
-						}
-						if (o1 instanceof NPC) {// comprueba si el objeto que choca es el NPC
-							((NPC) o1).setSala(((Cuerpo) o2).getZona());// cambia la sala del NPC a la sala
-																		// en la que está
-							if (((Cuerpo) o2).isRobado()) {// si en la sala ya se realizó un robo el atributo
-															// robado del cuerpo que representa a la sala será true
-
-								((NPC) o1).setRobado(true); // no se podrá robar en esta sala asi que se pone el
-															// atributo robado del NPC en true
-							}
-						}
-					}
-
-					if (o1 instanceof Cuerpo) {// contactos zonas
-						if (o2 instanceof Jugador) {// comprueba si el objeto que choca es el ladron
-
-							if (((Jugador) o2).getSala() != -1) {
-								((Jugador) o2).salaAnterior = ((Jugador) o2).getSala();
-							}
-
-							((Jugador) o2).setSala(((Cuerpo) o1).getZona());// cambia la sala del ladron a la sala
-																			// en la que está
-
-							((Jugador) o2).cambiarSala = true;
-
-						}
-						if (o2 instanceof NPC) {// comprueba si el objeto que choca es el NPC
-
-							((NPC) o2).setSala(((Cuerpo) o1).getZona());// cambia la sala del NPC a la sala
-																		// en la que está
-							if (((Cuerpo) o1).isRobado()) {// si en la sala ya se realizó un robo el atributo
-															// robado del cuerpo que representa a la sala será true
-
-								((NPC) o2).setRobado(true); // no se podrá robar en esta sala asi que se pone el
-															// atributo robado del NPC en true
-							}
-						}
-					}
-
-					if (o2 == null || o2 instanceof NPC) {
-						if (o1 instanceof NPC) {
-							((NPC) o1).setCambioDirec(true);
-						}
-					}
-					if (o1 == null || o1 instanceof NPC) {
-						if (o2 instanceof NPC) {
-							((NPC) o2).setCambioDirec(true);
-						}
-					}
-				} catch (Exception e) {
-				}
-			}
-
-			@Override
-			public void endContact(Contact contact) {
-			}
-
-			@Override
-			public void preSolve(Contact contact, Manifold oldManifold) {
-			}
-
-			@Override
-			public void postSolve(Contact contact, ContactImpulse impulse) {
-			}
-		});
 	}
 
 	@Override
@@ -160,11 +74,11 @@ public class PantallaRonda1 extends PantallaRonda {
 				stage.act();
 				stage.draw();
 
-				if (Global.guardia)
+				if (Global.guardia) {
 					arrestar();
-				else
+				}else{
 					roboNPC();
-
+				}
 				adelantarCuerpos();
 
 				hud.dibujarHud();
@@ -172,6 +86,7 @@ public class PantallaRonda1 extends PantallaRonda {
 				Render.batch.setProjectionMatrix(camera.combined);
 				Gdx.input.setInputProcessor(stage);
 				Global.tiempo += Gdx.graphics.getRawDeltaTime();
+				
 			} else {
 				Utiles.principal.setScreen(new PantallaRonda2(new Vector2(0, -9.8f), "mapas/ronda2.tmx"));
 			}
@@ -197,8 +112,6 @@ public class PantallaRonda1 extends PantallaRonda {
 		if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
 			jugadorGuardia.setSprPosition(posGuardiaX, posGuardiaY);
 			jugadorLadron.setSprPosition(posLadronX, posLadronY);
-			//jugadorGuardia.setPosition(posGuardiaX, posGuardiaY);
-	        //jugadorLadron.setPosition(posLadronX, posLadronY);
 	     } 
 		
 		if ((!Global.guardia) ? jugadorLadron.cambiarSala : jugadorGuardia.cambiarSala) { // necesito sumar tiempo
