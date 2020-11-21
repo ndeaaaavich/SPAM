@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+import utiles.Utiles;
+
 public class Animacion {
 	
 	protected Texture tex;
@@ -44,7 +46,7 @@ public class Animacion {
 		
 		estoSeDibuja =  (TextureRegion) animacionesDirec[0].getKeyFrame(0, true); //por default la primera fila que se muestra
 		spr = new Sprite(estoSeDibuja);
-		spr.setSize(16, 30);
+		spr.setSize(16*Utiles.PPM, 30*Utiles.PPM);
 	}
 	public TextureRegion getTexReg(int i, float duracion) {
 		return estoSeDibuja = (TextureRegion) animacionesDirec[i].getKeyFrame(duracion, true);
