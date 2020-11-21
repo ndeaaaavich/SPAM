@@ -19,13 +19,13 @@ public abstract class Entidad extends Actor{
 	protected Vector2 fuerzas = new Vector2();
 	protected boolean derecha = true; // por default todos los pj aparecen mirando a la derecha
 	
-	public Object UserData;
+	public Object userData;
 	
 	public Object getUserData() {
-		return UserData;
+		return userData;
 	}
 	public void setUserData(Object userData) {
-		UserData = userData;
+		this.userData = userData;
 	}
 	public Entidad(String sprite) {
 		this.animacion = new Animacion(sprite, 21, 4);
