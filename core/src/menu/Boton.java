@@ -17,7 +17,7 @@ public class Boton extends Actor{
 
 	private Sprite spr;
 	private float x, y;
-	private boolean touchdown;
+	public boolean touchdown;
 	private PantallaMenu menu;
 	public String filename;
 	
@@ -50,7 +50,20 @@ public class Boton extends Actor{
     	spr = new Sprite(new Texture(filename));
     	
     	spr.setSize(spr.getWidth()*Utiles.PPM, spr.getHeight()*Utiles.PPM);
-    	spr.setPosition(x, y);
+    	spr.setPosition(posicion.x, posicion.y);
+    	
+    	setBounds(spr.getX(),spr.getY(),spr.getWidth(),spr.getHeight());  
+    	addListener(new InputListener(){
+	        	@Override
+	            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+	        		touchdown = true;
+	            	return true; 
+	            }
+	        	
+	        	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+	        		touchdown = false;
+	        	}
+	    });
 	}
 	
 	public void draw(Batch batch, float parentAlpha){
@@ -68,7 +81,7 @@ public class Boton extends Actor{
 				
 			}else if(filename.equals("botones/boton 3.png")){
 				menu.getHud().moverPopUp();
-			}	
+			}
 		}
 		super.act(delta);
     }
