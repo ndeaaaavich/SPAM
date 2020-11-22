@@ -107,13 +107,13 @@ public class NPC extends Entidad implements InterfaceRobable{
 		}
 	}
 	public void act(float delta) {
-		//this.animacion.setPosicion(this.cuerpo.getPosition().x - (cuerpo.getAncho() / 2) ,
-		//						   this.cuerpo.getPosition().y - (cuerpo.getAlto() / 2));
 		this.animacion.setTexReg(animacion.getTexReg(0, delta));
 		
-		//setPosition(cuerpo.getPosition().x,cuerpo.getPosition().y);	
+		
 		animacion.setTexReg(animacionMovimiento());
+		
 		tiempo += Gdx.graphics.getRawDeltaTime();
+		
 		duracion += delta;
 		//duración es lo que dura la ida o la vuelta
 		//tiempomov es lo que dura el total de los dos
@@ -140,14 +140,14 @@ public class NPC extends Entidad implements InterfaceRobable{
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------ANIMACION----------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
-	public void setDireccion(Vector2 xy) {
-		// 1 arriba 2 abajo 3 izquierda 4 derecha 5-40 nada
-		fuerzas.set(xy);
-		movimiento = (xy.x == 1)? 4: (xy.x == -1)? 3: 5;
-		if(movimiento==5) movimiento = (xy.y == 1)? 1: (xy.y == -1)? 2: 5;
-
-		animacion.setTexReg(animacionMovimiento());
-	}
+//	public void setDireccion(Vector2 xy) {
+//		// 1 arriba 2 abajo 3 izquierda 4 derecha 5-40 nada
+//		direcciones.set(xy);
+//		movimiento = (xy.x == 1)? 4: (xy.x == -1)? 3: 5;
+//		if(movimiento==5) movimiento = (xy.y == 1)? 1: (xy.y == -1)? 2: 5;
+//
+//		animacion.setTexReg(animacionMovimiento(direcciones));
+//	}
 	
 	@Override
 	protected TextureRegion animacionMovimiento(){

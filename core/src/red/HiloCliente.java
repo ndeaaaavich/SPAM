@@ -8,15 +8,13 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.math.Vector2;
 
-import cuerpos.Cuerpo;
 import eventos.InterfaceRobable;
 import utiles.Global;
 import utiles.Utiles;
 import pantallas.PantallaRonda;
 import pantallas.PantallaRonda1;
-import personajes.Jugador;
 import personajes.Ladron;
 import personajes.SpriteInfo;
 
@@ -30,7 +28,7 @@ public class HiloCliente extends Thread {
 	private PantallaRonda app;
 	public int tope = 9;
 	public int personajesRestantes = tope;
-	private float posY = 0, posX = 0;
+	private float posY, posX;
 	
 	public HiloCliente(PantallaRonda app) {
 		this.app = app;
@@ -90,28 +88,24 @@ public class HiloCliente extends Thread {
 				Global.guardia = (Integer.parseInt(mensajeParametrizado[1]) == 1)?true:false;
 		
 			}else if(mensajeParametrizado[0].equals("actualizar")) {
-				
-				/*if(mensajeParametrizado[1].equals("x")) {
-					posX = Float.parseFloat(mensajeParametrizado[2]);
-				}
-				if(mensajeParametrizado[1].equals("y")) {
-					posY = Float.parseFloat(mensajeParametrizado[2]);
-				}*/
-				
-				/*if(mensajeParametrizado[3].equals("G")) {
-//					app.posGuardiaX = posX;
-//					app.posGuardiaY = posY;
-					app.jugadorGuardia.setSprPosition(posX, posY);
-				}else if(mensajeParametrizado[3].equals("L") && Global.empiezaJuego){
-//					app.posLadronX = posX;
-//					app.posLadronY = posY;
-					app.jugadorLadron.setSprPosition(posX, posY);
-				}*/
+					/*if(Global.guardia 
+					&& app.jugadorGuardia.getUltimaPos().x != posX
+					|| app.jugadorGuardia.getUltimaPos().y != posY){
+						
+						app.jugadorGuardia.setUltimaPos(new Vector2(posX, posY));
+						
+					}else if(app.jugadorLadron.getUltimaPos().x != posX
+						  || app.jugadorLadron.getUltimaPos().y != posY){
+						
+						app.jugadorLadron.setUltimaPos(new Vector2(posX, posY));
+					}*/
 				if(mensajeParametrizado[3].equals("G")) {
+					if(Global.guardia)app.jugadorGuardia.setUltimaPos(new Vector2(posX, posY));
 					posX = Float.parseFloat(mensajeParametrizado[1]);
 					posY = Float.parseFloat(mensajeParametrizado[2]);
 					app.jugadorGuardia.setPosition(posX, posY);
-				}else if(mensajeParametrizado[3].equals("L") && Global.empiezaJuego){
+				}else if(mensajeParametrizado[3].equals("L") && Global.empiezaJuego){//si empiezaJuego = true me aseguro que el ladron exista
+					if(!Global.guardia)app.jugadorLadron.setUltimaPos(new Vector2(posX, posY));
 					posX = Float.parseFloat(mensajeParametrizado[1]);
 					posY = Float.parseFloat(mensajeParametrizado[2]);
 					app.jugadorLadron.setPosition(posX, posY);
@@ -120,11 +114,9 @@ public class HiloCliente extends Thread {
 			}else if(mensajeParametrizado[0].equals("npcs")) {
 				
 				//--------------------------------movimiento de los npc------------------------------------------
-				if(mensajeParametrizado[1].equals("tiempoMov") && personajesRestantes==0) {//tiempo que deben moverse
-					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setTiempoMov(Float.parseFloat(mensajeParametrizado[3]));
-				}else if(mensajeParametrizado[1].equals("posicion") && personajesRestantes==0) {//Num de movimiento
+				if(mensajeParametrizado[1].equals("posicion") && personajesRestantes==0) {//Num de movimiento
 					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setPosicion(Float.parseFloat(mensajeParametrizado[3]), Float.parseFloat(mensajeParametrizado[4]));
-			
+					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setDirecciones(new Vector2(Float.parseFloat(mensajeParametrizado[3]), Float.parseFloat(mensajeParametrizado[4])));
 				}else if(mensajeParametrizado[1].equals("esperandoDialogo")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setEsperandoDialogo(true);
 					

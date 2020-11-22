@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-import cuerpos.Cuerpo;
 import elementos.Texto;
 import utiles.Global;
 import utiles.Utiles;
@@ -40,7 +39,6 @@ public abstract class Jugador extends Entidad{
 	    this.animacion.getSprite().draw(batch);
 	}
 	public void act(float delta){
-		//this.animacion.setPosicion(cuerpo.getPosition().x - (cuerpo.getAncho()/2) ,cuerpo.getPosition().y - (cuerpo.getAlto()/2));
 		this.animacion.setTexReg(animacionMovimiento());	
 		duracion += Gdx.graphics.getRawDeltaTime();
 		
@@ -52,30 +50,25 @@ public abstract class Jugador extends Entidad{
 			enviarMovimiento(keyCode, keyDown);
 		}
 	}
-	@Override
-	public void setDireccion(Vector2 xy) {
-		fuerzas = xy;
-		//cuerpo.setLinearVelocity(fuerzas);
-		animacion.setTexReg(animacionMovimiento());
-	}
 	protected void enviarMovimiento(int keycode, boolean keyDown) {
 		Utiles.hc.enviarMensaje("movimiento%" + keycode + "%" + keyDown);
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------
+	@Override
 	protected TextureRegion animacionMovimiento() {
-		if(fuerzas.x>0) {// moverse a la derecha
+		if(this.animacion.getPosition().x > this.UltimaPos.x) {// moverse a la derecha
 			setDerecha(true);
 			ultimoIndice = 0;
 			return animacion.getTexReg(0, duracion);
 		}
-		if(fuerzas.x<0) {// moverse a la izquierda
+		if(this.animacion.getPosition().x < this.UltimaPos.x) {// moverse a la izquierda
 			setDerecha(false);
 			ultimoIndice = 1;
 			return animacion.getTexReg(1, duracion);
 		}
-		if(fuerzas.y!=0) {
+		if(this.animacion.getPosition().y != this.UltimaPos.y) {
 			setDerecha((ultimoIndice==0)?true:false);
 			return animacion.getTexReg(ultimoIndice, duracion);
 		}
@@ -123,7 +116,7 @@ public abstract class Jugador extends Entidad{
 		return modificadorY;
 	}	
 	public void setVectorFuerzas(Vector2 fuerzas) {
-		this.fuerzas = fuerzas;
+		this.direcciones = fuerzas;
 	}
 	public Texto getHud() {
 		return hud;

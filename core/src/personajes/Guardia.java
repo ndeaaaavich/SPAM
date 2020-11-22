@@ -5,13 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 import utiles.Global;
 import utiles.Utiles;
-import cuerpos.Cuerpo;
 
 public class Guardia extends Jugador {
 
@@ -54,10 +52,10 @@ public class Guardia extends Jugador {
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-	}
-	@Override
-	public void setDireccion(Vector2 xy) {
-		super.setDireccion(xy);
+		
+		System.out.println("ultima posicion " + this.UltimaPos);
+		System.out.println("posicion " + this.animacion.getPosition() + "\n");
+		
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------

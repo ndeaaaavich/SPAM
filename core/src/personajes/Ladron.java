@@ -67,10 +67,6 @@ public class Ladron extends Jugador{
 		hud.setTexto((int)(cuentaregresiva - Global.tiempo) + "\n" + billeteras + "-5");
 		if((Global.ronda==1) && cuentaregresiva - Global.tiempo < 1) super.finalizarRonda(false, this);
 	}
-	@Override
-	public void setDireccion(Vector2 xy) {
-		super.setDireccion(xy);
-	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------

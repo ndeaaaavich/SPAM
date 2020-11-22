@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import cuerpos.Animacion;
-import cuerpos.Cuerpo;
 
 public abstract class Entidad extends Actor{
 	
@@ -16,17 +15,12 @@ public abstract class Entidad extends Actor{
 	
 	protected int sala = -1;
 	protected float fuerzaX = 0, fuerzaY = 0;
-	protected Vector2 fuerzas = new Vector2();
+	protected Vector2 direcciones = new Vector2();
+	public Vector2 UltimaPos = new Vector2();
 	protected boolean derecha = true; // por default todos los pj aparecen mirando a la derecha
 	
 	public Object userData;
-	
-	public Object getUserData() {
-		return userData;
-	}
-	public void setUserData(Object userData) {
-		this.userData = userData;
-	}
+
 	public Entidad(String sprite) {
 		this.animacion = new Animacion(sprite, 21, 4);
 		setBounds(animacion.getPosition().x,animacion.getPosition().y,
@@ -37,7 +31,6 @@ public abstract class Entidad extends Actor{
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	public abstract void draw(Batch batch, float parentAlpha);
 	public abstract void act(float delta);
-	public abstract void setDireccion(Vector2 xy);
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------
@@ -45,37 +38,21 @@ public abstract class Entidad extends Actor{
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------GETTERS------------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------
-	/*public Vector2 jugadorGuardia() {
-		return cuerpo.getPosition();
-	}*/
-	
 	public int getSala() {
 		return this.sala;
 	}
-	/*public float getAncho() {
-		return cuerpo.getAncho();
-	}*/
 	public float getAncho() {
 		return animacion.getAncho();
 	}
 	public float getAlto() {
 		return animacion.getAlto();
 	}
-	/*public float getAlto() {
-		return cuerpo.getAlto();
-	}
-	public Cuerpo getCuerpo() {
-		return cuerpo;
-	}*/
 	public boolean isDerecha() {
 		return derecha;
 	}
 	public float getDuracion() {
 		return duracion;
 	}
-	/*public Vector2 getPosition() {
-		return cuerpo.getPosition();
-	}*/
 	public Vector2 getSprPosition() {
 		return animacion.getPosition();
 	}
@@ -83,7 +60,13 @@ public abstract class Entidad extends Actor{
 		Vector2 fuerza = new Vector2(fuerzaX, fuerzaY); 
 		return fuerza;
 	}
-	
+	public Object getUserData() {
+		return userData;
+	}
+	public Vector2 getUltimaPos() {
+		return UltimaPos;
+	}
+
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------SETTERS------------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------
@@ -109,4 +92,14 @@ public abstract class Entidad extends Actor{
 	public void setSprPosition(float x, float y) {
 		animacion.setPosicion(x, y);
 	}
+	public void setDirecciones(Vector2 direcciones) {
+		this.direcciones = direcciones;
+	}
+	public void setUltimaPos(Vector2 ultimaPos) {
+		this.UltimaPos = ultimaPos;
+	}
+	public void setUserData(Object userData) {
+		this.userData = userData;
+	}
+
 }

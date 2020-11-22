@@ -65,8 +65,6 @@ public class PantallaRonda1 extends PantallaRonda {
 				stage.act();
 				stage.draw();
 				
-				//System.out.println(jugadorGuardia.cambiarSala);
-				
 				if (Global.guardia) {
 					arrestar();
 				}else{
@@ -101,11 +99,6 @@ public class PantallaRonda1 extends PantallaRonda {
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	private void update(float delta) {
 		mundo.step(1 / 60f, 6, 2);
-		
-		if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
-			//jugadorGuardia.setSprPosition(posGuardiaX, posGuardiaY);
-			//jugadorLadron.setSprPosition(posLadronX, posLadronY);
-	     } 
 		
 		if ((!Global.guardia) ? jugadorLadron.cambiarSala : jugadorGuardia.cambiarSala) { // necesito sumar tiempo
 																							// mientras se hace la
@@ -181,16 +174,21 @@ public class PantallaRonda1 extends PantallaRonda {
 	        do {
 	            if (jugadorLadron.getSprPosition().dst(npcs[i].getSprPosition()) < 30 * Utiles.PPM 
 	             && !npcs[i].isRobado()
-	             && jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() / 2) < npcs[i].getSprPosition().y + (npcs[i].getAlto() / 2)
-	             && jugadorLadron.getSprPosition().y + (jugadorLadron.getAlto() / 2) > npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2)
+	             && jugadorLadron.getSprPosition().y < npcs[i].getSprPosition().y + npcs[i].getAlto()
+	             && jugadorLadron.getSprPosition().y + jugadorLadron.getAlto() > npcs[i].getSprPosition().y
 	             && (jugadorLadron.isDerecha() && npcs[i].isDerecha() && jugadorLadron.getSprPosition().x < npcs[i].getSprPosition().x
 	             || !jugadorLadron.isDerecha() && !npcs[i].isDerecha() && jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x) ) {
-	                if (jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2)) {
-	                    posSprX = npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2);
-	                } else if (jugadorLadron.getSprPosition().x < npcs[i].getSprPosition().x - (npcs[i].getAncho())) {
-	                    posSprX = npcs[i].getSprPosition().x - (npcs[i].getAncho()) - (npcs[i].getAncho() / 2);
+	               
+	            	if (jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x + npcs[i].getAncho()) {
+	            		
+	                    posSprX = npcs[i].getSprPosition().x + npcs[i].getAncho();
+	                    
+	                } else if (jugadorLadron.getSprPosition().x + jugadorLadron.getAncho() < npcs[i].getSprPosition().x) {
+	                	
+	                    posSprX = npcs[i].getSprPosition().x - npcs[i].getAncho();
+	                    
 	                }
-	                jugadorLadron.getSprRobo().setPosition(posSprX, npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2));
+	                jugadorLadron.getSprRobo().setPosition(posSprX, npcs[i].getSprPosition().y);
 	                
 	                Render.batch.begin();
 	                jugadorLadron.getSprRobo().draw(Render.batch);
