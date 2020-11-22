@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import elementos.Texto;
 import utiles.Utiles;
@@ -22,6 +25,7 @@ public class Hud extends Actor{
 	private Sprite hud;
 	private Sprite popUp;
 	private SpriteBatch hudBatch;
+	private Boton cruz;
 	private Texto texto;
 	
 	private float opacidad = 0;
@@ -42,6 +46,7 @@ public class Hud extends Actor{
 	@Override
 	public void act(float delta) {
 		super.act(delta);
+		cruz.act(delta);
 		if (mover) {
 
 			posicion.set(posicionLlegada);
@@ -50,6 +55,7 @@ public class Hud extends Actor{
 			posicion.add(posicionInicial);
 			
 			popUp.setPosition(posicion.x, posicion.y);
+			cruz.setPosition(posicion.x, posicion.y);
 			
 			tiempo += delta;
 			
@@ -67,6 +73,10 @@ public class Hud extends Actor{
 		posicionInicial = new Vector2(((Utiles.ancho/Utiles.PPM)/2)-this.popUp.getWidth()/2,0-this.popUp.getHeight());
 		posicionLlegada = new Vector2(posicionInicial.x,((Utiles.alto/Utiles.PPM)/2)-this.popUp.getHeight()/2);
 		this.popUp.setPosition(posicionInicial.x, posicionInicial.y);
+		
+		cruz = new Boton("botones/cruz.png", new Vector2(posicionInicial.x, posicionInicial.y));
+			
+		//cruz = new Boton("botones/cruz.png", new Vector2(this.popUp.getWidth()-(10*Utiles.PPM),this.popUp.getHeight()-(10*Utiles.PPM)));
 	}
 	
 	public void moverPopUp() { 
@@ -89,8 +99,13 @@ public class Hud extends Actor{
 		
 		hudBatch.begin();
 		if(hud != null)hud.draw(hudBatch);
-		if(popUp != null)popUp.draw(hudBatch);
+		popUp.draw(hudBatch);
+		cruz.draw(hudBatch,1);
+		
 		hudBatch.end();
 	}
-	
+
+	public Boton getCruz() {
+		return cruz;
+	}
 }

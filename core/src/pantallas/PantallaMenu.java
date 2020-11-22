@@ -22,8 +22,6 @@ public class PantallaMenu implements Screen {
 	private Boton botonConfig; 
 	private Boton botonCreditos; 
 	private Hud hud = new Hud(null);
-	private float posicionY, posicionX;
-	private boolean mostrarCreditos, fin = false;
 	
 	@Override
 	public void show() {
@@ -40,7 +38,8 @@ public class PantallaMenu implements Screen {
 		
 		stage.addActor(botonJugar); 
 		stage.addActor(botonConfig); 
-		stage.addActor(botonCreditos); 
+		stage.addActor(botonCreditos);
+		stage.addActor(hud.getCruz()); 
 		
 		// stage.setKeyboardFocus(actor1);  pa que ande el input del teclado
 		Gdx.input.setInputProcessor(stage);
