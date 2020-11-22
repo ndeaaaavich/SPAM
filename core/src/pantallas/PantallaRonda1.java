@@ -38,6 +38,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		jugadorGuardia = new Guardia("personajes/badlogic.jpg");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
+		stage.addActor(hud.getCruz());
 		hud.setearPopUp("botones/popup.png");
 	}
 

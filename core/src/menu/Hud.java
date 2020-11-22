@@ -100,9 +100,12 @@ public class Hud extends Actor{
 		hudBatch.begin();
 		if(hud != null)hud.draw(hudBatch);
 		popUp.draw(hudBatch);
-		cruz.draw(hudBatch, 1);
+		cruz.draw(hudBatch,1);
 		
 		hudBatch.end();
 	}
 
+	public Boton getCruz() {
+		return cruz;
+	}
 }
