@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+import elementos.Texto;
 import utiles.Utiles;
 
 public class Hud extends Actor{
@@ -21,6 +22,7 @@ public class Hud extends Actor{
 	private Sprite hud;
 	private Sprite popUp;
 	private SpriteBatch hudBatch;
+	private Texto texto;
 	
 	private float opacidad = 0;
 	private Vector2 posicionInicial, posicionLlegada, posicion = new Vector2();

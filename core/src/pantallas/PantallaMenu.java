@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import menu.Hud;
-import menu.Interfaz;
+import menu.Boton;
 import utiles.Utiles;
 
 public class PantallaMenu implements Screen {
@@ -18,9 +18,9 @@ public class PantallaMenu implements Screen {
 	private FitViewport viewport;
 	private OrthographicCamera camara;
 	private Stage stage; 
-	private Interfaz botonJugar; 
-	private Interfaz botonConfig; 
-	private Interfaz botonCreditos; 
+	private Boton botonJugar; 
+	private Boton botonConfig; 
+	private Boton botonCreditos; 
 	private Hud hud = new Hud(null);
 	private float posicionY, posicionX;
 	private boolean mostrarCreditos, fin = false;
@@ -33,9 +33,9 @@ public class PantallaMenu implements Screen {
 		stage = new Stage(viewport); 
 		stage.addActor(hud);
 		
-		botonJugar = new Interfaz("botones/boton 1.png",new Vector2(Utiles.ancho/2,420),null);
-		botonConfig = new Interfaz("botones/boton 2.png",new Vector2(Utiles.ancho/2,300),null);
-		botonCreditos = new Interfaz("botones/boton 3.png",new Vector2(Utiles.ancho/2,180),this);
+		botonJugar = new Boton("botones/boton 1.png",new Vector2(Utiles.ancho/2,420),null);
+		botonConfig = new Boton("botones/boton 2.png",new Vector2(Utiles.ancho/2,300),null);
+		botonCreditos = new Boton("botones/boton 3.png",new Vector2(Utiles.ancho/2,180),this);
 		hud.setearPopUp("botones/popup.png");
 		
 		stage.addActor(botonJugar); 

@@ -13,7 +13,7 @@ import utiles.Utiles;
 import pantallas.PantallaMenu;
 import pantallas.PantallaRonda1;
 
-public class Interfaz extends Actor{
+public class Boton extends Actor{
 
 	private Sprite spr;
 	private float x, y;
@@ -21,7 +21,7 @@ public class Interfaz extends Actor{
 	private PantallaMenu menu;
 	public String filename;
 	
-	 public Interfaz(final String filename, Vector2 position, PantallaMenu menu){
+	 public Boton(final String filename, Vector2 position, PantallaMenu menu){
 	    	Texture tex = new Texture(filename);
 	        this.menu = menu;
 	    	this.filename = filename;
@@ -44,6 +44,14 @@ public class Interfaz extends Actor{
 	        	}
 	        });
 	    }
+	 
+	public Boton(String filename, Vector2 posicion) {
+		this.filename = filename;
+    	spr = new Sprite(new Texture(filename));
+    	
+    	spr.setSize(spr.getWidth()*Utiles.PPM, spr.getHeight()*Utiles.PPM);
+    	spr.setPosition(x, y);
+	}
 	
 	public void draw(Batch batch, float parentAlpha){
 		Color color = getColor();
