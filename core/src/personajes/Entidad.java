@@ -104,6 +104,7 @@ public abstract class Entidad extends Actor{
 	}
 	public void setPosition(float x, float y) {
 		super.setPosition(x, y);
+		setSprPosition(x, y);
 	}
 	public void setSprPosition(float x, float y) {
 		animacion.setPosicion(x, y);

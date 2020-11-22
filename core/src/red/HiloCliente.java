@@ -16,6 +16,7 @@ import utiles.Global;
 import utiles.Utiles;
 import pantallas.PantallaRonda;
 import pantallas.PantallaRonda1;
+import personajes.Jugador;
 import personajes.Ladron;
 import personajes.SpriteInfo;
 
@@ -90,21 +91,31 @@ public class HiloCliente extends Thread {
 		
 			}else if(mensajeParametrizado[0].equals("actualizar")) {
 				
-				if(mensajeParametrizado[1].equals("x")) {
+				/*if(mensajeParametrizado[1].equals("x")) {
 					posX = Float.parseFloat(mensajeParametrizado[2]);
 				}
 				if(mensajeParametrizado[1].equals("y")) {
 					posY = Float.parseFloat(mensajeParametrizado[2]);
-				}
+				}*/
 				
+				/*if(mensajeParametrizado[3].equals("G")) {
+//					app.posGuardiaX = posX;
+//					app.posGuardiaY = posY;
+					app.jugadorGuardia.setSprPosition(posX, posY);
+				}else if(mensajeParametrizado[3].equals("L") && Global.empiezaJuego){
+//					app.posLadronX = posX;
+//					app.posLadronY = posY;
+					app.jugadorLadron.setSprPosition(posX, posY);
+				}*/
 				if(mensajeParametrizado[3].equals("G")) {
-					app.posGuardiaX = posX;
-					app.posGuardiaY = posY;
-				}else if(mensajeParametrizado[3].equals("L")){
-					app.posLadronX = posX;
-					app.posLadronY = posY;
+					posX = Float.parseFloat(mensajeParametrizado[1]);
+					posY = Float.parseFloat(mensajeParametrizado[2]);
+					app.jugadorGuardia.setPosition(posX, posY);
+				}else if(mensajeParametrizado[3].equals("L") && Global.empiezaJuego){
+					posX = Float.parseFloat(mensajeParametrizado[1]);
+					posY = Float.parseFloat(mensajeParametrizado[2]);
+					app.jugadorLadron.setPosition(posX, posY);
 				}
-				
 				
 			}else if(mensajeParametrizado[0].equals("npcs")) {
 				
@@ -151,8 +162,37 @@ public class HiloCliente extends Thread {
 					Global.puntajeLadron++;
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
 				}
+			}else if (mensajeParametrizado[0].equals("sala") && Global.empiezaJuego) {
+				if(mensajeParametrizado[1].equals("anterior")) {
+					if(Global.guardia) {
+						app.jugadorGuardia.salaAnterior = Integer.parseInt(mensajeParametrizado[2]);
+					}else {
+						app.jugadorLadron.salaAnterior = Integer.parseInt(mensajeParametrizado[2]);
+					}
+				}else if(mensajeParametrizado[1].equals("cambiar")) {
+					System.out.println("a");
+					if(Global.guardia) {
+						app.jugadorGuardia.cambiarSala = Boolean.parseBoolean(mensajeParametrizado[2]);
+					}else {
+						app.jugadorLadron.cambiarSala = Boolean.parseBoolean(mensajeParametrizado[2]);
+					}
+				}else {
+					if(Global.guardia) {
+						app.jugadorGuardia.setSala(Integer.parseInt(mensajeParametrizado[1]));
+					}else {
+						app.jugadorLadron.setSala(Integer.parseInt(mensajeParametrizado[1]));
+					}
+				}
 			}
-			
+		//	Utiles.hs.enviarMensaje("sala%anterior%" + ((Jugador) o1).getSala(), 
+		//			Utiles.hs.getClientes()[0].getIp(), 
+		//			Utiles.hs.getClientes()[0].getPuerto());
+//			Utiles.hs.enviarMensaje("sala%" + ((Jugador) o1).getSala(), 
+//					Utiles.hs.getClientes()[0].getIp(), 
+//					Utiles.hs.getClientes()[0].getPuerto());
+//			Utiles.hs.enviarMensaje("sala%cambiar%" + true, 
+//					Utiles.hs.getClientes()[0].getIp(), 
+//					Utiles.hs.getClientes()[0].getPuerto());
 		}
 	}
 

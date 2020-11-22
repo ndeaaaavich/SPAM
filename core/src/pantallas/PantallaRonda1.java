@@ -25,9 +25,7 @@ public class PantallaRonda1 extends PantallaRonda {
 
 	private float posSprX = 0, posSprY = 0;
 	private Hud hud = new Hud("hud.png");
-	private Vector2 posicion = new Vector2(0, 0);
-	private Vector2 puntoLlegada;
-	private Vector2 puntoSalida;
+	private Vector2 posicion = new Vector2(0, 0), puntoLlegada, puntoSalida;
 	private Interpolation interpol = Interpolation.circle;
 	private float tiempo, duracion = 2.5f;
 
@@ -66,7 +64,9 @@ public class PantallaRonda1 extends PantallaRonda {
 
 				stage.act();
 				stage.draw();
-
+				
+				//System.out.println(jugadorGuardia.cambiarSala);
+				
 				if (Global.guardia) {
 					arrestar();
 				}else{
@@ -103,8 +103,8 @@ public class PantallaRonda1 extends PantallaRonda {
 		mundo.step(1 / 60f, 6, 2);
 		
 		if(posGuardiaX != 0 && posGuardiaY != 0 && posLadronX != 0 && posLadronY != 0) {
-			jugadorGuardia.setSprPosition(posGuardiaX, posGuardiaY);
-			jugadorLadron.setSprPosition(posLadronX, posLadronY);
+			//jugadorGuardia.setSprPosition(posGuardiaX, posGuardiaY);
+			//jugadorLadron.setSprPosition(posLadronX, posLadronY);
 	     } 
 		
 		if ((!Global.guardia) ? jugadorLadron.cambiarSala : jugadorGuardia.cambiarSala) { // necesito sumar tiempo
