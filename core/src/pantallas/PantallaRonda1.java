@@ -225,26 +225,26 @@ public class PantallaRonda1 extends PantallaRonda {
 	            if (jugadorGuardia.getSprPosition().dst(npcs[i].getSprPosition()) < 30 * Utiles.PPM){
 	                
 	                
-	                if(jugadorGuardia.getSprPosition().y < npcs[i].getSprPosition().y + (npcs[i].getAlto() / 2)
-	                && jugadorGuardia.getSprPosition().y > npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2)) {
+	                if(jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < npcs[i].getSprPosition().y + npcs[i].getAlto()
+	                && jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) > npcs[i].getSprPosition().y) {
 	                            
-	                    if( jugadorGuardia.getSprPosition().x - (jugadorGuardia.getAncho() / 2) > npcs[i].getSprPosition().x + (npcs[i].getAncho()/2) ) {
-	                        posSprX = npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2);
+	                    if( jugadorGuardia.getSprPosition().x > npcs[i].getSprPosition().x + npcs[i].getAncho() ) {
+	                        posSprX = npcs[i].getSprPosition().x + npcs[i].getAncho();
 	                    }else {
-	                        posSprX = npcs[i].getSprPosition().x - (npcs[i].getAncho() + npcs[i].getAncho()/2);
+	                        posSprX = npcs[i].getSprPosition().x - npcs[i].getAncho();
 	                    }
-	                    posSprY = npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2);
+	                    posSprY = npcs[i].getSprPosition().y;
 	                }
 	                
-	                if (jugadorGuardia.getSprPosition().x < npcs[i].getSprPosition().x + (npcs[i].getAncho() / 2) 
-	                 && jugadorGuardia.getSprPosition().x > npcs[i].getSprPosition().x - (npcs[i].getAncho() / 2)) {
+	                if (jugadorGuardia.getSprPosition().x + (jugadorGuardia.getAncho()/2) < npcs[i].getSprPosition().x + npcs[i].getAncho() 
+	                 && jugadorGuardia.getSprPosition().x + (jugadorGuardia.getAncho()/2) > npcs[i].getSprPosition().x) {
 	                    
-	                    if( jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < npcs[i].getSprPosition().y - (npcs[i].getAlto()/2) ) {
-	                        posSprY = npcs[i].getSprPosition().y - (npcs[i].getAlto() + npcs[i].getAlto()/2);
+	                    if( jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < npcs[i].getSprPosition().y) {
+	                        posSprY = npcs[i].getSprPosition().y - (npcs[i].getAlto() / 2);
 	                    }else {
 	                        posSprY = npcs[i].getSprPosition().y + (npcs[i].getAlto() / 2);
 	                    }
-	                    posSprX = npcs[i].getSprPosition().x - (npcs[i].getWidth() /2);
+	                    posSprX = npcs[i].getSprPosition().x;
 	                }
 	                jugadorGuardia.getSprArrestar().setPosition(posSprX, posSprY);
 	                Render.batch.begin();
@@ -259,26 +259,26 @@ public class PantallaRonda1 extends PantallaRonda {
 	    private Ladron cercaniaLadron() {
 	        if (jugadorGuardia.getSprPosition().dst(jugadorLadron.getSprPosition()) < 30 * Utiles.PPM ){
 	            
-	            if(jugadorGuardia.getSprPosition().y < jugadorLadron.getSprPosition().y + (jugadorLadron.getAlto() / 2)
-	            && jugadorGuardia.getSprPosition().y > jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() / 2)) {
+	            if(jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < jugadorLadron.getSprPosition().y + jugadorLadron.getAlto()
+	            && jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) > jugadorLadron.getSprPosition().y) {
 	                        
-	                if( jugadorGuardia.getSprPosition().x - (jugadorGuardia.getAncho() / 2) > jugadorLadron.getSprPosition().x + (jugadorLadron.getAncho()/2) ) {
-	                    posSprX = jugadorLadron.getSprPosition().x + (jugadorLadron.getAncho() / 2);
+	                if( jugadorGuardia.getSprPosition().x > jugadorLadron.getSprPosition().x + jugadorLadron.getAncho() ) {
+	                    posSprX = jugadorLadron.getSprPosition().x + jugadorLadron.getAncho();
 	                }else {
-	                    posSprX = jugadorLadron.getSprPosition().x - (jugadorLadron.getAncho() + jugadorLadron.getAncho()/2);
+	                    posSprX = jugadorLadron.getSprPosition().x - jugadorLadron.getAncho();
 	                }
-	                posSprY = jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() / 2);
+	                posSprY = jugadorLadron.getSprPosition().y;
 	            }
 	            
-	            if (jugadorGuardia.getSprPosition().x < jugadorLadron.getSprPosition().x + (jugadorLadron.getAncho() / 2) 
-	             && jugadorGuardia.getSprPosition().x > jugadorLadron.getSprPosition().x - (jugadorLadron.getAncho() / 2)) {
+	            if (jugadorGuardia.getSprPosition().x + (jugadorGuardia.getAncho()/2) < jugadorLadron.getSprPosition().x + jugadorLadron.getAncho() 
+	             && jugadorGuardia.getSprPosition().x + (jugadorGuardia.getAncho()/2) > jugadorLadron.getSprPosition().x ) {
 	                
-	                if( jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto()/2) ) {
-	                    posSprY = jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() + jugadorLadron.getAlto()/2);
+	                if( jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < jugadorLadron.getSprPosition().y) {
+	                    posSprY = jugadorLadron.getSprPosition().y - (jugadorLadron.getAlto() / 2);
 	                }else {
 	                    posSprY = jugadorLadron.getSprPosition().y + (jugadorLadron.getAlto() / 2);
 	                }
-	                posSprX = jugadorLadron.getSprPosition().x - (jugadorLadron.getWidth() /2);
+	                posSprX = jugadorLadron.getSprPosition().x;
 	            }
 	            jugadorGuardia.getSprArrestar().setPosition(posSprX, posSprY);
 	            Render.batch.begin();
