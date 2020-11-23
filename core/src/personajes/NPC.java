@@ -141,36 +141,6 @@ public class NPC extends Entidad implements InterfaceRobable{
 	// --------------------------------------------------------------------------------------------------------------------------------------	
 	@Override
 	protected TextureRegion animacionMovimiento(){
-		/*switch (movimiento) {
-		case 1:
-			setDerecha((ultimoIndice==0)?true:false);
-			return animacion.getTexReg(ultimoIndice, duracion);
-		case 2:
-			setDerecha((ultimoIndice==0)?true:false);
-			return animacion.getTexReg(ultimoIndice, duracion);
-		case 3:
-			if(finRecorrido) {
-				setDerecha(true);
-				ultimoIndice = 0;
-				return animacion.getTexReg(0, duracion); 
-			}else {
-				setDerecha(false);
-				ultimoIndice = 1;
-				return animacion.getTexReg(1, duracion);		
-			}
-		case 4:
-			if(finRecorrido) {
-				setDerecha(false);
-				ultimoIndice = 1;
-				return animacion.getTexReg(1, duracion);
-			}else {
-				setDerecha(true);
-				ultimoIndice = 0;
-				return animacion.getTexReg(0, duracion);		
-			}
-		default:
-			return animacion.getTexReg(2, duracion);
-		}*/
 		if(estado == EstadoMovimiento.corriendoDerecha) {// moverse a la derecha
 			setDerecha(true);
 			ultimoIndice = 0;

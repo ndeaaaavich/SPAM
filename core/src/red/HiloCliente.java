@@ -15,6 +15,7 @@ import utiles.Global;
 import utiles.Utiles;
 import pantallas.PantallaRonda;
 import pantallas.PantallaRonda1;
+import personajes.EstadoMovimiento;
 import personajes.Ladron;
 import personajes.SpriteInfo;
 
@@ -90,13 +91,23 @@ public class HiloCliente extends Thread {
 		
 			}else if(mensajeParametrizado[0].equals("actualizar")) {
 				if(mensajeParametrizado[3].equals("G")) {
-					posX = Float.parseFloat(mensajeParametrizado[1]);
-					posY = Float.parseFloat(mensajeParametrizado[2]);
-					app.jugadorGuardia.setPosition(posX, posY);
+					
+					if(mensajeParametrizado[1].equals("estado")){
+						app.jugadorGuardia.setEstado(EstadoMovimiento.values()[Integer.parseInt(mensajeParametrizado[2])]);
+					}else {
+						posX = Float.parseFloat(mensajeParametrizado[1]);
+						posY = Float.parseFloat(mensajeParametrizado[2]);
+						app.jugadorGuardia.setPosition(posX, posY);
+					}
 				}else if(mensajeParametrizado[3].equals("L") && Global.empiezaJuego){//si empiezaJuego = true me aseguro que el ladron exista
-					posX = Float.parseFloat(mensajeParametrizado[1]);
-					posY = Float.parseFloat(mensajeParametrizado[2]);
-					app.jugadorLadron.setPosition(posX, posY);
+					
+					if(mensajeParametrizado[1].equals("estado")){
+						app.jugadorLadron.setEstado(EstadoMovimiento.values()[Integer.parseInt(mensajeParametrizado[2])]);
+					}else {
+						posX = Float.parseFloat(mensajeParametrizado[1]);
+						posY = Float.parseFloat(mensajeParametrizado[2]);
+						app.jugadorLadron.setPosition(posX, posY);
+					}
 				}
 				
 			}else if(mensajeParametrizado[0].equals("npcs")) {
@@ -105,6 +116,11 @@ public class HiloCliente extends Thread {
 				if(mensajeParametrizado[1].equals("posicion") && personajesRestantes==0) {//Num de movimiento
 					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setPosicion(Float.parseFloat(mensajeParametrizado[3]), 
 																										Float.parseFloat(mensajeParametrizado[4]));
+					
+				}else if(mensajeParametrizado[1].equals("estado") && personajesRestantes==0) {
+					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setEstado(EstadoMovimiento.values()
+							 																		  [Integer.parseInt(mensajeParametrizado[3])] );
+
 				}else if(mensajeParametrizado[1].equals("esperandoDialogo")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setEsperandoDialogo(true);
 					

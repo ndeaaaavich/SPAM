@@ -94,5 +94,8 @@ public abstract class Entidad extends Actor{
 	public void setUserData(Object userData) {
 		this.userData = userData;
 	}
+	public void setEstado(EstadoMovimiento estado) {
+		this.estado = estado;
+	}
 
 }
