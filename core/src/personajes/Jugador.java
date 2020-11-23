@@ -1,6 +1,7 @@
 package personajes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -42,6 +43,7 @@ public abstract class Jugador extends Entidad{
 		this.animacion.setTexReg(animacionMovimiento());	
 		duracion += Gdx.graphics.getRawDeltaTime();
 		
+		
 		if(Global.ronda != 1) {
 			if((modificadorX != 0 || modificadorY != 0) && (int)(duracion % tiempoModif) == 0) {
 				modificadorX = 0;
@@ -52,23 +54,33 @@ public abstract class Jugador extends Entidad{
 	}
 	protected void enviarMovimiento(int keycode, boolean keyDown) {
 		Utiles.hc.enviarMensaje("movimiento%" + keycode + "%" + keyDown);
+		
+		if (keycode == Keys.DPAD_RIGHT || keycode == Keys.D) {
+			estado = (keyDown)?EstadoMovimiento.corriendoDerecha: EstadoMovimiento.parado;
+		}else if(keycode == Keys.DPAD_LEFT || keycode == Keys.A) {
+			estado = (keyDown)?EstadoMovimiento.corriendoIzquierda: EstadoMovimiento.parado;
+		}else if(keycode == Keys.DPAD_UP || keycode == Keys.W
+			  || keycode == Keys.DPAD_DOWN || keycode == Keys.S) {
+			estado = (keyDown)?EstadoMovimiento.movimientoY: EstadoMovimiento.parado;
+		}
+			
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	@Override
 	protected TextureRegion animacionMovimiento() {
-		if(this.animacion.getPosition().x > this.UltimaPos.x) {// moverse a la derecha
+		if(estado == EstadoMovimiento.corriendoDerecha) {// moverse a la derecha
 			setDerecha(true);
 			ultimoIndice = 0;
 			return animacion.getTexReg(0, duracion);
 		}
-		if(this.animacion.getPosition().x < this.UltimaPos.x) {// moverse a la izquierda
+		if(estado == EstadoMovimiento.corriendoIzquierda) {// moverse a la izquierda
 			setDerecha(false);
 			ultimoIndice = 1;
 			return animacion.getTexReg(1, duracion);
 		}
-		if(this.animacion.getPosition().y != this.UltimaPos.y) {
+		if(estado == EstadoMovimiento.movimientoY) {
 			setDerecha((ultimoIndice==0)?true:false);
 			return animacion.getTexReg(ultimoIndice, duracion);
 		}

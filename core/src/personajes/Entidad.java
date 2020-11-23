@@ -16,9 +16,8 @@ public abstract class Entidad extends Actor{
 	protected int sala = -1;
 	protected float fuerzaX = 0, fuerzaY = 0;
 	protected Vector2 direcciones = new Vector2();
-	public Vector2 UltimaPos = new Vector2();
 	protected boolean derecha = true; // por default todos los pj aparecen mirando a la derecha
-	
+	protected EstadoMovimiento estado;
 	public Object userData;
 
 	public Entidad(String sprite) {
@@ -63,9 +62,6 @@ public abstract class Entidad extends Actor{
 	public Object getUserData() {
 		return userData;
 	}
-	public Vector2 getUltimaPos() {
-		return UltimaPos;
-	}
 
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------SETTERS------------------------------------------------------------------
@@ -94,9 +90,6 @@ public abstract class Entidad extends Actor{
 	}
 	public void setDirecciones(Vector2 direcciones) {
 		this.direcciones = direcciones;
-	}
-	public void setUltimaPos(Vector2 ultimaPos) {
-		this.UltimaPos = ultimaPos;
 	}
 	public void setUserData(Object userData) {
 		this.userData = userData;

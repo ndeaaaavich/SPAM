@@ -2,6 +2,7 @@ package personajes;
 
 public enum EstadoMovimiento {
 	parado,
-	corriendo,
-	saltando;
+	corriendoDerecha,
+	corriendoIzquierda,
+	movimientoY;
 }

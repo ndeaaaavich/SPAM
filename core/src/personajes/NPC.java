@@ -109,7 +109,6 @@ public class NPC extends Entidad implements InterfaceRobable{
 	public void act(float delta) {
 		this.animacion.setTexReg(animacion.getTexReg(0, delta));
 		
-		
 		animacion.setTexReg(animacionMovimiento());
 		
 		tiempo += Gdx.graphics.getRawDeltaTime();
@@ -139,19 +138,10 @@ public class NPC extends Entidad implements InterfaceRobable{
 	}
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------ANIMACION----------------------------------------------------------------
-	// --------------------------------------------------------------------------------------------------------------------------------------
-//	public void setDireccion(Vector2 xy) {
-//		// 1 arriba 2 abajo 3 izquierda 4 derecha 5-40 nada
-//		direcciones.set(xy);
-//		movimiento = (xy.x == 1)? 4: (xy.x == -1)? 3: 5;
-//		if(movimiento==5) movimiento = (xy.y == 1)? 1: (xy.y == -1)? 2: 5;
-//
-//		animacion.setTexReg(animacionMovimiento(direcciones));
-//	}
-	
+	// --------------------------------------------------------------------------------------------------------------------------------------	
 	@Override
 	protected TextureRegion animacionMovimiento(){
-		switch (movimiento) {
+		/*switch (movimiento) {
 		case 1:
 			setDerecha((ultimoIndice==0)?true:false);
 			return animacion.getTexReg(ultimoIndice, duracion);
@@ -180,7 +170,22 @@ public class NPC extends Entidad implements InterfaceRobable{
 			}
 		default:
 			return animacion.getTexReg(2, duracion);
+		}*/
+		if(estado == EstadoMovimiento.corriendoDerecha) {// moverse a la derecha
+			setDerecha(true);
+			ultimoIndice = 0;
+			return animacion.getTexReg(0, duracion);
 		}
+		if(estado == EstadoMovimiento.corriendoIzquierda) {// moverse a la izquierda
+			setDerecha(false);
+			ultimoIndice = 1;
+			return animacion.getTexReg(1, duracion);
+		}
+		if(estado == EstadoMovimiento.movimientoY) {
+			setDerecha((ultimoIndice==0)?true:false);
+			return animacion.getTexReg(ultimoIndice, duracion);
+		}
+		return animacion.getTexReg((ultimoIndice==1)?3:2, duracion);
 	}
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------GETTERS------------------------------------------------------------------

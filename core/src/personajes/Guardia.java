@@ -52,10 +52,6 @@ public class Guardia extends Jugador {
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		
-		System.out.println("ultima posicion " + this.UltimaPos);
-		System.out.println("posicion " + this.animacion.getPosition() + "\n");
-		
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------
