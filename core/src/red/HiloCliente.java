@@ -124,6 +124,9 @@ public class HiloCliente extends Thread {
 				}else if(mensajeParametrizado[1].equals("esperandoDialogo")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setEsperandoDialogo(true);
 					
+				}else if(mensajeParametrizado[1].equals("salaRobada")) {
+					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setRobado(true);
+					
 				}else if (mensajeParametrizado[1].equals("crear")){
 				//--------------------------------creacion de los npc--------------------------------------------
 					int[] apariencia = new int[]{Integer.parseInt(mensajeParametrizado[8]), 
@@ -134,11 +137,11 @@ public class HiloCliente extends Thread {
 				}
 				
 			}else if (mensajeParametrizado[0].equals("ladron")) {
-				if(mensajeParametrizado[1].equals("robo")) {
+				/*if(mensajeParametrizado[1].equals("robo")) {
 					for(int i = 0; i<Utiles.getListeners().size();i++) {
 						((InterfaceRobable) Utiles.getListeners().get(i)).salaRobada(Integer.parseInt(mensajeParametrizado[2]));
 					}
-				}else if(mensajeParametrizado[1].equals("gano")) {
+				}else*/ if(mensajeParametrizado[1].equals("gano")) {
 					Global.puntajeLadron++;
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
 				}else if(mensajeParametrizado[1].equals("perdio")) {

@@ -5,27 +5,12 @@ import utiles.Render;
 import utiles.Utiles;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
 
-import powerUps.AumentoVelocidad;
-import powerUps.DobleSalto;
-import powerUps.PowerUp;
-import powerUps.PowerUpsEnum;
-import powerUps.Ralentizacion;
-import red.HiloCliente;
-import cuerpos.Cuerpo;
+import powerUps.*;
 import cuerpos.Plataforma;
 import personajes.Guardia;
-import personajes.Jugador;
 import personajes.Ladron;
-import personajes.NPC;
 import personajes.SpriteInfo;
 
 public class PantallaRonda2 extends PantallaRonda {
@@ -40,68 +25,14 @@ public class PantallaRonda2 extends PantallaRonda {
 
 	@Override
 	public void show() {
-		Utiles.hc.setApp(this);
 		plataformaMovil = new Plataforma[mapa.getPlataformasInicioPosition().length];
 		powerUp = new PowerUp[mapa.getPowerUps().length];
 		crearjugadores();
+		jugadorGuardia.setPosition(100, 150);
+		jugadorLadron.setPosition(100, 150);
 		crearPlataformas();
 		crearPowerUps();
-		
-		mundo.setContactListener(new ContactListener() {
-			@Override
-			public void beginContact(Contact contact) {
-				Object o1 = contact.getFixtureA().getBody().getUserData();
-				Object o2 = contact.getFixtureB().getBody().getUserData();
-				try {
-					if (o2 instanceof PowerUp && o1 instanceof Jugador) {
-						switch (((PowerUp) o2).getNumeroPowerUp()) {
-						case 1:
-							((Jugador) o1).setModificadorX(((PowerUp) o2).getEfecto());
-							((PowerUp) o2).setActivo(false);
-							break;
-						case 2:
-							((Jugador) o1).setModificadorX(((PowerUp) o2).getEfecto());
-							((PowerUp) o2).setActivo(false);
-							break;
-						case 3:
-							((Jugador) o1).setModificadorY(((PowerUp) o2).getEfecto());
-							((PowerUp) o2).setActivo(false);
-							break;
-						}
-					}
-					if (o1 instanceof PowerUp && o2 instanceof Jugador) {
-						System.out.println(((PowerUp) o1).getNumeroPowerUp());
-						switch (((PowerUp) o1).getNumeroPowerUp()) {
-						case 1:
-							((Jugador) o2).setModificadorX(((PowerUp) o1).getEfecto());
-							((PowerUp) o2).setActivo(false);
-							break;
-						case 2:
-							((Jugador) o2).setModificadorX(((PowerUp) o1).getEfecto());
-							((PowerUp) o2).setActivo(false);
-							break;
-						case 3:
-							((Jugador) o2).setModificadorY(((PowerUp) o1).getEfecto());
-							((PowerUp) o2).setActivo(false);
-							break;
-						}
-					}
-				} catch (Exception e) {
-				}
-			}
-
-			@Override
-			public void endContact(Contact contact) {
-			}
-
-			@Override
-			public void preSolve(Contact contact, Manifold oldManifold) {
-			}
-
-			@Override
-			public void postSolve(Contact contact, ContactImpulse impulse) {
-			}
-		});
+		Utiles.hc.setApp(this);
 	}
 
 	@Override

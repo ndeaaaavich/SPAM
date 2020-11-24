@@ -43,26 +43,16 @@ public abstract class Jugador extends Entidad{
 		this.animacion.setTexReg(animacionMovimiento());	
 		duracion += Gdx.graphics.getRawDeltaTime();
 		
-		if(Global.ronda != 1) {
+		/*if(Global.ronda != 1) {
 			if((modificadorX != 0 || modificadorY != 0) && (int)(duracion % tiempoModif) == 0) {
 				modificadorX = 0;
 				modificadorY = 0;
 			}
 			enviarMovimiento(keyCode, keyDown);
-		}
+		}*/
 	}
 	protected void enviarMovimiento(int keycode, boolean keyDown) {
 		Utiles.hc.enviarMensaje("movimiento%" + keycode + "%" + keyDown);
-		
-		/*if (keycode == Keys.DPAD_RIGHT || keycode == Keys.D) {
-			estado = (keyDown)?EstadoMovimiento.corriendoDerecha: EstadoMovimiento.parado;
-		}else if(keycode == Keys.DPAD_LEFT || keycode == Keys.A) {
-			estado = (keyDown)?EstadoMovimiento.corriendoIzquierda: EstadoMovimiento.parado;
-		}else if(keycode == Keys.DPAD_UP || keycode == Keys.W
-			  || keycode == Keys.DPAD_DOWN || keycode == Keys.S) {
-			estado = (keyDown)?EstadoMovimiento.movimientoY: EstadoMovimiento.parado;
-		}*/
-			
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------

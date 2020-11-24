@@ -135,20 +135,20 @@ public class PantallaRonda1 extends PantallaRonda {
 
 	private void adelantarCuerpos() {
 		for (int i = 0; i < npcs.length; i++) {
-			/*if (jugadorGuardia.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM) {
-				if (jugadorGuardia.getPosition().y > npcs[i].getPosition().y) {
+			if (jugadorGuardia.getSprPosition().dst(npcs[i].getSprPosition()) < 30 * Utiles.PPM) {
+				if (jugadorGuardia.getSprPosition().y > npcs[i].getSprPosition().y) {
 					jugadorGuardia.toBack();
 				} else {
 					jugadorGuardia.toFront();
 				}
 			}
-			if (jugadorLadron.getPosition().dst(npcs[i].getPosition()) < 30 * Utiles.PPM) {
-				if (jugadorLadron.getPosition().y > npcs[i].getPosition().y) {
+			if (jugadorLadron.getSprPosition().dst(npcs[i].getSprPosition()) < 30 * Utiles.PPM) {
+				if (jugadorLadron.getSprPosition().y > npcs[i].getSprPosition().y) {
 					jugadorLadron.toBack();
 				} else {
 					jugadorLadron.toFront();
 				}
-			}*/
+			}
 		}
 		if (jugadorLadron.getSprPosition().dst(jugadorGuardia.getSprPosition()) < 30 * Utiles.PPM) {
 			if (jugadorLadron.getSprPosition().y > jugadorGuardia.getSprPosition().y) {
