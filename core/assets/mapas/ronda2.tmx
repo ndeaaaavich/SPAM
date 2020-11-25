@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="left-down" width="28" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="37">
  <objectgroup id="2" name="Capa de Objetos 1">
-  <object id="7" x="0" y="208" width="447.333" height="48"/>
+  <object id="7" x="-0.333333" y="207.667" width="447.333" height="48"/>
  </objectgroup>
  <objectgroup id="3" name="powerUps">
-  <object id="25" name="AumentoVelocidad" x="96" y="192" width="8.90909" height="8.90909"/>
+  <object id="25" name="AumentoVelocidad" x="144" y="192" width="8.90909" height="8.90909"/>
  </objectgroup>
  <objectgroup id="7" name="PlataformasMovilesInicio">
-  <object id="27" name="0" x="192" y="192" width="64" height="16"/>
-  <object id="33" name="1" x="272" y="144" width="64" height="16"/>
+  <object id="27" name="0" x="192" y="176" width="64" height="16"/>
+  <object id="33" name="1" x="272" y="160" width="64" height="16"/>
  </objectgroup>
  <objectgroup id="8" name="PlataformasMovilesFinal">
-  <object id="32" name="0" x="192" y="144" width="64" height="16"/>
-  <object id="36" name="1" x="272" y="112" width="64" height="16"/>
+  <object id="32" name="0" x="192" y="160" width="64" height="16"/>
+  <object id="36" name="1" x="272" y="144" width="64" height="16"/>
  </objectgroup>
 </map>

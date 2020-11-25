@@ -8,13 +8,9 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 
-import eventos.InterfaceRobable;
 import utiles.Global;
-import utiles.Utiles;
-import pantallas.PantallaRonda;
-import pantallas.PantallaRonda1;
+import pantallas.*;
 import personajes.EstadoMovimiento;
 import personajes.Ladron;
 import personajes.SpriteInfo;
@@ -30,7 +26,6 @@ public class HiloCliente extends Thread {
 	public int tope = 9;
 	public int personajesRestantes = tope;
 	private float posY = 0, posX = 0;
-	private float posYant = 0, posXant = 0;
 	
 	public HiloCliente(PantallaRonda app) {
 		this.app = app;
@@ -89,7 +84,7 @@ public class HiloCliente extends Thread {
 				ipServer = dp.getAddress();
 				Global.guardia = (Integer.parseInt(mensajeParametrizado[1]) == 1)?true:false;
 		
-			}else if(mensajeParametrizado[0].equals("actualizar")) {
+			}else if(mensajeParametrizado[0].equals("actualizar")  && Global.empiezaJuego) {
 				if(mensajeParametrizado[3].equals("G")) {
 					
 					if(mensajeParametrizado[1].equals("estado")){
@@ -99,7 +94,7 @@ public class HiloCliente extends Thread {
 						posY = Float.parseFloat(mensajeParametrizado[2]);
 						app.jugadorGuardia.setPosition(posX, posY);
 					}
-				}else if(mensajeParametrizado[3].equals("L") && Global.empiezaJuego){//si empiezaJuego = true me aseguro que el ladron exista
+				}else if(mensajeParametrizado[3].equals("L")){
 					
 					if(mensajeParametrizado[1].equals("estado")){
 						app.jugadorLadron.setEstado(EstadoMovimiento.values()[Integer.parseInt(mensajeParametrizado[2])]);
@@ -137,11 +132,7 @@ public class HiloCliente extends Thread {
 				}
 				
 			}else if (mensajeParametrizado[0].equals("ladron")) {
-				/*if(mensajeParametrizado[1].equals("robo")) {
-					for(int i = 0; i<Utiles.getListeners().size();i++) {
-						((InterfaceRobable) Utiles.getListeners().get(i)).salaRobada(Integer.parseInt(mensajeParametrizado[2]));
-					}
-				}else*/ if(mensajeParametrizado[1].equals("gano")) {
+				if(mensajeParametrizado[1].equals("gano")) {
 					Global.puntajeLadron++;
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
 				}else if(mensajeParametrizado[1].equals("perdio")) {
@@ -169,7 +160,6 @@ public class HiloCliente extends Thread {
 						app.jugadorLadron.salaAnterior = Integer.parseInt(mensajeParametrizado[2]);
 					}
 				}else if(mensajeParametrizado[1].equals("cambiar")) {
-					System.out.println("a");
 					if(Global.guardia) {
 						app.jugadorGuardia.cambiarSala = Boolean.parseBoolean(mensajeParametrizado[2]);
 					}else {
@@ -182,16 +172,10 @@ public class HiloCliente extends Thread {
 						app.jugadorLadron.setSala(Integer.parseInt(mensajeParametrizado[1]));
 					}
 				}
+			}else if (mensajeParametrizado[0].equals("plataforma") && app instanceof PantallaRonda2) {
+				((PantallaRonda2)app).plataformaMovilSprite[Integer.parseInt(mensajeParametrizado[1])].setPosition(Float.parseFloat(mensajeParametrizado[2]) ,
+			 			 																					       Float.parseFloat(mensajeParametrizado[3]) );
 			}
-		//	Utiles.hs.enviarMensaje("sala%anterior%" + ((Jugador) o1).getSala(), 
-		//			Utiles.hs.getClientes()[0].getIp(), 
-		//			Utiles.hs.getClientes()[0].getPuerto());
-//			Utiles.hs.enviarMensaje("sala%" + ((Jugador) o1).getSala(), 
-//					Utiles.hs.getClientes()[0].getIp(), 
-//					Utiles.hs.getClientes()[0].getPuerto());
-//			Utiles.hs.enviarMensaje("sala%cambiar%" + true, 
-//					Utiles.hs.getClientes()[0].getIp(), 
-//					Utiles.hs.getClientes()[0].getPuerto());
 		}
 	}
 

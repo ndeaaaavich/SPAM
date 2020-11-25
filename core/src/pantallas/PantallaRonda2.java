@@ -5,10 +5,11 @@ import utiles.Render;
 import utiles.Utiles;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 import powerUps.*;
-import cuerpos.Plataforma;
 import personajes.Guardia;
 import personajes.Ladron;
 import personajes.SpriteInfo;
@@ -16,7 +17,7 @@ import personajes.SpriteInfo;
 public class PantallaRonda2 extends PantallaRonda {
 
 	private PowerUp[] powerUp;
-	private Plataforma[] plataformaMovil;
+	public Sprite[] plataformaMovilSprite;
 	private float tiempo;
 
 	public PantallaRonda2(Vector2 gravedad, String rutaMapa) {
@@ -25,11 +26,9 @@ public class PantallaRonda2 extends PantallaRonda {
 
 	@Override
 	public void show() {
-		plataformaMovil = new Plataforma[mapa.getPlataformasInicioPosition().length];
+		plataformaMovilSprite = new Sprite[mapa.getPlataformasInicioPosition().length];
 		powerUp = new PowerUp[mapa.getPowerUps().length];
 		crearjugadores();
-		jugadorGuardia.setPosition(100, 150);
-		jugadorLadron.setPosition(100, 150);
 		crearPlataformas();
 		crearPowerUps();
 		Utiles.hc.setApp(this);
@@ -37,24 +36,29 @@ public class PantallaRonda2 extends PantallaRonda {
 
 	@Override
 	public void render(float delta) {
+		Render.limpiarPantalla();
+		
 		if(Global.ronda==2) {
 			super.render(delta);
-			Render.limpiarPantalla();
 	
 			update(delta);
 			tiempo += Gdx.graphics.getRawDeltaTime();
 			tmr.setView(camera);
 			tmr.render();
 			b2dr.render(mundo, camera.combined);
-	
+			
+			
+			Render.batch.begin();
+			for (int i = 0; i < plataformaMovilSprite.length; i++) {
+				plataformaMovilSprite[i].draw(Render.batch);
+			}
+			Render.batch.end();
+			
 			stage.act();
 			stage.draw();
 	
 			Render.batch.setProjectionMatrix(camera.combined);
 			Gdx.input.setInputProcessor(stage);
-			for (int i = 0; i < plataformaMovil.length; i++) {
-				plataformaMovil[i].moverPlataforma(delta);	
-			}
 		}else {
 			
 		}
@@ -92,12 +96,9 @@ public class PantallaRonda2 extends PantallaRonda {
 		stage.setKeyboardFocus( (Global.guardia)? jugadorGuardia : jugadorLadron );
 	}
 	private void crearPlataformas() {
-		float[] duracion = new float[] {2f, 2f};
-		for (int i = 0; i < plataformaMovil.length; i++) {
-			plataformaMovil[i] = new Plataforma(mundo, mapa.getPlataformasSize()[i].x, mapa.getPlataformasSize()[i].y
-											   ,mapa.getPlataformasInicioPosition()[i].x, mapa.getPlataformasInicioPosition()[i].y);
-			plataformaMovil[i].setMovimiento(duracion[i], mapa.getPlataformasInicioPosition()[i], 
-														  mapa.getPlataformasFinalPosition()[i]);
+		for (int i = 0; i < plataformaMovilSprite.length; i++) {
+			plataformaMovilSprite[i] = new Sprite(new Texture("botones/boton 1.png"));
+			plataformaMovilSprite[i].setSize(mapa.getPlataformasSize()[i].x * Utiles.PPM, mapa.getPlataformasSize()[i].y* Utiles.PPM);
 		}
 	}
 	private void crearPowerUps() {

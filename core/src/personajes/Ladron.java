@@ -5,14 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 import utiles.Global;
 import utiles.Utiles;
-
-import cuerpos.Cuerpo;
 
 public class Ladron extends Jugador{
 	
@@ -28,7 +25,7 @@ public class Ladron extends Jugador{
 		}
 		Inputlistener = new InputListener() {
 			public boolean keyDown (InputEvent event, int keycode) {
-				if (Global.ronda == 1) enviarMovimiento(keycode, true);
+				enviarMovimiento(keycode, true);
 				
 				if (keycode == Keys.E) robando = true;
 				
@@ -40,7 +37,7 @@ public class Ladron extends Jugador{
 				return true;
 			}
 			public boolean keyUp (InputEvent event, int keycode) {
-				if (Global.ronda == 1) enviarMovimiento(keycode, false);
+				enviarMovimiento(keycode, false);
 				
 				if (keycode == Keys.E) robando = false; TiempoAccion = 0;
 				

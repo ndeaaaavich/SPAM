@@ -49,4 +49,7 @@ public class Plataforma {
 	private void setPuntoSalida(Vector2 puntoSalida) {
 		this.puntoSalida = puntoSalida;
 	}
+	public void setPosition(Vector2 xy) {
+		this.cuerpo.setPosition(xy.x, xy.y);
+	}
 }

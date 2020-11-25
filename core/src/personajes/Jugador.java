@@ -43,13 +43,13 @@ public abstract class Jugador extends Entidad{
 		this.animacion.setTexReg(animacionMovimiento());	
 		duracion += Gdx.graphics.getRawDeltaTime();
 		
-		/*if(Global.ronda != 1) {
+		if(Global.ronda != 1) {
 			if((modificadorX != 0 || modificadorY != 0) && (int)(duracion % tiempoModif) == 0) {
 				modificadorX = 0;
 				modificadorY = 0;
 			}
-			enviarMovimiento(keyCode, keyDown);
-		}*/
+			//enviarMovimiento(keyCode, keyDown);
+		}
 	}
 	protected void enviarMovimiento(int keycode, boolean keyDown) {
 		Utiles.hc.enviarMensaje("movimiento%" + keycode + "%" + keyDown);
