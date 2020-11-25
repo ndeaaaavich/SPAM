@@ -3,8 +3,6 @@ package powerUps;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import com.badlogic.gdx.physics.box2d.World;
-
 
 public enum PowerUpsEnum {
 	AumentoVelocidad("AumentoVelocidad","powerUps.AumentoVelocidad"),
@@ -21,15 +19,15 @@ public enum PowerUpsEnum {
 	public String getNombre() {
 		return nombre;
 	}
-	public PowerUp crearpowerUp(World mundo, float positionX, float positionY) {
+	public PowerUp crearpowerUp(float positionX, float positionY) {
 		Class clase;
 		PowerUp p = null;
 		Constructor constructor;
 		
 		try {
 			clase = Class.forName(this.ruta);
-			constructor = clase.getConstructor(World.class, float.class, float.class);
-			p = (PowerUp) constructor.newInstance(mundo, positionX, positionY); 
+			constructor = clase.getConstructor(float.class, float.class);
+			p = (PowerUp) constructor.newInstance(positionX, positionY); 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {

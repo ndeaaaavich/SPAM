@@ -1,7 +1,6 @@
 package personajes;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -9,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 import elementos.Texto;
-import utiles.Global;
 import utiles.Utiles;
 
 public abstract class Jugador extends Entidad{
@@ -19,7 +17,6 @@ public abstract class Jugador extends Entidad{
 	public boolean cambiarSala;
 	public int salaAnterior, TiempoAccion = 0, cuentaregresiva = 500, keyCode;
 	protected boolean keyDown, salto = true;
-	public float modificadorX = 0, modificadorY = 0, velocidad = 1, tiempoModif = 10;
 	//tiempoModif el tiempo que duran las modificaciones
 	protected Texto hud;
 	
@@ -42,14 +39,6 @@ public abstract class Jugador extends Entidad{
 	public void act(float delta){
 		this.animacion.setTexReg(animacionMovimiento());	
 		duracion += Gdx.graphics.getRawDeltaTime();
-		
-		if(Global.ronda != 1) {
-			if((modificadorX != 0 || modificadorY != 0) && (int)(duracion % tiempoModif) == 0) {
-				modificadorX = 0;
-				modificadorY = 0;
-			}
-			//enviarMovimiento(keyCode, keyDown);
-		}
 	}
 	protected void enviarMovimiento(int keycode, boolean keyDown) {
 		Utiles.hc.enviarMensaje("movimiento%" + keycode + "%" + keyDown);
@@ -86,19 +75,6 @@ public abstract class Jugador extends Entidad{
 		}
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
-	//-------------------------------------------------------------SETTERS------------------------------------------------------------------
-	//--------------------------------------------------------------------------------------------------------------------------------------
-	public void setModificadorX(float modificadorX) {
-		if(this.modificadorX != modificadorX) {
-			this.modificadorX = modificadorX;
-		}
-	}
-	public void setModificadorY(float modificadorY) {
-		if(this.modificadorY != modificadorY) {
-			this.modificadorY = modificadorY;
-		}
-	}
-	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------GETTERS------------------------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	public int getSalaAnterior() {
@@ -109,12 +85,6 @@ public abstract class Jugador extends Entidad{
 	}
 	public float getFuerzasY() {
 		return super.fuerzaY;
-	}
-	public float getModificadorX() {
-		return modificadorX;
-	}
-	public float getModificadorY() {
-		return modificadorY;
 	}	
 	public void setVectorFuerzas(Vector2 fuerzas) {
 		this.direcciones = fuerzas;

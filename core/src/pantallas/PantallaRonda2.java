@@ -16,7 +16,7 @@ import personajes.SpriteInfo;
 
 public class PantallaRonda2 extends PantallaRonda {
 
-	private PowerUp[] powerUp;
+	public PowerUp[] powerUp;
 	public Sprite[] plataformaMovilSprite;
 	private float tiempo;
 
@@ -75,16 +75,7 @@ public class PantallaRonda2 extends PantallaRonda {
 
 	private void update(float delta) {
 		mundo.step(1 / 60f, 6, 2);
-
-		for (int i = 0; i < powerUp.length; i++) {
-			if (!powerUp[i].isActivo()) {
-				powerUp[i].setWorldActive(false);
-			}
-			if (!powerUp[i].isActivo() && (int) (tiempo % powerUp[i].getCoolDown()) == 0) {
-				powerUp[i].setActivo(true);
-				powerUp[i].setWorldActive(true);
-			}
-		}
+		
 		camera.update();
 	}
 
@@ -105,8 +96,8 @@ public class PantallaRonda2 extends PantallaRonda {
 		for (int i = 0; i < powerUp.length; i++) {
 			for (int j = 0; j < PowerUpsEnum.values().length; j++) {
 				if(mapa.getPowerUps()[i].equals(PowerUpsEnum.values()[j].getNombre())) {
-					powerUp[i] = PowerUpsEnum.values()[j].crearpowerUp(mundo, mapa.getPowerUpsPosition()[i].x, 
-																			  mapa.getPowerUpsPosition()[i].y);
+					powerUp[i] = PowerUpsEnum.values()[j].crearpowerUp(mapa.getPowerUpsPosition()[i].x, 
+																	   mapa.getPowerUpsPosition()[i].y);
 					stage.addActor(powerUp[i]);
 				}
 			}

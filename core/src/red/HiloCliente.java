@@ -175,6 +175,13 @@ public class HiloCliente extends Thread {
 			}else if (mensajeParametrizado[0].equals("plataforma") && app instanceof PantallaRonda2) {
 				((PantallaRonda2)app).plataformaMovilSprite[Integer.parseInt(mensajeParametrizado[1])].setPosition(Float.parseFloat(mensajeParametrizado[2]) ,
 			 			 																					       Float.parseFloat(mensajeParametrizado[3]) );
+			}else if (mensajeParametrizado[0].equals("powerUps") && app instanceof PantallaRonda2) {
+				if (mensajeParametrizado[1].equals("desactivar")){
+					((PantallaRonda2)app).powerUp[Integer.parseInt(mensajeParametrizado[2])].setActivo(false);
+				}
+				if (mensajeParametrizado[1].equals("activar")){
+					((PantallaRonda2)app).powerUp[Integer.parseInt(mensajeParametrizado[2])].setActivo(true);
+				}
 			}
 		}
 	}
