@@ -59,6 +59,8 @@ public class PantallaRonda1 extends PantallaRonda {
 
 				update(delta);
 
+				System.out.println(jugadorLadron.getSala());
+				
 				tmr.setView(camera);
 				tmr.render();
 				b2dr.render(mundo, camera.combined);

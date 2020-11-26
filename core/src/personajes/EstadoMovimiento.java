@@ -4,5 +4,6 @@ public enum EstadoMovimiento {
 	parado,
 	corriendoDerecha,
 	corriendoIzquierda,
-	movimientoY;
+	movimientoY,
+	cayendo;
 }

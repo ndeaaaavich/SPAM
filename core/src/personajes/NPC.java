@@ -21,10 +21,9 @@ import eventos.InterfaceRobable;
 import menu.Hud;
 
 public class NPC extends Entidad implements InterfaceRobable{
-	private int movimiento; // 1 arriba 2 abajo 3 izquierda 4 derecha 5-40 nada
-	private boolean finRecorrido, detectado, CambioDirec, 
+	private boolean detectado, CambioDirec, 
 					robado = false, salaRobada = false, dibujarSigno = false, esperandoDialogo = false, mostrarPopUp,fin;
-	private float tiempoMov, tiempo, tiempoDetectado;
+	private float tiempoDetectado;
 	private Hud hud;
 	private Sprite sprExclamation = new Sprite( new Texture("personajes/!.png") );
 	//private Vector2 fuerzas = new Vector2(0,0);
@@ -71,7 +70,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 	// -------------------------------------------------------------ACCIONES-----------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	public void detectarRobo() {
-		setCambioDirec(true);
+		//setCambioDirec(true);
 		setRobado(true);
 		detectado = true;
 	}
@@ -110,7 +109,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 		
 		animacion.setTexReg(animacionMovimiento());
 		
-		tiempo += Gdx.graphics.getRawDeltaTime();
+		//tiempo += Gdx.graphics.getRawDeltaTime();
 		
 		duracion += delta;
 		//duración es lo que dura la ida o la vuelta
@@ -174,13 +173,13 @@ public class NPC extends Entidad implements InterfaceRobable{
 	public void setPosicion(float x, float y) {
     	animacion.setPosicion(x,y);
 	}
-	public void setCambioDirec(boolean parar) {
+	/*public void setCambioDirec(boolean parar) {
 		this.CambioDirec = parar;
 		tiempo = 0;
 	}
 	public void setTiempoMov(float tiempoMov) {
 		this.tiempoMov = tiempoMov;
-	}
+	}*/
 	public void setEsperandoDialogo(boolean esperandoDialogo) {
 		if(Global.guardia) this.esperandoDialogo = esperandoDialogo;
 	}
