@@ -130,7 +130,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 				  animacion.getSprite().getHeight());
 		
 		if (mostrarPopUp) {
-			hud.moverPopUp();
+			hud.moverPopUp(true);
 			mostrarPopUp = false;
 		}
 	}

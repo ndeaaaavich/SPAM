@@ -24,7 +24,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	public NPC[] npcs = new NPC[8];
 
 	private float posSprX = 0, posSprY = 0;
-	private Hud hud = new Hud("hud.png");
+	private Hud hud = new Hud("hud.png",this);
 	private Vector2 posicion = new Vector2(0, 0), puntoLlegada, puntoSalida;
 	private Interpolation interpol = Interpolation.circle;
 	private float tiempo, duracion = 2.5f;

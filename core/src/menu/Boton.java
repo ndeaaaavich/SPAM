@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+
 import utiles.Utiles;
 import pantallas.PantallaMenu;
 import pantallas.PantallaRonda1;
@@ -16,7 +18,6 @@ import pantallas.PantallaRonda1;
 public class Boton extends Actor{
 
 	private Sprite spr;
-	private float x, y;
 	public boolean touchdown;
 	private PantallaMenu menu;
 	public String filename;
@@ -36,6 +37,7 @@ public class Boton extends Actor{
 	        	@Override
 	            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 	        		touchdown = true;
+	        		System.out.println("touchdown");
 	            	return true; 
 	            }
 	        	
@@ -44,15 +46,11 @@ public class Boton extends Actor{
 	        	}
 	        });
 	    }
-	 
-	public Boton(String filename, Vector2 posicion) {
-		this.filename = filename;
-    	spr = new Sprite(new Texture(filename));
-    	
-    	spr.setSize(spr.getWidth()*Utiles.PPM, spr.getHeight()*Utiles.PPM);
-    	spr.setPosition(posicion.x, posicion.y);
-    	
-    	setBounds(spr.getX(),spr.getY(),spr.getWidth(),spr.getHeight());  
+	 /*
+	public Boton(String filename) {
+		spr = new Sprite(new Texture(filename));
+		
+		spr.setPosition(-100,-100);
     	addListener(new InputListener(){
 	        	@Override
 	            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -64,7 +62,7 @@ public class Boton extends Actor{
 	        		touchdown = false;
 	        	}
 	    });
-	}
+	} */
 	
 	public void draw(Batch batch, float parentAlpha){
 		Color color = getColor();
@@ -80,10 +78,20 @@ public class Boton extends Actor{
 			}else if(filename.equals("botones/boton 2.png")){
 				
 			}else if(filename.equals("botones/boton 3.png")){
-				menu.getHud().moverPopUp();
+				menu.getHud().moverPopUp(true);
+				menu.cambiarModoBotones(Touchable.disabled);
 			}
 		}
 		super.act(delta);
+    }
+    
+    public Sprite getSpr() {
+		return spr;
+	}
+    
+    public void setArea(float x, float y) {
+    	setBounds(x,y,spr.getWidth()*Utiles.PPM,spr.getHeight()*Utiles.PPM);  
+    	System.out.println(x + "," + y + "," + spr.getWidth()*Utiles.PPM+ "," +spr.getHeight()*Utiles.PPM);
     }
 }
 
