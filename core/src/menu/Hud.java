@@ -33,7 +33,7 @@ public class Hud extends Actor{
 	private Vector2 posicionInicial, posicionLlegada, posicion = new Vector2();
 	private float tiempo, duracion = 2f;
 	private ShapeRenderer renderer;
-	private boolean mover, clickPopUp;
+	private boolean mover, clickPopUp, entra;
     
 	public Hud(String hudNombre, Screen pantalla)  {
 		this.pantalla = pantalla;
@@ -75,6 +75,11 @@ public class Hud extends Actor{
 			if(tiempo>duracion) {
 				mover = false;
 				tiempo = 0;
+				
+				posicion.set(posicionInicial);
+				posicionInicial.set(posicionLlegada);
+				posicionLlegada.set(posicion);
+				posicion.setZero();
 			}
 		}
 		
@@ -98,10 +103,12 @@ public class Hud extends Actor{
 	
 	public void moverPopUp(boolean entra) { 
 		mover = true;
+		this.entra = entra;
 		
 		if (!entra) {
 			this.setTouchable(Touchable.disabled);
 			if(pantalla instanceof PantallaMenu) ((PantallaMenu) pantalla).cambiarModoBotones(Touchable.enabled);
+			
 		}else {
 			this.setTouchable(Touchable.enabled);
 			if(pantalla instanceof PantallaMenu) ((PantallaMenu) pantalla).cambiarModoBotones(Touchable.disabled);
@@ -111,10 +118,11 @@ public class Hud extends Actor{
 	}
 	
 	public void dibujarHud() {
-		if (mover || opacidad>0.6f) {
+		if (mover || opacidad>=0.6f) {
 			Gdx.gl.glEnable(GL20.GL_BLEND);
 			
-			if(opacidad<0.6f) opacidad += 0.01;
+			if(opacidad<0.6f && entra) opacidad += 0.01;
+			if(opacidad>0 && !entra) opacidad -= 0.01;
 			renderer.begin(ShapeType.Filled);
 			renderer.setColor(0, 0, 0, opacidad);
 			renderer.rect(0, 0, Utiles.ancho/Utiles.PPM, Utiles.alto/Utiles.PPM);
