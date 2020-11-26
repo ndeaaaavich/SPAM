@@ -35,7 +35,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		Utiles.hc = new HiloCliente(this);
 		Utiles.hc.start();
 		// guardia
-		jugadorGuardia = new Guardia("personajes/badlogic.jpg");
+		jugadorGuardia = new Guardia("personajes/guardia.png");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
 		//stage.addActor(hud.getCruz());

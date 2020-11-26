@@ -82,7 +82,7 @@ public class PantallaRonda2 extends PantallaRonda {
 	private void crearjugadores() {
 		this.jugadorLadron = new Ladron(SpriteInfo.values()[SpriteInfo.getIndiceLadron()].getFilename());
 		stage.addActor(this.jugadorLadron);
-		this.jugadorGuardia = new Guardia("personajes/badlogic.jpg");
+		this.jugadorGuardia = new Guardia("personajes/guardia.png");
 		stage.addActor(this.jugadorGuardia);
 		stage.setKeyboardFocus( (Global.guardia)? jugadorGuardia : jugadorLadron );
 	}

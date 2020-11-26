@@ -13,7 +13,7 @@ public class PowerUp extends Actor{
 	protected Sprite spr;
 	
 	private int numeroPowerUp;
-	private float efecto, coolDown = 5;
+	private float efecto;
 	private boolean activo = true;
 	
 	public PowerUp(float positionX, float positionY, int numeroPowerUp, String fileName) {
@@ -46,9 +46,7 @@ public class PowerUp extends Actor{
 	public boolean isActivo() {
 		return activo;
 	}
-	public float getCoolDown() {
-		return coolDown;
-	}
+
 	
 	protected void setEfecto(float efecto) {
 		this.efecto = efecto;
