@@ -59,9 +59,9 @@ public class PantallaRonda1 extends PantallaRonda {
 
 				update(delta);
 
-				for (int i = 0; i < npcs.length; i++) {
+				/*for (int i = 0; i < npcs.length; i++) {
 					System.out.println("npc " + i + " sala " + npcs[i].getSala());
-				}
+				}*/
 				
 				tmr.setView(camera);
 				tmr.render();

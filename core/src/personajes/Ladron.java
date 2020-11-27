@@ -17,8 +17,13 @@ public class Ladron extends Jugador{
 	private int billeteras = 0, numAzar;
 	private Sprite sprRobo;
 	
-	public Ladron(String sprite) {
+	public Ladron(String sprite, float posX, float posY, int sala) {
 		super(sprite);
+		
+		setPosition(posX, posY);
+		setSala(sala);
+		cambiarSala = true;
+		
 		if(Global.ronda == 1) {
 			sprRobo = new Sprite( new Texture("personajes/badlogic.jpg") );
 			sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
@@ -60,7 +65,6 @@ public class Ladron extends Jugador{
 		super.draw(batch, parentAlpha);
 	}
 	public void act(float delta){
-		
 		super.act(delta);
 		hud.setTexto((int)(cuentaregresiva - Global.tiempo) + "\n" + billeteras + "-5");
 		if( Global.ronda==1 && cuentaregresiva - Global.tiempo < 1) super.finalizarRonda(false, this);
@@ -78,8 +82,8 @@ public class Ladron extends Jugador{
 		//0 robo exitoso, 1 nada, 2 detectado
 		int randomF = Utiles.r.nextInt(100)+1;
 		
-		if(TiempoAccion == 50) {numAzar = randomF;}
-		if(TiempoAccion > 50 && numAzar == randomF) {return 2;}
+		if(TiempoAccion == 25) {numAzar = randomF;}
+		if(TiempoAccion > 25 && numAzar == randomF) {return 2;}
 		
 		System.out.println(TiempoAccion);
 		if(TiempoAccion++ == 100) {

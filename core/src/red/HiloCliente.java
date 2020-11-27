@@ -206,8 +206,10 @@ public class HiloCliente extends Thread {
 		Gdx.app.postRunnable(new Runnable(){
 		    @Override
 		     public void run(){
-	        	app.jugadorLadron = new Ladron(SpriteInfo.values()[Integer.parseInt(mensajeParametrizado2[1])].getFilename());
-	    		app.jugadorLadron.setPosition(Float.parseFloat(mensajeParametrizado2[2]), Float.parseFloat(mensajeParametrizado2[3]));
+	        	app.jugadorLadron = new Ladron(SpriteInfo.values()[Integer.parseInt(mensajeParametrizado2[1])].getFilename(), 
+	        								   Float.parseFloat(mensajeParametrizado2[2]), 
+	        								   Float.parseFloat(mensajeParametrizado2[3]),
+	        								   Integer.parseInt(mensajeParametrizado2[4]));
 	    		
 	    		app.stage.addActor(app.jugadorLadron);
 				app.stage.setKeyboardFocus( (Global.guardia)? app.jugadorGuardia : app.jugadorLadron );
