@@ -59,7 +59,9 @@ public class PantallaRonda1 extends PantallaRonda {
 
 				update(delta);
 
-				System.out.println(jugadorLadron.getSala());
+				for (int i = 0; i < npcs.length; i++) {
+					System.out.println("npc " + i + " sala " + npcs[i].getSala());
+				}
 				
 				tmr.setView(camera);
 				tmr.render();
@@ -165,7 +167,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	// -------------------------------------------------------------NPC COSAS----------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	public void crearNPC(String[] mensajeParametrizado2, int[] apariencia) {
-		npcs[Integer.parseInt(mensajeParametrizado2[2])] = new NPC(mensajeParametrizado2[3], apariencia, hud);
+		npcs[Integer.parseInt(mensajeParametrizado2[2])] = new NPC(mensajeParametrizado2[3], apariencia, hud, Integer.parseInt(mensajeParametrizado2[9]));
 		stage.addActor(npcs[Integer.parseInt(mensajeParametrizado2[2])]);
 	}
 

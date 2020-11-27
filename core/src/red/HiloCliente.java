@@ -121,12 +121,15 @@ public class HiloCliente extends Thread {
 					
 				}else if(mensajeParametrizado[1].equals("salaRobada")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setRobado(true);
+					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setSalaRobada(true);
 					
+				}else if(mensajeParametrizado[1].equals("sala") && personajesRestantes==0) {
+					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setSala(Integer.parseInt(mensajeParametrizado[3]));
 				}else if (mensajeParametrizado[1].equals("crear")){
 				//--------------------------------creacion de los npc--------------------------------------------
-					int[] apariencia = new int[]{Integer.parseInt(mensajeParametrizado[8]), 
-												 Integer.parseInt(mensajeParametrizado[9]),
-												 Integer.parseInt(mensajeParametrizado[10])
+					int[] apariencia = new int[]{Integer.parseInt(mensajeParametrizado[6]), 
+												 Integer.parseInt(mensajeParametrizado[7]),
+												 Integer.parseInt(mensajeParametrizado[8])
 												};
 					runnableNPC(mensajeParametrizado, apariencia);
 				}

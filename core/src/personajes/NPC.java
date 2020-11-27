@@ -33,10 +33,11 @@ public class NPC extends Entidad implements InterfaceRobable{
 	//0 pelo 
 	//1 torso
 	
-	public NPC(String sprite, int[] apariencia, Hud hud) {
+	public NPC(String sprite, int[] apariencia, Hud hud, int sala) {
 		super(sprite);
 		this.hud = hud;
 		this.apariencia = apariencia;
+		this.sala = sala;
 		setBounds(animacion.getSprite().getX(),
 				  animacion.getSprite().getY(),
 			      animacion.getSprite().getWidth(),
@@ -183,6 +184,8 @@ public class NPC extends Entidad implements InterfaceRobable{
 	public void setEsperandoDialogo(boolean esperandoDialogo) {
 		if(Global.guardia) this.esperandoDialogo = esperandoDialogo;
 	}
-
+	public void setSalaRobada(boolean salaRobada) {
+		this.salaRobada = salaRobada;
+	}
 }
 
