@@ -37,6 +37,7 @@ public class Hud extends Actor{
     
 	public Hud(String hudNombre, Screen pantalla)  {
 		this.pantalla = pantalla;
+		setTouchable(Touchable.disabled);
 		hudBatch = new SpriteBatch();
 		if(hudNombre != null) {
 		hud = new Sprite(new Texture(hudNombre));
