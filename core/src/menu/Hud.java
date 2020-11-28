@@ -103,21 +103,20 @@ public class Hud extends Actor{
 	   		if(pantalla instanceof PantallaMenu) {
 	   			((PantallaMenu) pantalla).cambiarModoBotones(Touchable.enabled);
 	   		}
-	   		
+	  	}
 		textos[0].setTexto("" + (int)(cuentaregresiva - Global.tiempo));	
 		textos[1].setTexto("" + Global.ronda + "-3");	
-			if(Global.empiezaJuego){	
-				if(Global.guardia) {	
-					//textos[3].setTexto( ((PantallaRonda1)pantalla).jugadorGuardia);	
-					//aca se muestra la cantidad de pistas que el guardia tiene	
-				}else {	
-					textos[2].setTexto( ((PantallaRonda1)pantalla).jugadorLadron.getBilleteras() + "-5" );	
-					if(cuentaregresiva - Global.tiempo < 1) {	
-						((PantallaRonda1)pantalla).jugadorLadron.finalizarRonda(false, (Jugador)((PantallaRonda1)pantalla).jugadorLadron.getUserData());	
-					}	
+		if(Global.empiezaJuego){	
+			if(Global.guardia) {	
+				//textos[3].setTexto( ((PantallaRonda1)pantalla).jugadorGuardia);	
+				//aca se muestra la cantidad de pistas que el guardia tiene	
+			}else {	
+				textos[2].setTexto( ((PantallaRonda1)pantalla).jugadorLadron.getBilleteras() + "-5" );	
+				if(cuentaregresiva - Global.tiempo < 1) {	
+					((PantallaRonda1)pantalla).jugadorLadron.finalizarRonda(false, (Jugador)((PantallaRonda1)pantalla).jugadorLadron.getUserData());	
 				}	
-			}
-	   	}
+			}	
+		}
 	}
 	
 	public void setearPopUp(String popUp) {

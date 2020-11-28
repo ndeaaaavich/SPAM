@@ -88,8 +88,6 @@ public class Ladron extends Jugador{
 			TiempoAccion = 0;
 			billeteras ++;
 			
-			hud.setTexto(billeteras + "-5");
-			
 			if(billeteras > 4) {
 				super.finalizarRonda(true, this);
 			}
