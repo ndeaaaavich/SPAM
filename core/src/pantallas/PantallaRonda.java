@@ -42,7 +42,6 @@ public class PantallaRonda implements Screen {
 	public float posGuardiaX, posGuardiaY, posLadronX, posLadronY;
 	
 	public PantallaRonda(Vector2 gravedad, String rutaMapa) {
-		//Global.ronda = numRonda;
 		int WScreen = Gdx.graphics.getWidth();
 		int HScreen = Gdx.graphics.getHeight();
 		

@@ -24,10 +24,9 @@ public class Ladron extends Jugador{
 		setSala(sala);
 		cambiarSala = true;
 		
-		if(Global.ronda == 1) {
-			sprRobo = new Sprite( new Texture("personajes/badlogic.jpg") );
-			sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
-		}
+		sprRobo = new Sprite( new Texture("personajes/badlogic.jpg") );
+		sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
+		
 		Inputlistener = new InputListener() {
 			public boolean keyDown (InputEvent event, int keycode) {
 				enviarMovimiento(keycode, true);

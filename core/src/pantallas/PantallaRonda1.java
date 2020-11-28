@@ -31,13 +31,18 @@ public class PantallaRonda1 extends PantallaRonda {
 	@Override
 	public void show() {
 		// hilo cliente
-		Utiles.hc = new HiloCliente(this);
-		Utiles.hc.start();
+		if(Global.ronda == 1) {
+			Utiles.hc = new HiloCliente(this);
+			Utiles.hc.start();
+		}else {
+			Utiles.hc.setApp(this);
+		}
+		Global.terminaRonda = false;
 		// guardia
 		jugadorGuardia = new Guardia("personajes/guardia.png");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
-		//stage.addActor(hud.getCruz());
+
 		hud.setearPopUp("botones/popup.png");
 		Gdx.input.setInputProcessor(stage);
 	}
@@ -49,8 +54,8 @@ public class PantallaRonda1 extends PantallaRonda {
 		if (!Global.conexion || Utiles.hc.personajesRestantes > 0 || jugadorGuardia == null) {
 			System.out.println(Utiles.hc.personajesRestantes);
 		} else {
-
-			if (Global.ronda == 1) {
+			
+			if (!Global.terminaRonda) {
 
 				if (!Global.empiezaJuego) {
 					Global.empiezaJuego = true;
@@ -79,7 +84,9 @@ public class PantallaRonda1 extends PantallaRonda {
 				Global.tiempo += Gdx.graphics.getRawDeltaTime();
 				
 			} else {
-				Utiles.principal.setScreen(new PantallaRonda2(new Vector2(0, -9.8f), "mapas/ronda2.tmx"));
+				//Utiles.hc.setEntidades(false);
+				jugadorGuardia.cambiarSala = true;
+				Utiles.principal.setScreen(new PantallaRonda1(new Vector2(0, 0), ("mapas/escenario.tmx")));
 			}
 		}
 	}
