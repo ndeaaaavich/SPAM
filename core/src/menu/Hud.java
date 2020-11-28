@@ -5,6 +5,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -27,32 +30,32 @@ public class Hud extends Actor{
 	private Sprite hud;
 	private Sprite popUp;
 	private SpriteBatch hudBatch;
-	private Texto[] textos = new Texto[4];
+
+	private Texto[] textos = new Texto[4];	
 	//0 Tiempo, 1 textoSala, 2 textoLadron, 3 textoGuardia;
-	private Screen pantalla;
 	
+	private Screen pantalla;
 	private float opacidad = 0;
 	private Vector2 posicionInicial, posicionLlegada, posicion = new Vector2();
 	private float tiempo, duracion = 2f, cuentaregresiva = 500;
 	private ShapeRenderer renderer;
 	private boolean mover, clickPopUp, entra;
     
-	public Hud(String hudNombre, Screen pantalla)  {
+	public Hud(String hudNombre, Screen pantalla)  {	
 		
-		for (int i = 0; i < textos.length; i++) {
-			textos[i] = new Texto("fonts/Early GameBoy.ttf", 25, Color.WHITE, false);
-		}
-		textos[0].setPosition(Utiles.ancho-90, Utiles.alto-50);
-		textos[1].setPosition(50, Utiles.alto-50);
-		textos[2].setPosition(Utiles.ancho-90, Utiles.alto-20);
-		textos[3].setPosition(Utiles.ancho-90, Utiles.alto-20);
-		
+	for (int i = 0; i < textos.length; i++) {	
+		textos[i] = new Texto("fonts/Early GameBoy.ttf", 25, Color.WHITE, false);	
+	}	
+		textos[0].setPosition(Utiles.ancho-90, Utiles.alto-50);	
+		textos[1].setPosition(50, Utiles.alto-50);	
+		textos[2].setPosition(Utiles.ancho-90, Utiles.alto-20);	
+		textos[3].setPosition(Utiles.ancho-90, Utiles.alto-20);	
+	
 		this.pantalla = pantalla;
-		
 		setTouchable(Touchable.disabled);
 		hudBatch = new SpriteBatch();
 		if(hudNombre != null) {
-			hud = new Sprite(new Texture(hudNombre));
+		hud = new Sprite(new Texture(hudNombre));
 		}
 		renderer = new ShapeRenderer();
 		
@@ -102,27 +105,27 @@ public class Hud extends Actor{
 	   		if(pantalla instanceof PantallaMenu) {
 	   			((PantallaMenu) pantalla).cambiarModoBotones(Touchable.enabled);
 	   		}
-	   	}
-		 
-		textos[0].setTexto("" + (int)(cuentaregresiva - Global.tiempo));
-		textos[1].setTexto("" + Global.ronda + "-3");
-		if(Global.empiezaJuego){
-			if(Global.guardia) {
-				//textos[3].setTexto( ((PantallaRonda1)pantalla).jugadorGuardia);
-				//aca se muestra la cantidad de pistas que el guardia tiene
-			}else {
-				textos[2].setTexto( ((PantallaRonda1)pantalla).jugadorLadron.getBilleteras() + "-5" );
-				if(cuentaregresiva - Global.tiempo < 1) {
-					((PantallaRonda1)pantalla).jugadorLadron.finalizarRonda(false, (Jugador)((PantallaRonda1)pantalla).jugadorLadron.getUserData());
-				}
+	   		
+		textos[0].setTexto("" + (int)(cuentaregresiva - Global.tiempo));	
+		textos[1].setTexto("" + Global.ronda + "-3");	
+			if(Global.empiezaJuego){	
+				if(Global.guardia) {	
+					//textos[3].setTexto( ((PantallaRonda1)pantalla).jugadorGuardia);	
+					//aca se muestra la cantidad de pistas que el guardia tiene	
+				}else {	
+					textos[2].setTexto( ((PantallaRonda1)pantalla).jugadorLadron.getBilleteras() + "-5" );	
+					if(cuentaregresiva - Global.tiempo < 1) {	
+						((PantallaRonda1)pantalla).jugadorLadron.finalizarRonda(false, (Jugador)((PantallaRonda1)pantalla).jugadorLadron.getUserData());	
+					}	
+				}	
 			}
-		}
+	   	}
 	}
 	
 	public void setearPopUp(String popUp) {
 		this.popUp = new Sprite(new Texture(popUp));
-		posicionInicial = new Vector2(((Utiles.ancho/Utiles.PPM)/2)-this.popUp.getWidth()/2,0-this.popUp.getHeight());
-		posicionLlegada = new Vector2(posicionInicial.x,((Utiles.alto/Utiles.PPM)/2)-this.popUp.getHeight()/2);
+		posicionInicial = new Vector2(((Utiles.ancho)/2)-this.popUp.getWidth()/2,0-this.popUp.getHeight());
+		posicionLlegada = new Vector2(posicionInicial.x,((Utiles.alto)/2)-this.popUp.getHeight()/2);
 		this.popUp.setPosition(posicionInicial.x, posicionInicial.y);
 		
 		//cruz = new Boton("botones/cruz.png", new Vector2(this.popUp.getWidth()-(10*Utiles.PPM),this.popUp.getHeight()-(10*Utiles.PPM)));
@@ -131,8 +134,7 @@ public class Hud extends Actor{
 	public void moverPopUp(boolean entra) { 
 		mover = true;
 		this.entra = entra;
-		
-		if (!entra) {
+		if (!this.entra) {
 			this.setTouchable(Touchable.disabled);
 			if(pantalla instanceof PantallaMenu) ((PantallaMenu) pantalla).cambiarModoBotones(Touchable.enabled);
 			
@@ -160,9 +162,11 @@ public class Hud extends Actor{
 		
 		hudBatch.begin();
 		if(hud != null)hud.draw(hudBatch);
-		for (int i = 0; i < textos.length; i++) {
-			textos[i].draw(hudBatch);
+		
+		for (int i = 0; i < textos.length; i++) {	
+			textos[i].draw(hudBatch);	
 		}
+		
 		popUp.draw(hudBatch);
 		
 		hudBatch.end();
