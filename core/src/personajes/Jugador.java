@@ -15,18 +15,14 @@ public abstract class Jugador extends Entidad{
 	protected InputListener Inputlistener;
 	
 	public boolean cambiarSala;
-	public int salaAnterior, TiempoAccion = 0, cuentaregresiva = 500, keyCode;
+	public int salaAnterior, TiempoAccion = 0, keyCode;
 	protected boolean keyDown, salto = true;
 	//tiempoModif el tiempo que duran las modificaciones
 	protected Texto hud;
 	
 	public Jugador(String sprite) {
 		super(sprite);
-		
 		setUserData(this);
-        
-        hud = new Texto("fonts/Early GameBoy.ttf", 25, Color.WHITE, false);
-		hud.setPosition(Utiles.ancho-90, Utiles.alto-50);
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------SCENE 2D-----------------------------------------------------------------

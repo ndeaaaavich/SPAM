@@ -66,8 +66,6 @@ public class Ladron extends Jugador{
 	}
 	public void act(float delta){
 		super.act(delta);
-		hud.setTexto((int)(cuentaregresiva - Global.tiempo) + "\n" + billeteras + "-5");
-		if( Global.ronda==1 && cuentaregresiva - Global.tiempo < 1) super.finalizarRonda(false, this);
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------
@@ -109,5 +107,8 @@ public class Ladron extends Jugador{
 	}	
 	public Sprite getSprRobo() {
 		return sprRobo;
+	}
+	public int getBilleteras() {
+		return billeteras;
 	}
 }

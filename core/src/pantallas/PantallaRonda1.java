@@ -1,7 +1,6 @@
 package pantallas;
 import com.badlogic.gdx.Gdx;
 
-import elementos.Texto;
 import personajes.Entidad;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
@@ -58,10 +57,6 @@ public class PantallaRonda1 extends PantallaRonda {
 				}
 
 				update(delta);
-
-				/*for (int i = 0; i < npcs.length; i++) {
-					System.out.println("npc " + i + " sala " + npcs[i].getSala());
-				}*/
 				
 				tmr.setView(camera);
 				tmr.render();
@@ -76,7 +71,7 @@ public class PantallaRonda1 extends PantallaRonda {
 					roboNPC();
 				}
 				adelantarCuerpos();
-
+				
 				hud.dibujarHud();
 
 				Render.batch.setProjectionMatrix(camera.combined);

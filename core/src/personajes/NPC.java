@@ -94,14 +94,12 @@ public class NPC extends Entidad implements InterfaceRobable{
 		
 		if(detectado){
 			sprExclamation.setSize(16 * Utiles.PPM, 11 * Utiles.PPM);
-			//MIRAR ESTO
-			sprExclamation.setPosition(this.animacion.getPosition().x, this.animacion.getPosition().y/* + (animacion.getAlto() / 2)*/);
+			sprExclamation.setPosition(this.animacion.getPosition().x + (animacion.getAncho()/2), this.animacion.getPosition().y + animacion.getAlto());
 			sprExclamation.draw(batch);
 		}
 		if(dibujarSigno){
 			sprExclamation.setSize(16 * Utiles.PPM, 11 * Utiles.PPM);
-			//MIRAR ESTO
-			sprExclamation.setPosition(this.animacion.getPosition().x, this.animacion.getPosition().y/* + (animacion.getAlto() / 2)*/);
+			sprExclamation.setPosition(this.animacion.getPosition().x + (animacion.getAncho()/2), this.animacion.getPosition().y + animacion.getAlto());
 			sprExclamation.draw(batch);
 		}
 	}

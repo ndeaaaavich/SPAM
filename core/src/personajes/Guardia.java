@@ -47,7 +47,6 @@ public class Guardia extends Jugador {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
-		hud.setTexto((int)(cuentaregresiva - Global.tiempo) + "\n");
 	}
 	@Override
 	public void act(float delta) {
