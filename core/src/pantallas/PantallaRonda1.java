@@ -85,7 +85,6 @@ public class PantallaRonda1 extends PantallaRonda {
 				
 			} else {
 				//Utiles.hc.setEntidades(false);
-				jugadorGuardia.cambiarSala = true;
 				Utiles.principal.setScreen(new PantallaRonda1(new Vector2(0, 0), ("mapas/escenario.tmx")));
 			}
 		}
