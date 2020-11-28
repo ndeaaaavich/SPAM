@@ -120,7 +120,6 @@ public class Hud extends Actor{
 				}	
 			}
 	   	}
-		
 	}
 	
 	public void setearPopUp(String popUp) {
