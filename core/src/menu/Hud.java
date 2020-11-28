@@ -28,9 +28,10 @@ public class Hud extends Actor{
 	private Sprite popUp;
 	private SpriteBatch hudBatch;
 
-	private Texto[] textos = new Texto[4];	
+	private Texto[] textos = new Texto[4];
 	//0 Tiempo, 1 textoSala, 2 textoLadron, 3 textoGuardia;
 	
+	private Texto[] textoPopUp;
 	private Screen pantalla;
 	private float opacidad = 0;
 	private Vector2 posicionInicial, posicionLlegada, posicion = new Vector2();

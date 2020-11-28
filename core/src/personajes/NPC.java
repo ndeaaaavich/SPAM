@@ -24,6 +24,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 	private boolean detectado, CambioDirec, 
 					robado = false, salaRobada = false, dibujarSigno = false, esperandoDialogo = false, mostrarPopUp,fin;
 	private float tiempoDetectado;
+	public int pista;
 	private Hud hud;
 	private Sprite sprExclamation = new Sprite( new Texture("personajes/!.png") );
 	//private Vector2 fuerzas = new Vector2(0,0);

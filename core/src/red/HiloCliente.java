@@ -148,6 +148,7 @@ public class HiloCliente extends Thread {
 			}else if (mensajeParametrizado[0].equals("guardia")) {
 				if(mensajeParametrizado[1].equals("npcDialogo")) {
 					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setEsperandoDialogo(true);
+					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].pista = Integer.parseInt(mensajeParametrizado[3]);
 				}else if(mensajeParametrizado[1].equals("gano")) {
 					Global.puntajeGuardia++;
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
