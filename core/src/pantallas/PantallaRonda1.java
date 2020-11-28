@@ -39,6 +39,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		stage.addActor(hud);
 		//stage.addActor(hud.getCruz());
 		hud.setearPopUp("botones/popup.png");
+		Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
@@ -75,7 +76,6 @@ public class PantallaRonda1 extends PantallaRonda {
 				hud.dibujarHud();
 
 				Render.batch.setProjectionMatrix(camera.combined);
-				Gdx.input.setInputProcessor(stage);
 				Global.tiempo += Gdx.graphics.getRawDeltaTime();
 				
 			} else {
