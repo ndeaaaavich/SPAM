@@ -22,7 +22,7 @@ public class Ladron extends Jugador{
 		
 		setPosition(posX, posY);
 		setSala(sala);
-		//cambiarSala = true;
+		cambiarSala = true;
 		
 		sprRobo = new Sprite( new Texture("personajes/badlogic.jpg") );
 		sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
