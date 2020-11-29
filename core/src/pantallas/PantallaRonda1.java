@@ -21,7 +21,10 @@ public class PantallaRonda1 extends PantallaRonda {
 	}
 
 	public NPC[] npcs = new NPC[8];
-
+	
+	private int cantRobos = 0;
+	private int numPista = 0;
+	private int[] chancePista = new int[3];
 	private float posSprX = 0, posSprY = 0;
 	private Hud hud = new Hud("hud.png",this);
 	private Vector2 posicion = new Vector2(0, 0), puntoLlegada, puntoSalida;
@@ -45,6 +48,12 @@ public class PantallaRonda1 extends PantallaRonda {
 
 		hud.setearPopUp("botones/popup.png");
 		Gdx.input.setInputProcessor(stage);
+		
+		do {
+			for (int i = 0; i < chancePista.length; i++) {
+				chancePista[i] = Utiles.r.nextInt(5);
+			}
+		} while (chancePista[0] != chancePista[1] && chancePista[1] != chancePista[2] && chancePista[0] != chancePista[2]);
 	}
 
 	@Override
@@ -203,7 +212,13 @@ public class PantallaRonda1 extends PantallaRonda {
 	                    if(resultadoRobo == 2) {
 	                        npcs[i].detectarRobo();
 	                    }else if(resultadoRobo == 0) { 
-	                        Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i);
+	                    	if(cantRobos==chancePista[0] || cantRobos==chancePista[1] || cantRobos==chancePista[2]) {
+	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%"+numPista);
+	                    		numPista += 1;
+	                    	}else {
+	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%-2");
+							}
+	                        cantRobos += 1;
 	                    }
 	                }
 	            }

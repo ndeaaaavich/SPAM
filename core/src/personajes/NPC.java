@@ -24,13 +24,13 @@ public class NPC extends Entidad implements InterfaceRobable{
 	private boolean detectado, CambioDirec, 
 					robado = false, salaRobada = false, dibujarSigno = false, esperandoDialogo = false, mostrarPopUp,fin;
 	private float tiempoDetectado;
-	public int pista;
+	public int[] pista = new int[2]; //0 es la pista y 1 es el numero de pista
 	private Hud hud;
 	private Sprite sprExclamation = new Sprite( new Texture("personajes/!.png") );
 	//private Vector2 fuerzas = new Vector2(0,0);
 	
 	private InputListener mouseListener;
-	int[] apariencia = new int[3]; 
+	int[] apariencia = new int[3]; // esto no se usa lo podríamos sacar
 	//0 pelo 
 	//1 torso
 	
@@ -185,6 +185,11 @@ public class NPC extends Entidad implements InterfaceRobable{
 	}
 	public void setSalaRobada(boolean salaRobada) {
 		this.salaRobada = salaRobada;
+	}
+	public void setPista(int pista, int numPista) {
+		this.pista[0] = pista;
+		this.pista[1] = numPista;
+		hud.setTextoPopUp("me robaron xD el chorro planero tenía puesto " + Apariencia.getDescripcion(numPista, pista));
 	}
 }
 

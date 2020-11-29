@@ -31,7 +31,7 @@ public class Hud extends Actor{
 	private Texto[] textos = new Texto[4];
 	//0 Tiempo, 1 textoSala, 2 textoLadron, 3 textoGuardia;
 	
-	private Texto[] textoPopUp;
+	private Texto textoPopUp = new Texto("fonts/Early GameBoy.ttf", 35, Color.WHITE, false);
 	private Screen pantalla;
 	private float opacidad = 0;
 	private Vector2 posicionInicial, posicionLlegada, posicion = new Vector2();
@@ -128,6 +128,12 @@ public class Hud extends Actor{
 		//cruz = new Boton("botones/cruz.png", new Vector2(this.popUp.getWidth()-(10*Utiles.PPM),this.popUp.getHeight()-(10*Utiles.PPM)));
 	}
 	
+	public void setTextoPopUp(String texto) {
+		textoPopUp.setTexto(texto);
+
+		textoPopUp.setPosition(Utiles.ancho/2,Utiles.alto/2);	
+	}
+	
 	public void moverPopUp(boolean entra) { 
 		mover = true;
 		this.entra = entra;
@@ -165,7 +171,7 @@ public class Hud extends Actor{
 		}
 		
 		popUp.draw(hudBatch);
-		
+		textoPopUp.draw(hudBatch);
 		hudBatch.end();
 	}
 

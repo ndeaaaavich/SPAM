@@ -15,7 +15,6 @@ public class Guardia extends Jugador {
 	public boolean arrestando;
 	private Sprite sprArrestar;
 
-
 	public Guardia(String sprite) {
 		super(sprite);
 		sprArrestar = new Sprite( new Texture("personajes/badlogic.jpg") );
@@ -80,4 +79,5 @@ public class Guardia extends Jugador {
 	public Sprite getSprArrestar() {
 		return sprArrestar;
 	}
+	
 }
