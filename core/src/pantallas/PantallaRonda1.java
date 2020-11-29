@@ -84,7 +84,6 @@ public class PantallaRonda1 extends PantallaRonda {
 				Global.tiempo += Gdx.graphics.getRawDeltaTime();
 				
 			} else {
-				//Utiles.hc.setEntidades(false);
 				Utiles.principal.setScreen(new PantallaRonda1(new Vector2(0, 0), ("mapas/escenario.tmx")));
 			}
 		}

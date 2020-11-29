@@ -21,7 +21,7 @@ public class HiloCliente extends Thread {
 	private InetAddress ipServer;
 	private int puerto = 42069;
 	
-	private boolean fin = false, entidades = false;
+	private boolean fin = false;
 	private PantallaRonda app;
 	public int tope = 9;
 	public int personajesRestantes = tope;
@@ -44,10 +44,6 @@ public class HiloCliente extends Thread {
 	
 	public void setApp(PantallaRonda app) {
 		this.app = app;
-//		if(!entidades) {
-//			enviarMensaje("Entidades");
-//			entidades = true;
-//		}
 		if(Global.guardia) enviarMensaje("Entidades");
 		personajesRestantes = tope;
 	}
@@ -234,9 +230,5 @@ public class HiloCliente extends Thread {
 				personajesRestantes-=1;
 		    }	
 		});
-	}
-	
-	public void setEntidades(boolean entidades) {
-		this.entidades = entidades;
 	}
 }
