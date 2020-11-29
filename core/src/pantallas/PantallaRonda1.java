@@ -203,7 +203,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	                    if(resultadoRobo == 2) {
 	                        npcs[i].detectarRobo();
 	                    }else if(resultadoRobo == 0) { 
-	                        Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%"+jugadorLadron.getBilleteras());
+	                        Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i);
 	                    }
 	                }
 	            }
