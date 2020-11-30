@@ -20,6 +20,7 @@ public class Utiles {
 	public static Random r = new Random();
 	
 	public static float PPM = 0.01f;
+	public static float MPP = 100f;
 	public static Principal principal;
 	public static PantallaMenu pantallaMenu;
 	public static HiloCliente hc;

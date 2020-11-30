@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import com.badlogic.gdx.Gdx;
 
 import utiles.Global;
+import utiles.Utiles;
 import pantallas.*;
 import personajes.EstadoMovimiento;
 import personajes.Ladron;
@@ -167,6 +168,11 @@ public class HiloCliente extends Thread {
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
 					Global.terminaRonda = true;
 				}else if(mensajeParametrizado[1].equals("desconectado")) {
+					System.out.println(Utiles.pantallaMenu.viewport.getWorldWidth() + ""
+							   + " " + Utiles.pantallaMenu.viewport.getWorldHeight());
+					
+					Utiles.pantallaMenu.viewport.setWorldSize(Utiles.pantallaMenu.viewport.getWorldWidth() * 2, 
+							  								  Utiles.pantallaMenu.viewport.getWorldHeight() * 2);
 					Global.terminaJuego = true;
 				}
 			}else if (mensajeParametrizado[0].equals("sala") && personajesRestantes==0) {

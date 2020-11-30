@@ -18,14 +18,14 @@ import utiles.Utiles;
 
 public class PantallaMenu implements Screen {
 
-	private FitViewport viewport;
+	public FitViewport viewport;
 	private OrthographicCamera camara;
 	private Stage stage;
 	private Boton botonJugar; 
 	private Boton botonConfig; 
 	private Boton botonCreditos; 
 	private Hud hud = new Hud(null, this);
-	
+	private int cont = 0;
 	@Override
 	public void show() {
 		camara = new OrthographicCamera(0,0);
@@ -45,8 +45,12 @@ public class PantallaMenu implements Screen {
 		stage.addActor(botonJugar); 
 		stage.addActor(botonConfig); 
 		stage.addActor(botonCreditos);
+
 		// stage.setKeyboardFocus(actor1);  pa que ande el input del teclado
 		Gdx.input.setInputProcessor(stage);
+		System.out.println("pantalla menu" + camara.position);
+		System.out.println("pantalla menu viewport" + viewport.getScreenHeight() + " " + viewport.getScreenWidth());
+		System.out.println("pantalla menu viewport world" + viewport.getWorldHeight()+ " " + viewport.getWorldWidth());
 	}
 
 	@Override
@@ -74,7 +78,6 @@ public class PantallaMenu implements Screen {
 	@Override
 	public void resume() {	
 	}
-
 	@Override
 	public void hide() {	
 		//cuando cambias de pantalla se llama a este metodo

@@ -71,13 +71,15 @@ public class PantallaRonda implements Screen {
 	}
 	@Override
 	public void pause() {
+//		Utiles.pantallaMenu.viewport.setWorldSize(Utiles.pantallaMenu.viewport.getWorldWidth() * 2, 
+//												  Utiles.pantallaMenu.viewport.getWorldHeight() * 2);
+		System.out.println(Utiles.pantallaMenu.viewport.getWorldWidth() + " " + Utiles.pantallaMenu.viewport.getWorldHeight());
+		//Utiles.pantallaMenu.viewport.setScreenBounds(0, 0, (int)(Utiles.ancho/Utiles.PPM), (int)(Utiles.alto/Utiles.PPM));
 		Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
 		Utiles.principal.setScreen(Utiles.pantallaMenu);
 	}
 	@Override
 	public void resume() {
-
-		
 	}
 	@Override
 	public void hide() {	

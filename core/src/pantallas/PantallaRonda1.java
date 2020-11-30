@@ -53,7 +53,13 @@ public class PantallaRonda1 extends PantallaRonda {
 			for (int i = 0; i < chancePista.length; i++) {
 				chancePista[i] = Utiles.r.nextInt(5);
 			}
-		} while (chancePista[0] != chancePista[1] && chancePista[1] != chancePista[2] && chancePista[0] != chancePista[2]);
+		} while ((chancePista[0] == chancePista[1]) || (chancePista[1] == chancePista[2]) || (chancePista[0] == chancePista[2]));
+	
+		System.out.println("pistas");
+		for (int i = 0; i < chancePista.length; i++) {
+			System.out.println(chancePista[i]);
+		}
+		System.out.println("----------");
 	}
 
 	@Override
@@ -65,7 +71,7 @@ public class PantallaRonda1 extends PantallaRonda {
 			Global.empiezaJuego = false;
 			Utiles.principal.setScreen(Utiles.pantallaMenu);
 		}
-		
+
 		if (!Global.conexion || Utiles.hc.personajesRestantes > 0 || jugadorGuardia == null) {
 			System.out.println(Utiles.hc.personajesRestantes);
 		} else {
@@ -217,12 +223,17 @@ public class PantallaRonda1 extends PantallaRonda {
 	                    resultadoRobo = jugadorLadron.robar();
 	                    if(resultadoRobo == 2) {
 	                        npcs[i].detectarRobo();
-	                    }else if(resultadoRobo == 0) { 
+	                    }else if(resultadoRobo == 0) {
 	                    	if(cantRobos==chancePista[0] || cantRobos==chancePista[1] || cantRobos==chancePista[2]) {
 	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%"+numPista);
 	                    		numPista += 1;
+	                    		System.out.println("cantRobos: " + cantRobos);
+	                    		System.out.println("pista: " + numPista);
 	                    	}else {
 	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%-2");
+
+	                    		System.out.println("cantRobos: " + cantRobos);
+	                    		System.out.println("no hubo pista");
 							}
 	                        cantRobos += 1;
 	                    }

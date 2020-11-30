@@ -31,7 +31,7 @@ public class Hud extends Actor{
 	private Texto[] textos = new Texto[4];
 	//0 Tiempo, 1 textoSala, 2 textoLadron, 3 textoGuardia;
 	
-	private Texto textoPopUp = new Texto("fonts/Early GameBoy.ttf", 35, Color.WHITE, false);
+	private Texto textoPopUp = new Texto("fonts/Early GameBoy.ttf", 15, Color.WHITE, false);
 	private Screen pantalla;
 	private float opacidad = 0;
 	private Vector2 posicionInicial, posicionLlegada, posicion = new Vector2();
@@ -83,6 +83,7 @@ public class Hud extends Actor{
 			posicion.add(posicionInicial);
 			
 			popUp.setPosition(posicion.x, posicion.y);
+			textoPopUp.setPosition(posicion.x, posicion.y+100);
 			
 			tiempo += delta;
 			
@@ -106,7 +107,6 @@ public class Hud extends Actor{
 	  	}
 		textos[0].setTexto("" + (int)(cuentaregresiva - Global.tiempo));	
 		textos[1].setTexto("" + Global.ronda + "-3");	
-		
 		if(Global.empiezaJuego && pantalla instanceof PantallaRonda1){	
 			if(Global.guardia) {	
 				//textos[3].setTexto( ((PantallaRonda1)pantalla).jugadorGuardia);	
@@ -132,7 +132,7 @@ public class Hud extends Actor{
 	public void setTextoPopUp(String texto) {
 		textoPopUp.setTexto(texto);
 
-		textoPopUp.setPosition(Utiles.ancho/2,Utiles.alto/2);	
+		textoPopUp.setPosition(popUp.getX()+10*Utiles.PPM,popUp.getY()+10*Utiles.PPM);	
 	}
 	
 	public void moverPopUp(boolean entra) { 
