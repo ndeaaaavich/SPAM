@@ -5,8 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -14,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import menu.Hud;
 import menu.Boton;
+import utiles.Render;
 import utiles.Utiles;
 
 public class PantallaMenu implements Screen {
@@ -25,10 +24,12 @@ public class PantallaMenu implements Screen {
 	private Boton botonConfig; 
 	private Boton botonCreditos; 
 	private Hud hud = new Hud(null, this);
-	private int cont = 0;
+	private boolean primerShow = true;
+	
 	@Override
 	public void show() {
-		camara = new OrthographicCamera(0,0);
+		camara = new OrthographicCamera();
+		//camara.setToOrtho(false, (Utiles.ancho), (Utiles.ancho));
 		viewport = new FitViewport(Utiles.ancho,Utiles.alto,camara);
 
 		stage = new Stage(viewport); 
@@ -51,6 +52,8 @@ public class PantallaMenu implements Screen {
 		System.out.println("pantalla menu" + camara.position);
 		System.out.println("pantalla menu viewport" + viewport.getScreenHeight() + " " + viewport.getScreenWidth());
 		System.out.println("pantalla menu viewport world" + viewport.getWorldHeight()+ " " + viewport.getWorldWidth());
+
+		primerShow = false;
 	}
 
 	@Override
@@ -63,6 +66,7 @@ public class PantallaMenu implements Screen {
 		camara.update();	
 		//botonCerrar.setPosition(hud.getPopUp().getWidth()+hud.getPopUp().getX()-(1*Utiles.PPM),hud.getPopUp().getHeight()+hud.getPopUp().getY()-(1*Utiles.PPM));
 
+		Render.batch.setProjectionMatrix(camara.combined);
 	}
 
 	@Override

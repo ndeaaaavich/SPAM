@@ -29,6 +29,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 	private Sprite sprExclamation = new Sprite( new Texture("personajes/!.png") );
 	//private Vector2 fuerzas = new Vector2(0,0);
 	
+	private String mensajePopUp;
 	private InputListener mouseListener;
 	int[] apariencia = new int[3]; // esto no se usa lo podríamos sacar
 	//0 pelo 
@@ -131,6 +132,7 @@ public class NPC extends Entidad implements InterfaceRobable{
 		
 		if (mostrarPopUp) {
 			hud.moverPopUp(true);
+			hud.setTextoPopUp(mensajePopUp);
 			mostrarPopUp = false;
 		}
 	}
@@ -189,7 +191,18 @@ public class NPC extends Entidad implements InterfaceRobable{
 	public void setPista(int pista, int numPista) {
 		this.pista[0] = pista;
 		this.pista[1] = numPista;
-		hud.setTextoPopUp("me robaron xD el chorro planero tenía puesto " + Apariencia.getDescripcion(numPista, pista));
+		
+		String newline = System.getProperty("line.separator");
+		if(numPista != -1 && pista != -1) {
+			mensajePopUp = "me robaron xD el " + newline +
+				 "chorro planero llevaba " + newline +
+				 Apariencia.getDescripcion(numPista, pista);
+		}else {
+			mensajePopUp = "me robaron nooo pero " + newline +
+					 "no llegué a ver como iba " + newline +
+					 "vestido el ladron :(";
+			
+		}
 	}
 }
 

@@ -67,7 +67,8 @@ public class PantallaRonda1 extends PantallaRonda {
 		Render.limpiarPantalla();
 		
 		if(Global.terminaJuego) {
-			Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
+			//Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
+			Utiles.hc.enviarMensaje("desconectarCliente");
 			Global.empiezaJuego = false;
 			Utiles.principal.setScreen(Utiles.pantallaMenu);
 		}
@@ -292,7 +293,7 @@ public class PantallaRonda1 extends PantallaRonda {
 	    }
 	    private Ladron cercaniaLadron() {
 	        if (jugadorGuardia.getSprPosition().dst(jugadorLadron.getSprPosition()) < 30 * Utiles.PPM ){
-	            
+	             
 	            if(jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) < jugadorLadron.getSprPosition().y + jugadorLadron.getAlto()
 	            && jugadorGuardia.getSprPosition().y + (jugadorGuardia.getAlto() / 2) > jugadorLadron.getSprPosition().y) {
 	                        
