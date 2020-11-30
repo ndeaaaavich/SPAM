@@ -148,7 +148,8 @@ public class HiloCliente extends Thread {
 					Global.puntajeGuardia++;
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
 					Global.terminaRonda = true;
-				
+				}else if(mensajeParametrizado[1].equals("desconectado")) {
+					Global.terminaJuego = true;
 				}else {
 					String[] mensajeParametrizado2 = mensajeParametrizado.clone();
 					runnableLadron(mensajeParametrizado2);
@@ -165,6 +166,8 @@ public class HiloCliente extends Thread {
 					Global.puntajeLadron++;
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
 					Global.terminaRonda = true;
+				}else if(mensajeParametrizado[1].equals("desconectado")) {
+					Global.terminaJuego = true;
 				}
 			}else if (mensajeParametrizado[0].equals("sala") && personajesRestantes==0) {
 				if(mensajeParametrizado[1].equals("anterior")) {

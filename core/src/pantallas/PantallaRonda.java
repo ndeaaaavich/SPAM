@@ -71,9 +71,13 @@ public class PantallaRonda implements Screen {
 	}
 	@Override
 	public void pause() {
+		Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
+		Utiles.principal.setScreen(Utiles.pantallaMenu);
 	}
 	@Override
 	public void resume() {
+
+		
 	}
 	@Override
 	public void hide() {	

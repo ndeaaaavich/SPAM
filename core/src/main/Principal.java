@@ -6,14 +6,11 @@ import pantallas.PantallaMenu;
 import utiles.Utiles;
 
 public class Principal extends Game {
-	/*PantallaRonda ronda1 = new PantallaRonda1(new Vector2(0, 0), "mapas/escenario.tmx"),
-				  ronda2 = new PantallaRonda2(null, null);*/
-	
 	@Override
 	public void create () {
 		Utiles.principal = this;
-		//ronda2.setHc(ronda1.getHc());
-		this.setScreen(new PantallaMenu());
+		Utiles.pantallaMenu = new PantallaMenu();
+		this.setScreen(Utiles.pantallaMenu);
 	}
 
 	@Override

@@ -59,7 +59,13 @@ public class PantallaRonda1 extends PantallaRonda {
 	@Override
 	public void render(float delta) {
 		Render.limpiarPantalla();
-
+		
+		if(Global.terminaJuego) {
+			Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
+			Global.empiezaJuego = false;
+			Utiles.principal.setScreen(Utiles.pantallaMenu);
+		}
+		
 		if (!Global.conexion || Utiles.hc.personajesRestantes > 0 || jugadorGuardia == null) {
 			System.out.println(Utiles.hc.personajesRestantes);
 		} else {

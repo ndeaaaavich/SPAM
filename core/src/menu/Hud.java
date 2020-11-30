@@ -106,7 +106,8 @@ public class Hud extends Actor{
 	  	}
 		textos[0].setTexto("" + (int)(cuentaregresiva - Global.tiempo));	
 		textos[1].setTexto("" + Global.ronda + "-3");	
-		if(Global.empiezaJuego){	
+		
+		if(Global.empiezaJuego && pantalla instanceof PantallaRonda1){	
 			if(Global.guardia) {	
 				//textos[3].setTexto( ((PantallaRonda1)pantalla).jugadorGuardia);	
 				//aca se muestra la cantidad de pistas que el guardia tiene	

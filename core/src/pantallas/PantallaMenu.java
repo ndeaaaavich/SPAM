@@ -70,23 +70,19 @@ public class PantallaMenu implements Screen {
 
 	@Override
 	public void pause() {
-		
+	}
+	@Override
+	public void resume() {	
 	}
 
 	@Override
-	public void resume() {
-		
-	}
-
-	@Override
-	public void hide() {
-		
+	public void hide() {	
+		//cuando cambias de pantalla se llama a este metodo
 	}
 
 	@Override
 	public void dispose() {
-		stage.dispose(); //
-		
+		stage.dispose();
 	}
 
 	public void cambiarModoBotones(Touchable estado) {

@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.badlogic.gdx.Gdx;
 
 import main.Principal;
+import pantallas.PantallaMenu;
 import red.HiloCliente;
 
 
@@ -20,6 +21,7 @@ public class Utiles {
 	
 	public static float PPM = 0.01f;
 	public static Principal principal;
+	public static PantallaMenu pantallaMenu;
 	public static HiloCliente hc;
 	
 	public static float ancho = Gdx.graphics.getWidth()*PPM;
