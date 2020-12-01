@@ -42,6 +42,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		}
 		Global.terminaRonda = false;
 		// guardia
+		
 		jugadorGuardia = new Guardia("personajes/guardia.png");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
@@ -70,6 +71,7 @@ public class PantallaRonda1 extends PantallaRonda {
 			//Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
 			Utiles.hc.enviarMensaje("desconectarCliente");
 			Global.empiezaJuego = false;
+			Global.terminaJuego = false;
 			Utiles.principal.setScreen(Utiles.pantallaMenu);
 		}
 
@@ -84,6 +86,7 @@ public class PantallaRonda1 extends PantallaRonda {
 					Utiles.hc.enviarMensaje("Empieza");
 				}
 
+				//System.out.println(jugadorLadron.getSala());
 				update(delta);
 				
 				tmr.setView(camera);

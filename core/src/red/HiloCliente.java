@@ -81,17 +81,17 @@ public class HiloCliente extends Thread {
 		if(mensajeParametrizado.length<2) {
 			if(msg.equals("ConexionLista")) {
 				Global.conexion = true;
-			}// else if(msg.equals("TerminaJuego")) {
-//				Global.terminaJuego = true;
-//			}
+			} else if(msg.equals("TerminaJuego")) {
+				Global.terminaJuego = true;
+			}
 		} else {
 			if(mensajeParametrizado[0].equals("OK")) {
 				ipServer = dp.getAddress();
 				Global.guardia = (Integer.parseInt(mensajeParametrizado[1]) == 1)?true:false;
 				enviarMensaje("Entidades");
 				
-			}else if(mensajeParametrizado[0].equals("actualizar")  && Global.empiezaJuego) {
-				if(mensajeParametrizado[3].equals("G")) {
+			}else if(mensajeParametrizado[0].equals("actualizar")  && Global.empiezaJuego && !Global.terminaRonda) {
+				if(mensajeParametrizado[3].equals("G") && app.jugadorGuardia != null) {
 					
 					if(mensajeParametrizado[1].equals("estado")){
 						app.jugadorGuardia.setEstado(EstadoMovimiento.values()[Integer.parseInt(mensajeParametrizado[2])]);
