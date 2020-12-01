@@ -15,7 +15,7 @@ public class Ladron extends Jugador{
 	
 	private boolean robando;
 	private int billeteras = 0, numAzar;
-	private Sprite sprRobo;
+	private Sprite sprRobo, indicador;
 	
 	public Ladron(String sprite, float posX, float posY, int sala) {
 		super(sprite);
@@ -26,6 +26,8 @@ public class Ladron extends Jugador{
 		
 		sprRobo = new Sprite( new Texture("personajes/badlogic.jpg") );
 		sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
+		indicador = new Sprite( new Texture("personajes/flecha_abajo.png") );
+		indicador.setSize(20 * Utiles.PPM, 15 * Utiles.PPM);
 		
 		Inputlistener = new InputListener() {
 			public boolean keyDown (InputEvent event, int keycode) {
@@ -62,9 +64,15 @@ public class Ladron extends Jugador{
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	public void draw(Batch batch, float parentAlpha){
 		super.draw(batch, parentAlpha);
+		if(Global.tiempo <10 && !Global.guardia) {
+			indicador.draw(batch);
+		}
 	}
 	public void act(float delta){
 		super.act(delta);
+		if(Global.tiempo <10 && !Global.guardia) {
+			indicador.setPosition(animacion.getPosition().x - 1*Utiles.PPM, animacion.getPosition().y + animacion.getAlto());
+		}
 	}
 	//--------------------------------------------------------------------------------------------------------------------------------------
 	//-------------------------------------------------------------ANIMACION-----------------------------------------------------------------

@@ -41,6 +41,7 @@ public class PantallaRonda1 extends PantallaRonda {
 			Utiles.hc.setApp(this);
 		}
 		Global.terminaRonda = false;
+		Global.tiempo = 0;
 		// guardia
 		
 		jugadorGuardia = new Guardia("personajes/guardia.png");
