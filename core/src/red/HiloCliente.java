@@ -124,7 +124,7 @@ public class HiloCliente extends Thread {
 
 				}else if(mensajeParametrizado[1].equals("esperandoDialogo")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setEsperandoDialogo(true);
-					
+					 
 				}else if(mensajeParametrizado[1].equals("salaRobada")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setRobado(true);
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setSalaRobada(true);
