@@ -43,7 +43,6 @@ public class PantallaRonda1 extends PantallaRonda {
 		Global.terminaRonda = false;
 		Global.tiempo = 0;
 		// guardia
-		
 		jugadorGuardia = new Guardia("personajes/guardia.png");
 		stage.addActor(jugadorGuardia);
 		stage.addActor(hud);
@@ -87,7 +86,6 @@ public class PantallaRonda1 extends PantallaRonda {
 					Utiles.hc.enviarMensaje("Empieza");
 				}
 
-				//System.out.println(jugadorLadron.getSala());
 				update(delta);
 				
 				tmr.setView(camera);
@@ -229,11 +227,13 @@ public class PantallaRonda1 extends PantallaRonda {
 	                    if(resultadoRobo == 2) {
 	                        npcs[i].detectarRobo();
 	                    }else if(resultadoRobo == 0) {
+	                    	System.out.println("Pantallaronda1");
 	                    	if(cantRobos==chancePista[0] || cantRobos==chancePista[1] || cantRobos==chancePista[2]) {
 	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%"+numPista);
+
+	                    		System.out.println("cantRobos: " + cantRobos); //esto no se lo mando al servidor
+	                    		System.out.println("pista: " + numPista); 
 	                    		numPista += 1;
-	                    		System.out.println("cantRobos: " + cantRobos);
-	                    		System.out.println("pista: " + numPista);
 	                    	}else {
 	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%-2");
 
@@ -242,6 +242,8 @@ public class PantallaRonda1 extends PantallaRonda {
 							}
 	                        cantRobos += 1;
 	                    }
+
+                    	System.out.println("----------------");
 	                }
 	            }
 	            i++;
