@@ -14,7 +14,7 @@ import utiles.Utiles;
 public class Ladron extends Jugador{
 	
 	private boolean robando;
-	private int billeteras = 0, numAzar;
+	private int billeteras = 0, numAzar; 
 	private Sprite sprRobo, indicador;
 	
 	public Ladron(String sprite, float posX, float posY, int sala) {
