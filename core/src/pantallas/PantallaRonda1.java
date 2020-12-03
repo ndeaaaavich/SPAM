@@ -1,9 +1,16 @@
 package pantallas;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import personajes.Entidad;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
+
+import elementos.Texto;
 import red.HiloCliente;
 import utiles.Global;
 import utiles.Render;
@@ -22,15 +29,16 @@ public class PantallaRonda1 extends PantallaRonda {
 
 	public NPC[] npcs = new NPC[8];
 	
-	private int cantRobos = 0;
-	private int numPista = 0;
+	private int cantRobos = 0, numPista = 0;
 	private int[] chancePista = new int[3];
-	private float posSprX = 0, posSprY = 0;
 	private Hud hud = new Hud("hud.png",this); 
 	private Vector2 posicion = new Vector2(0, 0), puntoLlegada, puntoSalida;
 	private Interpolation interpol = Interpolation.circle;
-	private float tiempo, duracion = 2.5f;
-
+	private float posSprX = 0, posSprY = 0, tiempo, duracion = 2.5f, tiempoPantallaFinal, a = 1;
+	private Texto textoFin;
+	private SpriteBatch sprBatchFin = new SpriteBatch();
+	private ShapeRenderer renderer = new ShapeRenderer();
+	
 	@Override
 	public void show() {
 		// hilo cliente
@@ -54,29 +62,38 @@ public class PantallaRonda1 extends PantallaRonda {
 			for (int i = 0; i < chancePista.length; i++) {
 				chancePista[i] = Utiles.r.nextInt(5);
 			}
-		} while ((chancePista[0] == chancePista[1]) || (chancePista[1] == chancePista[2]) || (chancePista[0] == chancePista[2]));
-	
-		System.out.println("pistas");
-		for (int i = 0; i < chancePista.length; i++) {
-			System.out.println(chancePista[i]);
+		} while ( (chancePista[0] == chancePista[1]) || 
+				  (chancePista[1] == chancePista[2]) || 
+				  (chancePista[0] == chancePista[2]) );
+		if(Global.ronda == 3) {
+			textoFin = new Texto("fonts/Early GameBoy.ttf", 50, Color.WHITE, false);
+			textoFin.setPosition( Utiles.ancho / 2, 
+								  Utiles.alto / 2);
 		}
-		System.out.println("----------");
 	}
-
 	@Override
 	public void render(float delta) {
-		Render.limpiarPantalla();
+		Render.limpiarPantalla();	
 		
-		if(Global.terminaJuego) {
-			//Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
-			Utiles.hc.enviarMensaje("desconectarCliente");
-			Global.empiezaJuego = false;
-			Global.terminaJuego = false;
-			Utiles.principal.setScreen(Utiles.pantallaMenu);
-		}
-
-		if (!Global.conexion || Utiles.hc.personajesRestantes > 0 || jugadorGuardia == null) {
+		if (!Global.conexion || Utiles.hc.personajesRestantes > 0 || jugadorGuardia == null || Global.terminaJuego) {
 			System.out.println(Utiles.hc.personajesRestantes);
+			if(Global.terminaJuego) {
+				tiempoPantallaFinal += Gdx.graphics.getRawDeltaTime();
+				System.out.println(tiempoPantallaFinal);
+				if(Global.guardia && tiempoPantallaFinal < 3) {
+					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Ganaste":"Perdiste");
+				}else if(! Global.guardia && tiempoPantallaFinal < 3){
+					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Perdiste":"Ganaste");
+				}else {
+					Utiles.hc.enviarMensaje("desconectarCliente");
+					Global.empiezaJuego = false;
+					Global.terminaJuego = false;
+					Utiles.principal.setScreen(Utiles.pantallaMenu);
+				}
+				sprBatchFin.begin();
+				textoFin.draw(sprBatchFin);
+				sprBatchFin.end();
+			}
 		} else {
 			
 			if (!Global.terminaRonda) {
@@ -85,7 +102,6 @@ public class PantallaRonda1 extends PantallaRonda {
 					Global.empiezaJuego = true;
 					Utiles.hc.enviarMensaje("Empieza");
 				}
-
 				update(delta);
 				
 				tmr.setView(camera);
@@ -94,6 +110,7 @@ public class PantallaRonda1 extends PantallaRonda {
 
 				stage.act();
 				stage.draw();
+				hud.dibujarHud();
 				
 				if (Global.guardia) {
 					arrestar();
@@ -101,12 +118,21 @@ public class PantallaRonda1 extends PantallaRonda {
 					roboNPC();
 				}
 				adelantarCuerpos();
-				
-				hud.dibujarHud();
 
 				Render.batch.setProjectionMatrix(camera.combined);
 				Global.tiempo += Gdx.graphics.getRawDeltaTime();
 				
+				if (a > 0f) {
+					Gdx.gl.glEnable(GL20.GL_BLEND);
+					
+					a -= 0.01;
+					renderer.begin(ShapeType.Filled);
+					renderer.setColor(0, 0, 0, a);
+					renderer.rect(0, 0, Utiles.ancho/Utiles.PPM, Utiles.alto/Utiles.PPM);
+					renderer.end();
+				
+					Gdx.gl.glDisable(GL20.GL_BLEND);
+				}
 			} else {
 				Utiles.principal.setScreen(new PantallaRonda1(new Vector2(0, 0), ("mapas/escenario.tmx")));
 			}
@@ -178,15 +204,7 @@ public class PantallaRonda1 extends PantallaRonda {
 				}
 			}
 		}
-		if (jugadorLadron.getSprPosition().dst(jugadorGuardia.getSprPosition()) < 30 * Utiles.PPM) {
-			if (jugadorLadron.getSprPosition().y > jugadorGuardia.getSprPosition().y) {
-				jugadorLadron.toBack();
-			} else {
-				jugadorLadron.toFront();
-			}
-		}
 	}
-
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------NPC COSAS----------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
