@@ -189,20 +189,30 @@ public class NPC extends Entidad implements InterfaceRobable{
 		this.salaRobada = salaRobada;
 	}
 	public void setPista(int pista, int numPista) {
+		
+		System.out.println("Set pista");
 		this.pista[0] = pista;
 		this.pista[1] = numPista;
 		
+		System.out.println("llegan los numeros" + pista + " y " + numPista);
+		System.out.println("Mensaje: ");
+		
 		String newline = System.getProperty("line.separator");
-		if(numPista != -1 && pista != -1) {
+		if(numPista != -1) {
 			mensajePopUp = "me robaron xD el " + newline +
 				 "chorro planero llevaba " + newline +
 				 Apariencia.getDescripcion(numPista, pista);
+			
+			System.out.println(mensajePopUp);
 		}else {
 			mensajePopUp = "me robaron nooo pero " + newline +
 					 "no llegué a ver como iba " + newline +
 					 "vestido el ladron :(";
 			
+			System.out.println(mensajePopUp);
 		}
+		
+		System.out.println("-------------------");
 	}
 }
 

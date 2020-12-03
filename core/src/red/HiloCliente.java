@@ -32,7 +32,7 @@ public class HiloCliente extends Thread {
 		this.app = app;
 		
 		try {
-			ipServer = InetAddress.getByName("255.255.255.255");
+			ipServer = InetAddress.getByName("192.168.1.30");
 			conexion = new DatagramSocket();
 		} catch (SocketException | UnknownHostException e) {
 			e.printStackTrace();
@@ -81,17 +81,17 @@ public class HiloCliente extends Thread {
 		if(mensajeParametrizado.length<2) {
 			if(msg.equals("ConexionLista")) {
 				Global.conexion = true;
-			} else if(msg.equals("TerminaJuego")) {
-				Global.terminaJuego = true;
-			}
+			}// else if(msg.equals("TerminaJuego")) {
+//				Global.terminaJuego = true;
+//			}
 		} else {
 			if(mensajeParametrizado[0].equals("OK")) {
 				ipServer = dp.getAddress();
 				Global.guardia = (Integer.parseInt(mensajeParametrizado[1]) == 1)?true:false;
 				enviarMensaje("Entidades");
 				
-			}else if(mensajeParametrizado[0].equals("actualizar")  && Global.empiezaJuego && !Global.terminaRonda) {
-				if(mensajeParametrizado[3].equals("G") && app.jugadorGuardia != null) {
+			}else if(mensajeParametrizado[0].equals("actualizar")  && Global.empiezaJuego) {
+				if(mensajeParametrizado[3].equals("G")) {
 					
 					if(mensajeParametrizado[1].equals("estado")){
 						app.jugadorGuardia.setEstado(EstadoMovimiento.values()[Integer.parseInt(mensajeParametrizado[2])]);
@@ -124,15 +124,13 @@ public class HiloCliente extends Thread {
 
 				}else if(mensajeParametrizado[1].equals("esperandoDialogo")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setEsperandoDialogo(true);
-					 
+					
 				}else if(mensajeParametrizado[1].equals("salaRobada")) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setRobado(true);
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setSalaRobada(true);
 					
 				}else if(mensajeParametrizado[1].equals("sala") && personajesRestantes==0) {
 					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setSala(Integer.parseInt(mensajeParametrizado[3]));
-				}else if(mensajeParametrizado[1].equals("derecha") && personajesRestantes==0){
-					((PantallaRonda1)app).npcs[Integer.parseInt(mensajeParametrizado[2])].setDerecha(Boolean.parseBoolean(mensajeParametrizado[2]));
 				}else if (mensajeParametrizado[1].equals("crear")){
 				//--------------------------------creacion de los npc--------------------------------------------
 					int[] apariencia = new int[]{Integer.parseInt(mensajeParametrizado[6]), 
@@ -159,8 +157,13 @@ public class HiloCliente extends Thread {
 				}
 			}else if (mensajeParametrizado[0].equals("guardia")) {
 				if(mensajeParametrizado[1].equals("npcDialogo")) {
+
+					System.out.println("Hilo cliente");
 					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setEsperandoDialogo(true);
-					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setPista(Integer.parseInt(mensajeParametrizado[3]),Integer.parseInt(mensajeParametrizado[4]));				
+					((PantallaRonda1)app).npcs[ Integer.parseInt(mensajeParametrizado[2]) ].setPista(Integer.parseInt(mensajeParametrizado[3]),Integer.parseInt(mensajeParametrizado[4]));	
+					System.out.println("Llegan los numeros" + Integer.parseInt(mensajeParametrizado[3]) + " y " + Integer.parseInt(mensajeParametrizado[4]));
+					System.out.println("------------");
+					
 				}else if(mensajeParametrizado[1].equals("gano")) {
 					Global.puntajeGuardia++;
 					Global.ronda = Integer.parseInt(mensajeParametrizado[2]);
@@ -220,7 +223,7 @@ public class HiloCliente extends Thread {
 		     	personajesRestantes-=1;
 		    }
 		});
-	}
+	} 
 	
 	private void runnableLadron(final String[] mensajeParametrizado2) {
 		final HiloCliente hc = this;
