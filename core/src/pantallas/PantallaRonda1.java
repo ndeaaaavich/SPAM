@@ -65,11 +65,11 @@ public class PantallaRonda1 extends PantallaRonda {
 		} while ( (chancePista[0] == chancePista[1]) || 
 				  (chancePista[1] == chancePista[2]) || 
 				  (chancePista[0] == chancePista[2]) );
-		if(Global.ronda == 3) {
-			textoFin = new Texto("fonts/Early GameBoy.ttf", 50, Color.WHITE, false);
-			textoFin.setPosition( Utiles.ancho / 2, 
-								  Utiles.alto / 2);
-		}
+		
+		textoFin = new Texto("fonts/Early GameBoy.ttf", 50, Color.WHITE, false);
+		textoFin.setPosition( Utiles.ancho / 2, 
+							  Utiles.alto / 2);
+		
 	}
 	@Override
 	public void render(float delta) {
@@ -79,10 +79,9 @@ public class PantallaRonda1 extends PantallaRonda {
 			System.out.println(Utiles.hc.personajesRestantes);
 			if(Global.terminaJuego) {
 				tiempoPantallaFinal += Gdx.graphics.getRawDeltaTime();
-				System.out.println(tiempoPantallaFinal);
 				if(Global.guardia && tiempoPantallaFinal < 3) {
 					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Ganaste":"Perdiste");
-				}else if(! Global.guardia && tiempoPantallaFinal < 3){
+				}else if( (!Global.guardia) && tiempoPantallaFinal < 3){
 					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Perdiste":"Ganaste");
 				}else {
 					Utiles.hc.enviarMensaje("desconectarCliente");
