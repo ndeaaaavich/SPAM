@@ -22,12 +22,14 @@ import menu.Hud;
 
 public class NPC extends Entidad implements InterfaceRobable{
 	private boolean detectado, CambioDirec, 
-					robado = false, salaRobada = false, dibujarSigno = false, esperandoDialogo = false, mostrarPopUp,fin;
+					robado = false, salaRobada = false, 
+					dibujarSigno = false, 
+					esperandoDialogo = false, mostrarPopUp,
+					fin, ultimoNPC;
 	private float tiempoDetectado;
 	public int[] pista = new int[2]; //0 es la pista y 1 es el numero de pista
 	private Hud hud;
 	private Sprite sprExclamation = new Sprite( new Texture("personajes/!.png") );
-	//private Vector2 fuerzas = new Vector2(0,0);
 	
 	private String mensajePopUp;
 	private InputListener mouseListener;
@@ -166,6 +168,9 @@ public class NPC extends Entidad implements InterfaceRobable{
 	public boolean isCambioDirec() {
 		return CambioDirec;
 	}
+	public boolean isUltimoNPC() {
+		return ultimoNPC;
+	}
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------SETTERS------------------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
@@ -174,6 +179,9 @@ public class NPC extends Entidad implements InterfaceRobable{
 	}
 	public void setPosicion(float x, float y) {
     	animacion.setPosicion(x,y);
+	}
+	public void setUltimoNPC(boolean ultimoNPC) {
+		this.ultimoNPC = ultimoNPC;
 	}
 	/*public void setCambioDirec(boolean parar) {
 		this.CambioDirec = parar;

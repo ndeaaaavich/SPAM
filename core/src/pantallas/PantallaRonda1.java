@@ -179,7 +179,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		posicion.sub(puntoSalida);
 		posicion.scl(interpol.apply(tiempo / duracion));
 		posicion.add(puntoSalida);
-
+ 
 		camera.position.set(posicion, 0);
 
 		camera.update();
@@ -210,61 +210,60 @@ public class PantallaRonda1 extends PantallaRonda {
 		npcs[Integer.parseInt(mensajeParametrizado2[2])] = new NPC(mensajeParametrizado2[3], apariencia, hud, Integer.parseInt(mensajeParametrizado2[9]));
 		stage.addActor(npcs[Integer.parseInt(mensajeParametrizado2[2])]);
 	}
-
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	// -------------------------------------------------------------JUGADORES COSAS----------------------------------------------------------
 	// --------------------------------------------------------------------------------------------------------------------------------------
 	 private void roboNPC() {
-	        int i = 0, resultadoRobo;
+	        int i = 0;
 	        do {
 	            if (jugadorLadron.getSprPosition().dst(npcs[i].getSprPosition()) < 30 * Utiles.PPM 
 	             && !npcs[i].isRobado()
 	             && jugadorLadron.getSprPosition().y < npcs[i].getSprPosition().y + npcs[i].getAlto()
-	             && jugadorLadron.getSprPosition().y + jugadorLadron.getAlto() > npcs[i].getSprPosition().y
-	             && (jugadorLadron.isDerecha() && npcs[i].isDerecha() && jugadorLadron.getSprPosition().x < npcs[i].getSprPosition().x
-	             || !jugadorLadron.isDerecha() && !npcs[i].isDerecha() && jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x) ) {
-	               
-	            	if (jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x + npcs[i].getAncho()) {
-	            		
-	                    posSprX = npcs[i].getSprPosition().x + npcs[i].getAncho();
-	                    
-	                } else if (jugadorLadron.getSprPosition().x + jugadorLadron.getAncho() < npcs[i].getSprPosition().x) {
-	                	
-	                    posSprX = npcs[i].getSprPosition().x - npcs[i].getAncho();
-	                    
-	                }
-	                jugadorLadron.getSprRobo().setPosition(posSprX, npcs[i].getSprPosition().y);
-	                
-	                Render.batch.begin();
-	                jugadorLadron.getSprRobo().draw(Render.batch);
-	                Render.batch.end();
-	                if (jugadorLadron.isRobando()) {// compruebo que se este presionando la letra e         
-	                    resultadoRobo = jugadorLadron.robar();
-	                    if(resultadoRobo == 2) {
-	                        npcs[i].detectarRobo();
-	                    }else if(resultadoRobo == 0) {
-	                    	System.out.println("Pantallaronda1");
-	                    	if(cantRobos==chancePista[0] || cantRobos==chancePista[1] || cantRobos==chancePista[2]) {
-	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%"+numPista);
-
-	                    		System.out.println("cantRobos: " + cantRobos); //esto no se lo mando al servidor
-	                    		System.out.println("pista: " + numPista); 
-	                    		numPista += 1;
-	                    	}else {
-	                    		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%-2");
-
-	                    		System.out.println("cantRobos: " + cantRobos);
-	                    		System.out.println("no hubo pista");
-							}
-	                        cantRobos += 1;
-	                    }
-
-                    	System.out.println("----------------");
-	                }
+	             && jugadorLadron.getSprPosition().y + jugadorLadron.getAlto() > npcs[i].getSprPosition().y) {
+	            	
+	            	if(npcs[i].isUltimoNPC()) {
+	            		sprRobo(i);
+	            	}else if((jugadorLadron.isDerecha() && npcs[i].isDerecha() && jugadorLadron.getSprPosition().x < npcs[i].getSprPosition().x
+	            		  || !jugadorLadron.isDerecha() && !npcs[i].isDerecha() && jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x)) {
+	            		sprRobo(i);
+	            	}
 	            }
 	            i++;
 	        } while (i < npcs.length);
 	    }
+	 	private void sprRobo(int i) {
+	 		int resultadoRobo;
+	 		if (jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x + npcs[i].getAncho()) {
+        		
+                posSprX = npcs[i].getSprPosition().x + npcs[i].getAncho();
+                
+            } else if (jugadorLadron.getSprPosition().x + jugadorLadron.getAncho() < npcs[i].getSprPosition().x) {
+            	
+                posSprX = npcs[i].getSprPosition().x - npcs[i].getAncho();
+                
+            }
+            jugadorLadron.getSprRobo().setPosition(posSprX, npcs[i].getSprPosition().y);
+            
+            Render.batch.begin();
+            jugadorLadron.getSprRobo().draw(Render.batch);
+            Render.batch.end();
+            
+            if (jugadorLadron.isRobando()) {// compruebo que se este presionando la letra e         
+                resultadoRobo = jugadorLadron.robar();
+                if(resultadoRobo == 2) {
+                    npcs[i].detectarRobo();
+                }else if(resultadoRobo == 0) {
+                	System.out.println("Pantallaronda1");
+                	if(cantRobos==chancePista[0] || cantRobos==chancePista[1] || cantRobos==chancePista[2]) {
+                		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%"+numPista);
+                		numPista += 1;
+                	}else {
+                		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%-2");
+					}
+                    cantRobos += 1;
+                }
+            }
+	 	}
 	    private void arrestar() {
 	        Entidad entidad;
 	        

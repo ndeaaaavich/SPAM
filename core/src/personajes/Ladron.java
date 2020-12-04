@@ -95,7 +95,7 @@ public class Ladron extends Jugador{
 			TiempoAccion = 0;
 			billeteras ++;
 			
-			if(billeteras > 4) {
+			if(billeteras > 2) {
 				super.finalizarRonda(true, this);
 			}
 			System.out.println("robo con exito");
