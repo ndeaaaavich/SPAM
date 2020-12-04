@@ -65,7 +65,6 @@ public class PantallaRonda1 extends PantallaRonda {
 		} while ( (chancePista[0] == chancePista[1]) || 
 				  (chancePista[1] == chancePista[2]) || 
 				  (chancePista[0] == chancePista[2]) );
-		
 		textoFin = new Texto("fonts/Early GameBoy.ttf", 50, Color.WHITE, false);
 		textoFin.setPosition( Utiles.ancho / 2, 
 							  Utiles.alto / 2);
