@@ -132,7 +132,7 @@ public class Hud extends Actor{
 	public void setTextoPopUp(String texto) {
 		textoPopUp.setTexto(texto);
 
-		textoPopUp.setPosition(popUp.getX()+10*Utiles.PPM,popUp.getY()+10*Utiles.PPM);	
+		textoPopUp.setPosition(popUp.getX()+10*Utiles.PPM,popUp.getY()+100*Utiles.PPM);	
 	}
 	
 	public void moverPopUp(boolean entra) { 
