@@ -79,7 +79,7 @@ public class PantallaRonda1 extends PantallaRonda {
 			System.out.println(Utiles.hc.personajesRestantes);
 			if(Global.terminaJuego) {
 				tiempoPantallaFinal += Gdx.graphics.getRawDeltaTime();
-				if(Global.guardia && tiempoPantallaFinal < 3) {
+				if(Global.guardia && tiempoPantallaFinal < 3) { 
 					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Ganaste":"Perdiste");
 				}else if( (!Global.guardia) && tiempoPantallaFinal < 3){
 					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Perdiste":"Ganaste");
