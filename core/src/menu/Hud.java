@@ -166,13 +166,13 @@ public class Hud extends Actor{
 		
 		hudBatch.begin();
 		if(hud != null)hud.draw(hudBatch);
-		
+	
 		for (int i = 0; i < textos.length; i++) {	
 			textos[i].draw(hudBatch);	
 		}
-		
 		popUp.draw(hudBatch);
 		textoPopUp.draw(hudBatch);
+		
 		hudBatch.end();
 	}
 

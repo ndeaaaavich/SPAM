@@ -2,6 +2,7 @@ package elementos;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,6 +25,7 @@ public class Texto {
 		FreeTypeFontParameter parametros = new FreeTypeFontGenerator.FreeTypeFontParameter();
 		parametros.size = dimension;
 		parametros.color = color;
+		
 		if (sombra) {
 			parametros.shadowColor = Color.BLACK;
 			parametros.shadowOffsetX = 1;
@@ -34,6 +36,9 @@ public class Texto {
 	}
 	
 	public void draw(SpriteBatch batch) {
+		fuente.draw(batch, texto, x, y);
+	}
+	public void draw(Batch batch) {
 		fuente.draw(batch, texto, x, y);
 	}
 	// --------------------------------------------------------------------------------------------------------------------------------------

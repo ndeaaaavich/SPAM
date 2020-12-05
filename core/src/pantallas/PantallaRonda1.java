@@ -35,12 +35,13 @@ public class PantallaRonda1 extends PantallaRonda {
 	private Vector2 posicion = new Vector2(0, 0), puntoLlegada, puntoSalida;
 	private Interpolation interpol = Interpolation.circle;
 	private float posSprX = 0, posSprY = 0, tiempo, duracion = 2.5f, tiempoPantallaFinal, a = 1;
-	private Texto textoFin;
+	private Texto textoFinInicio;
 	private SpriteBatch sprBatchFin = new SpriteBatch();
 	private ShapeRenderer renderer = new ShapeRenderer();
 	
 	@Override
 	public void show() {
+		b2dr.setDrawBodies(false);	
 		// hilo cliente
 		if(Global.ronda == 1) {
 			Utiles.hc = new HiloCliente(this);
@@ -65,9 +66,9 @@ public class PantallaRonda1 extends PantallaRonda {
 		} while ( (chancePista[0] == chancePista[1]) || 
 				  (chancePista[1] == chancePista[2]) || 
 				  (chancePista[0] == chancePista[2]) );
-		textoFin = new Texto("fonts/Early GameBoy.ttf", 50, Color.WHITE, false);
-		textoFin.setPosition( Utiles.ancho / 2, 
-							  Utiles.alto / 2);
+		textoFinInicio = new Texto("fonts/Early GameBoy.ttf", 50, Color.WHITE, false);
+		textoFinInicio.setPosition( (Utiles.ancho / 2)-200, 
+									Utiles.alto / 2);
 		
 	}
 	@Override
@@ -75,23 +76,25 @@ public class PantallaRonda1 extends PantallaRonda {
 		Render.limpiarPantalla();	
 		
 		if (!Global.conexion || Utiles.hc.personajesRestantes > 0 || jugadorGuardia == null || Global.terminaJuego) {
-			System.out.println(Utiles.hc.personajesRestantes);
 			if(Global.terminaJuego) {
 				tiempoPantallaFinal += Gdx.graphics.getRawDeltaTime();
 				if(Global.guardia && tiempoPantallaFinal < 3) { 
-					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Ganaste":"Perdiste");
+					textoFinInicio.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Ganaste":"Perdiste");
 				}else if( (!Global.guardia) && tiempoPantallaFinal < 3){
-					textoFin.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Perdiste":"Ganaste");
+					textoFinInicio.setTexto( (Global.puntajeGuardia > Global.puntajeLadron)?"Perdiste":"Ganaste");
 				}else {
 					Utiles.hc.enviarMensaje("desconectarCliente");
 					Global.empiezaJuego = false;
 					Global.terminaJuego = false;
 					Utiles.principal.setScreen(Utiles.pantallaMenu);
 				}
-				sprBatchFin.begin();
-				textoFin.draw(sprBatchFin);
-				sprBatchFin.end();
+			}else {
+				textoFinInicio.setTexto("esperando a "
+									  + "\notro jugador");
 			}
+			sprBatchFin.begin();
+			textoFinInicio.draw(sprBatchFin);
+			sprBatchFin.end();
 		} else {
 			
 			if (!Global.terminaRonda) {
@@ -247,13 +250,19 @@ public class PantallaRonda1 extends PantallaRonda {
             Render.batch.begin();
             jugadorLadron.getSprRobo().draw(Render.batch);
             Render.batch.end();
-            
+
             if (jugadorLadron.isRobando()) {// compruebo que se este presionando la letra e         
                 resultadoRobo = jugadorLadron.robar();
+                
+                jugadorLadron.getTexRobo().setPosition(jugadorLadron.getSprPosition().x, (jugadorLadron.getSprPosition().y - 0.5f));                
+                sprBatchFin.begin();
+                jugadorLadron.getTexRobo().draw(sprBatchFin);
+    			sprBatchFin.end();
+    			
+				sprBatchFin.setProjectionMatrix(camera.combined);
                 if(resultadoRobo == 2) {
                     npcs[i].detectarRobo();
                 }else if(resultadoRobo == 0) {
-                	System.out.println("Pantallaronda1");
                 	if(cantRobos==chancePista[0] || cantRobos==chancePista[1] || cantRobos==chancePista[2]) {
                 		Utiles.hc.enviarMensaje("ladron%robo%"+jugadorLadron.getSala()+"%"+i+"%"+numPista);
                 		numPista += 1;
@@ -264,7 +273,7 @@ public class PantallaRonda1 extends PantallaRonda {
                 }
             }
 	 	}
-	    private void arrestar() {
+		private void arrestar() {
 	        Entidad entidad;
 	        
 	        entidad = cercaniaLadron();
