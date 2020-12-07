@@ -17,8 +17,7 @@ public class Ladron extends Jugador{
 	
 	private boolean robando;
 	private int billeteras = 0, numAzar; 
-	private Sprite sprRobo, indicador;
-	private Texto texRobo;
+	private Sprite sprRobo, indicador, texRobo;
 
 	public Ladron(String sprite, float posX, float posY, int sala) {
 		super(sprite);
@@ -31,9 +30,8 @@ public class Ladron extends Jugador{
 		sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
 		indicador = new Sprite( new Texture("personajes/flecha_abajo.png") );
 		indicador.setSize(20 * Utiles.PPM, 15 * Utiles.PPM);
-		
-		texRobo = new Texto("fonts/Early GameBoy.ttf", 10, Color.WHITE, false);
-		texRobo.setTexto("puto");
+
+		//sprRobo = new Sprite( new Texture("") );
 		
 		Inputlistener = new InputListener() {
 			public boolean keyDown (InputEvent event, int keycode) {
@@ -121,7 +119,7 @@ public class Ladron extends Jugador{
 	public int getBilleteras() {
 		return billeteras;
 	}
-	public Texto getTexRobo() {
+	public Sprite getTexRobo() {
 		return texRobo;
 	}
 }

@@ -255,10 +255,13 @@ public class PantallaRonda1 extends PantallaRonda {
                 resultadoRobo = jugadorLadron.robar();
                 
                 jugadorLadron.getTexRobo().setPosition(jugadorLadron.getSprPosition().x, (jugadorLadron.getSprPosition().y - 0.5f));                
-                sprBatchFin.begin();
-                jugadorLadron.getTexRobo().draw(sprBatchFin);
-    			sprBatchFin.end();
-    			
+              
+//               sprBatchFin.begin();
+//               jugadorLadron.getTexRobo().draw(sprBatchFin);
+//    			 sprBatchFin.end();
+    			 Render.batch.begin();
+                 jugadorLadron.getTexRobo().draw(Render.batch);
+    	         Render.batch.end();
 				sprBatchFin.setProjectionMatrix(camera.combined);
                 if(resultadoRobo == 2) {
                     npcs[i].detectarRobo();
