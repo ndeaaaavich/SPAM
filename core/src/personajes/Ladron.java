@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-import elementos.Texto;
 import utiles.Global;
 import utiles.Utiles;
 
@@ -30,8 +29,8 @@ public class Ladron extends Jugador{
 		sprRobo.setSize(16 * Utiles.PPM, 16 * Utiles.PPM);
 		indicador = new Sprite( new Texture("personajes/flecha_abajo.png") );
 		indicador.setSize(20 * Utiles.PPM, 15 * Utiles.PPM);
-
-		//sprRobo = new Sprite( new Texture("") );
+		texRobo = new Sprite( new Texture("personajes/robando.png") );
+		texRobo.setSize(texRobo.getWidth() * Utiles.PPM, texRobo.getHeight() * Utiles.PPM);
 		
 		Inputlistener = new InputListener() {
 			public boolean keyDown (InputEvent event, int keycode) {
