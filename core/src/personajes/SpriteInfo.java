@@ -10,7 +10,16 @@ public enum SpriteInfo {
 	SEIS("personajes/6.png",new int[]{1,1,2},false),
 	SIETE("personajes/7.png",new int[]{0,1,0},false),
 	OCHO("personajes/8.png",new int[]{1,0,2},false),
-	NUEVE("personajes/9.png",new int[]{2,2,0},false);
+	NUEVE("personajes/9.png",new int[]{2,2,0},false),
+	DIEZ("personajes/10.png",new int[]{0,0,1},false),
+	ONCE("personajes/11.png",new int[]{0,0,2},false),
+	DOCE("personajes/12.png",new int[]{0,1,1},false),
+	TRECE("personajes/13.png",new int[]{0,1,2},false),
+	CATORCE("personajes/14.png",new int[]{0,2,0},false),
+	QUINCE("personajes/15.png",new int[]{0,2,2},false),
+	DIECISEIS("personajes/16.png",new int[]{1,0,0},false),
+	DIECISIETE("personajes/17.png",new int[]{1,0,1},false),
+	DIECIOCHO("personajes/18.png",new int[]{1,1,0},false);
 	
 	private String filename;
 	private int[] apariencia = new int[3];

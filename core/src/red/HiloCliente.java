@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 
 import com.badlogic.gdx.Gdx;
 
-import utiles.Global;
+import utiles.Global; 
 import utiles.Utiles;
 import pantallas.*;
 import personajes.EstadoMovimiento;
@@ -24,7 +24,7 @@ public class HiloCliente extends Thread {
 	
 	private boolean fin = false;
 	private PantallaRonda app;
-	public int tope = 9;
+	public int tope = 18;
 	public int personajesRestantes = tope;
 	private float posY = 0, posX = 0;
 	
@@ -32,8 +32,8 @@ public class HiloCliente extends Thread {
 		this.app = app;
 		
 		try {
-			ipServer = InetAddress.getByName("192.168.1.30");
-			//ipServer = InetAddress.getByName("255.255.255.255");
+			//ipServer = InetAddress.getByName("186.137.202.168");
+			ipServer = InetAddress.getByName("255.255.255.255");
 			conexion = new DatagramSocket();
 		} catch (SocketException | UnknownHostException e) {
 			e.printStackTrace();

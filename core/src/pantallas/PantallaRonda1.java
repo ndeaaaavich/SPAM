@@ -27,7 +27,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		super(gravedad, rutaMapa);
 	}
 
-	public NPC[] npcs = new NPC[8];
+	public NPC[] npcs = new NPC[17];
 	
 	private int cantRobos = 0, numPista = 0;
 	private int[] chancePista = new int[3];
