@@ -23,7 +23,7 @@ public class HiloCliente extends Thread {
 	private int puerto = 42069;
 	
 	private boolean fin = false;
-	private PantallaRonda app;
+	private PantallaRonda app;  
 	public int tope = 18;
 	public int personajesRestantes = tope;
 	private float posY = 0, posX = 0;

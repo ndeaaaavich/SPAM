@@ -254,11 +254,8 @@ public class PantallaRonda1 extends PantallaRonda {
             if (jugadorLadron.isRobando()) {// compruebo que se este presionando la letra e         
                 resultadoRobo = jugadorLadron.robar();
                 
-                jugadorLadron.getTexRobo().setPosition(jugadorLadron.getSprPosition().x, (jugadorLadron.getSprPosition().y - 0.5f));                
-              
-//               sprBatchFin.begin();
-//               jugadorLadron.getTexRobo().draw(sprBatchFin);
-//    			 sprBatchFin.end();
+                jugadorLadron.getTexRobo().setPosition(jugadorLadron.getSprPosition().x - (jugadorLadron.getWidth()/2), 
+                									  (jugadorLadron.getSprPosition().y + jugadorLadron.getAlto() + 0.05f) );                
     			 Render.batch.begin();
                  jugadorLadron.getTexRobo().draw(Render.batch);
     	         Render.batch.end();
