@@ -97,7 +97,7 @@ public class Ladron extends Jugador{
 			TiempoAccion = 0;
 			billeteras ++;
 			
-			if(billeteras > 2) {
+			if(billeteras > 4) {
 				super.finalizarRonda(true, this);
 			}
 			

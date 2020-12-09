@@ -15,8 +15,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import mapas.Mapa;
 import personajes.Guardia;
 import personajes.Ladron;
-import personajes.SpriteInfo;
-import red.HiloCliente;
 import utiles.Global;
 import utiles.Render;
 import utiles.Utiles;
@@ -73,7 +71,8 @@ public class PantallaRonda implements Screen {
 	public void pause() {
 //		Utiles.pantallaMenu.viewport.setWorldSize(Utiles.pantallaMenu.viewport.getWorldWidth() * 2, 
 //												  Utiles.pantallaMenu.viewport.getWorldHeight() * 2);
-		System.out.println(Utiles.pantallaMenu.viewport.getWorldWidth() + " " + Utiles.pantallaMenu.viewport.getWorldHeight());
+		System.out.println(Utiles.pantallaMenu.viewport.getWorldWidth() + " " 
+						 + Utiles.pantallaMenu.viewport.getWorldHeight());
 		//Utiles.pantallaMenu.viewport.setScreenBounds(0, 0, (int)(Utiles.ancho/Utiles.PPM), (int)(Utiles.alto/Utiles.PPM));
 		Utiles.hc.enviarMensaje( (Global.guardia)?"guardia%desconectado":"ladron%desconectado");
 		Utiles.principal.setScreen(Utiles.pantallaMenu);

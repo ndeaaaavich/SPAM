@@ -20,7 +20,7 @@ public class HiloCliente extends Thread {
 	
 	private DatagramSocket conexion;
 	private InetAddress ipServer;
-	private int puerto = 42069;
+	private int puerto = 42000;
 	
 	private boolean fin = false;
 	private PantallaRonda app;  
@@ -32,7 +32,7 @@ public class HiloCliente extends Thread {
 		this.app = app;
 		
 		try {
-			//ipServer = InetAddress.getByName("186.137.202.168");
+			//ipServer = InetAddress.getByName("186.18.71.237");
 			ipServer = InetAddress.getByName("255.255.255.255");
 			conexion = new DatagramSocket();
 		} catch (SocketException | UnknownHostException e) {
@@ -140,6 +140,7 @@ public class HiloCliente extends Thread {
 												 Integer.parseInt(mensajeParametrizado[7]),
 												 Integer.parseInt(mensajeParametrizado[8])
 												};
+					System.out.println("Mensaje recibido");
 					runnableNPC(mensajeParametrizado, apariencia);
 				}
 				
