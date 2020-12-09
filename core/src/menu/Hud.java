@@ -31,7 +31,7 @@ public class Hud extends Actor{
 	private Texto[] textos = new Texto[4];
 	//0 Tiempo, 1 textoSala, 2 textoLadron, 3 textoGuardia;
 	
-	private Texto textoPopUp = new Texto("fonts/Early GameBoy.ttf", 15, Color.WHITE, false);
+	private Texto textoPopUp = new Texto("fonts/Early GameBoy.ttf", 26, Color.WHITE, false);
 	private Screen pantalla;
 	private float opacidad = 0;
 	private Vector2 posicionInicial, posicionLlegada, posicion = new Vector2();
@@ -83,7 +83,7 @@ public class Hud extends Actor{
 			posicion.add(posicionInicial);
 			
 			popUp.setPosition(posicion.x, posicion.y);
-			textoPopUp.setPosition(posicion.x, posicion.y+100);
+			textoPopUp.setPosition(posicion.x+10, posicion.y+280);
 			
 			tiempo += delta;
 			

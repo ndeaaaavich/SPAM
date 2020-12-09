@@ -61,7 +61,7 @@ public class PantallaRonda1 extends PantallaRonda {
 		
 		do {
 			for (int i = 0; i < chancePista.length; i++) {
-				chancePista[i] = Utiles.r.nextInt(5);
+				chancePista[i] = Utiles.r.nextInt(4);
 			}
 		} while ( (chancePista[0] == chancePista[1]) || 
 				  (chancePista[1] == chancePista[2]) || 
@@ -237,13 +237,11 @@ public class PantallaRonda1 extends PantallaRonda {
 	 	private void sprRobo(int i) {
 	 		int resultadoRobo;
 	 		if (jugadorLadron.getSprPosition().x > npcs[i].getSprPosition().x + npcs[i].getAncho()) {
-        		
                 posSprX = npcs[i].getSprPosition().x + npcs[i].getAncho();
                 
             } else if (jugadorLadron.getSprPosition().x + jugadorLadron.getAncho() < npcs[i].getSprPosition().x) {
-            	
                 posSprX = npcs[i].getSprPosition().x - npcs[i].getAncho();
-                
+            
             }
             jugadorLadron.getSprRobo().setPosition(posSprX, npcs[i].getSprPosition().y);
             
