@@ -208,14 +208,14 @@ public class NPC extends Entidad implements InterfaceRobable{
 		String newline = System.getProperty("line.separator");
 		if(numPista != -1) {
 			mensajePopUp = "Guardia, me robaron! " + newline +
-				 "El ladrón llevaba puesto " + newline +
+				 "Vi que el ladron tenia " + newline +
 				 Apariencia.getDescripcion(numPista, pista);
 			
 			System.out.println(mensajePopUp);
 		}else {
 			mensajePopUp = "Guardia, me robaron! " + newline +
-					 "Pero no llegué a ver " + newline +
-					 "cómo vestía el ladron :(";
+					 "Pero no llegue a ver " + newline +
+					 "cómo vestia el ladron :(";
 			
 			System.out.println(mensajePopUp);
 		}
